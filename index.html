@@ -286,9 +286,9 @@
       flex: 1; overflow-y: auto;
       padding: 24px 28px;
       background: var(--bg-lowered);
+      display: flex; flex-direction: column; gap: 16px;
     }
-    .detail-main > * { margin-bottom: 16px; }
-    .detail-main > *:last-child { margin-bottom: 0; }
+    .detail-main > * { flex-shrink: 0; }
 
     /* ── Cards ── */
     .card {
@@ -343,7 +343,7 @@
     .detail-sidebar {
       width: 316px; flex-shrink: 0;
       border-left: 1px solid var(--border-quiet);
-      overflow-y: auto;
+      overflow-y: hidden;
       background: var(--bg-default);
     }
     .sidebar-section {
