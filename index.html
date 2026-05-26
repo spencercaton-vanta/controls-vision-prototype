@@ -3,1208 +3,276 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Remote access — Controls — TruSecure</title>
+  <title>Project files — Christine Asprea</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
+    /* ── Alpaca light-mode tokens (from Foundations ALP) ── */
     :root {
-      --text-default: #181724;
-      --text-quiet: #3b3a52;
-      --text-tertiary: #9b9a99;
-      --text-placeholder: #8c8baa;
-      --bg-default: #ffffff;
-      --bg-lowered: #f9f9fb;
-      --bg-neutral: #efeff5;
-      --border-quiet: #efeff5;
-      --border-default: #dcdcea;
-      --brand: #8e34e3;
-      --brand-light: #f6f4ff;
-      --info-bg: #e1e9ff;
-      --info-text: #2748c8;
-      --success-bg: #dcfce7;
-      --success-text: #16a44a;
-      --error-text: #c2410c;
-      --topbar-h: 56px;
-      --sidenav-w: 184px;
+      --bg-page:             #f9f9fb;   /* Background/Page/Default     */
+      --bg-lowered:          #f9f9fb;   /* Background/Surface/Lowered  */
+      --bg-raised:           #ffffff;   /* Background/Surface/Raised   */
+      --bg-neutral:          #efeff5;   /* Background/Surface/Neutral  */
+      --bg-disabled:         #efeff5;   /* Background/Surface/Disabled */
+      --bg-brand:            #f6f4ff;   /* Background/Surface/Brand    */
+      --bg-success:          #dcfce7;   /* Background/Surface/Success  */
+
+      --text-default:        #181724;   /* Text/Default   */
+      --text-quiet:          #3b3a52;   /* Text/Quiet     */
+      --text-quieter:        #9b9a99;   /* Text/Quieter   */
+      --text-disabled:       #9b9a99;   /* Text/Disabled  */
+      --text-brand:          #8e34e3;   /* Text/Brand     */
+      --text-success:        #16a44a;   /* Text/Success   */
+
+      --border-default:      #dcdcea;   /* Border/Default */
+      --border-quiet:        #efeff5;   /* Border/Quiet   */
+      --border-brand:        #c4a6f5;   /* Border/Brand   */
+
+      --icon-brand:          #12111d;   /* Icon/OnFill    */
+
+      --interactive-brand:   #8e34e3;   /* Background/Interactive/Brand */
+      --interactive-hover:   #f9f9fb;   /* Background/Interactive/Secondary/Hover */
     }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: 'Inter', sans-serif;
       font-size: 14px;
       color: var(--text-default);
-      background: var(--bg-lowered);
-      height: 100vh;
-      overflow: hidden;
+      background: var(--bg-page);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* ── Top nav ── */
-    .topnav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      height: var(--topbar-h);
-      background: var(--bg-default);
+    /* ── Header ── */
+    .header {
+      background: var(--bg-raised);
       border-bottom: 1px solid var(--border-quiet);
+      padding: 0 32px;
+      height: 52px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      padding: 0 20px;
-      z-index: 100;
-    }
-    .topnav-left { display: flex; align-items: center; gap: 16px; }
-    .vanta-logo { font-size: 16px; font-weight: 700; color: var(--text-default); letter-spacing: -0.3px; }
-    .workspace-chip {
-      display: flex; align-items: center; gap: 8px;
-      height: 32px; padding: 0 10px;
-      border: 1px solid var(--border-default);
-      border-radius: 6px;
-      background: var(--bg-default);
-      cursor: pointer;
-      font-size: 14px; font-weight: 500;
-      color: var(--text-default);
-      font-family: 'Inter', sans-serif;
-    }
-    .workspace-icon {
-      width: 20px; height: 20px; border-radius: 50%;
-      background: #3c63ea;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-    }
-    .topnav-right { display: flex; align-items: center; gap: 4px; }
-    .nav-icon-btn {
-      width: 32px; height: 32px;
-      display: flex; align-items: center; justify-content: center;
-      border: none; background: transparent;
-      border-radius: 6px; cursor: pointer;
-      color: var(--text-quiet);
-      transition: background 0.1s;
-    }
-    .nav-icon-btn:hover { background: var(--bg-neutral); }
-    .user-avatar {
-      width: 32px; height: 32px; border-radius: 50%;
-      background: var(--bg-neutral);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 12px; font-weight: 600;
-      color: var(--text-quiet); cursor: pointer; border: none;
-    }
-
-    /* ── App shell ── */
-    .appshell {
-      display: flex;
-      position: fixed;
-      top: var(--topbar-h); left: 0; right: 0; bottom: 0;
-    }
-
-    /* ── Left nav ── */
-    .sidenav {
-      width: var(--sidenav-w);
-      background: var(--bg-lowered);
-      border-right: 1px solid var(--border-quiet);
-      display: flex; flex-direction: column;
-      flex-shrink: 0;
-      overflow-y: auto;
-      padding: 8px 0 0;
-    }
-    .sidenav-search {
-      margin: 4px 10px 8px;
-      height: 32px;
-      background: var(--bg-neutral);
-      border-radius: 9999px;
-      display: flex; align-items: center;
-      gap: 8px; padding: 0 12px;
-      cursor: text; flex-shrink: 0;
-    }
-    .sidenav-search-text { font-size: 13px; color: var(--text-placeholder); flex: 1; }
-    .sidenav-search-kbd { font-size: 12px; color: var(--text-tertiary); white-space: nowrap; }
-
-    .nav-item {
-      display: flex; align-items: center;
-      height: 34px; padding: 0 10px;
-      gap: 9px;
-      font-size: 13px; font-weight: 400;
-      color: var(--text-default);
-      cursor: pointer;
-      border-radius: 6px;
-      margin: 1px 6px;
-      transition: background 0.1s;
-      text-decoration: none;
-    }
-    .nav-item:hover { background: var(--bg-neutral); }
-    .nav-item-icon {
-      width: 16px; height: 16px; flex-shrink: 0;
-      color: var(--text-quiet);
-    }
-    .nav-chevron { margin-left: auto; color: var(--text-tertiary); flex-shrink: 0; }
-
-    .nav-group-header {
-      display: flex; align-items: center;
-      height: 34px; padding: 0 10px;
-      gap: 9px;
-      font-size: 13px; font-weight: 500;
-      color: var(--text-default);
-      cursor: pointer;
-      border-radius: 6px;
-      margin: 1px 6px;
-      transition: background 0.1s;
-    }
-    .nav-group-header:hover { background: var(--bg-neutral); }
-
-    .nav-sub {
-      display: flex; align-items: center;
-      height: 30px; padding: 0 10px 0 35px;
-      font-size: 13px; font-weight: 400;
-      color: var(--text-quiet);
-      cursor: pointer;
-      border-radius: 6px;
-      margin: 1px 6px;
-      transition: background 0.1s;
-    }
-    .nav-sub:hover { background: var(--bg-neutral); }
-    .nav-sub.active {
-      background: var(--brand-light);
-      color: var(--brand);
-      font-weight: 500;
-    }
-
-    .nav-divider { height: 1px; background: var(--border-quiet); margin: 6px 10px; }
-
-    .sidenav-collapse {
-      margin-top: auto;
-      padding: 10px 14px;
-      border-top: 1px solid var(--border-quiet);
-      font-size: 13px; color: var(--text-tertiary);
-      cursor: pointer; flex-shrink: 0;
-    }
-
-    /* ── Main content ── */
-    .main {
-      flex: 1; display: flex; flex-direction: column;
-      overflow-y: auto; background: var(--bg-default);
-      min-height: 0;
-    }
-
-    /* ── Detail header ── */
-    .detail-header {
-      flex-shrink: 0;
-      background: var(--bg-default);
-      border-bottom: 1px solid var(--border-quiet);
-    }
-    .detail-header-inner { padding: 20px 28px 0; }
-    .breadcrumb {
-      font-size: 12px; color: var(--text-tertiary);
-      margin-bottom: 10px; letter-spacing: 0.1px;
-    }
-    .detail-title-row {
-      display: flex; align-items: flex-start;
-      justify-content: space-between; gap: 16px;
-      margin-bottom: 10px;
-    }
-    .detail-title {
-      font-size: 24px; font-weight: 600;
-      color: var(--text-default); line-height: 1.2;
-    }
-    .detail-actions { display: flex; gap: 8px; align-items: center; flex-shrink: 0; }
-    .btn-manage {
-      display: inline-flex; align-items: center; gap: 7px;
-      height: 32px; padding: 0 14px;
-      background: var(--text-default); color: white;
-      border: none; border-radius: 6px; cursor: pointer;
-      font-size: 13px; font-weight: 500; font-family: 'Inter', sans-serif;
-    }
-    .btn-more {
-      width: 32px; height: 32px;
-      display: inline-flex; align-items: center; justify-content: center;
-      background: transparent; border: 1px solid var(--border-default);
-      border-radius: 6px; cursor: pointer; color: var(--text-quiet);
-    }
-    .detail-desc {
-      font-size: 14px; color: var(--text-quiet);
-      line-height: 1.5; margin-bottom: 4px;
-    }
-    .show-more-link {
-      font-size: 14px; color: var(--info-text);
-      text-decoration: underline; cursor: pointer;
-      margin-bottom: 12px; display: inline-block;
-    }
-    .detail-meta {
-      display: flex; align-items: center; gap: 8px;
-      flex-wrap: wrap; padding-bottom: 14px;
-    }
-    .badge {
-      display: inline-flex; align-items: center; gap: 5px;
-      padding: 3px 8px; border-radius: 4px;
-      font-size: 12px; font-weight: 500;
-      line-height: 1.4;
-    }
-    .badge-neutral {
-      background: var(--bg-neutral); color: var(--text-quiet);
-    }
-    .badge-status {
-      background: var(--info-bg); color: var(--info-text);
-      cursor: pointer;
-    }
-    .meta-owner {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-size: 13px; color: var(--text-quiet);
-    }
-    .owner-avatar-sm {
-      width: 20px; height: 20px; border-radius: 50%;
-      background: #c7d7ff; color: var(--info-text);
-      display: inline-flex; align-items: center; justify-content: center;
-      font-size: 9px; font-weight: 700; flex-shrink: 0;
-    }
-    .meta-id { font-size: 13px; color: var(--text-tertiary); }
-
-    /* ── Tabs ── */
-    .detail-tabs {
-      display: flex; align-items: flex-end;
-      padding: 0 28px;
-    }
-    .detail-tab {
-      height: 36px; margin-right: 22px;
-      display: inline-flex; align-items: center;
-      font-size: 14px; font-weight: 500;
-      color: var(--text-tertiary);
-      cursor: pointer;
-      border-bottom: 2px solid transparent;
-      margin-bottom: -1px;
-      white-space: nowrap;
-      transition: color 0.1s;
-      letter-spacing: 0.1px;
-    }
-    .detail-tab:hover { color: var(--text-quiet); }
-    .detail-tab.active {
-      color: var(--text-default);
-      border-bottom-color: var(--brand);
-    }
-
-    /* ── Detail body ── */
-    .detail-body { display: flex; }
-    .detail-main {
-      flex: 1;
-      padding: 24px 28px;
-      background: var(--bg-lowered);
-      display: flex; flex-direction: column; gap: 16px;
-    }
-    .detail-main > * { flex-shrink: 0; }
-
-    /* ── Cards ── */
-    .card {
-      background: var(--bg-default);
-      border: 1px solid var(--border-quiet);
-      border-radius: 8px; overflow: hidden;
-    }
-    .card-header {
-      padding: 16px 20px;
-      border-bottom: 1px solid var(--border-quiet);
-    }
-    .card-title { font-size: 16px; font-weight: 600; color: var(--text-default); }
-    .card-body { padding: 20px; }
-
-    .soc-chip {
-      display: inline-flex; align-items: center; gap: 8px;
-      margin-bottom: 14px;
-    }
-    .soc-icon {
-      width: 24px; height: 24px; border-radius: 50%;
-      background: #7c3aed; color: white;
-      display: inline-flex; align-items: center; justify-content: center;
-      font-size: 9px; font-weight: 700; flex-shrink: 0;
-    }
-    .soc-label { font-size: 14px; font-weight: 500; color: var(--text-default); }
-
-    .card-text {
-      font-size: 14px; line-height: 1.6;
-      color: var(--text-quiet); margin-bottom: 16px;
-    }
-    .card-link {
-      font-size: 14px; color: var(--info-text);
-      text-decoration: underline; cursor: pointer;
-    }
-    .card-section-label {
-      font-size: 12px; font-weight: 600;
-      color: var(--text-quiet);
-      margin-bottom: 12px; margin-top: 20px;
-      letter-spacing: 0.1px;
-    }
-    .systems-list { display: flex; flex-direction: column; gap: 6px; }
-    .system-row {
-      display: flex; align-items: baseline; gap: 10px;
-      font-size: 13px;
-    }
-    .system-check { flex-shrink: 0; position: relative; top: 1px; }
-    .system-name { font-weight: 500; color: var(--text-default); min-width: 76px; }
-    .system-desc { color: var(--text-quiet); }
-    .system-desc.error { color: var(--error-text); }
-
-    /* ── Right sidebar ── */
-    .detail-sidebar {
-      width: 380px; flex-shrink: 0;
-      overflow-y: auto;
-      background: var(--bg-lowered);
-      display: flex; flex-direction: column;
-      gap: 10px;
-      padding: 12px 12px 33px;
+      gap: 12px;
       position: sticky;
       top: 0;
-      height: calc(100vh - var(--topbar-h));
-      align-self: flex-start;
+      z-index: 10;
     }
-    .sidebar-section {
-      background: var(--bg-default);
-      border: 1px solid #dcdbda;
-      border-radius: 8px;
-      padding: 16px 20px;
+    .header-logo {
+      width: 28px;
+      height: 28px;
+      background: var(--interactive-brand);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: #ffffff;
       flex-shrink: 0;
+      letter-spacing: -0.5px;
     }
-    .sidebar-section.ai-section {
-      background: #f6f4ff;
-      border-color: #dcd7f5;
-      padding: 12px 16px;
+    .header-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-default);
+      letter-spacing: -0.1px;
     }
-    .sidebar-section-label {
-      font-size: 11px; font-weight: 600;
-      color: #9b9a99;
-      text-transform: uppercase; letter-spacing: 0.6px;
-      height: 28px; display: flex; align-items: center;
-      margin-bottom: 4px;
+    .header-sep {
+      font-size: 14px;
+      color: var(--text-quieter);
+      font-weight: 400;
+      margin: 0 2px;
     }
-
-    /* Priority */
-    .priority-top-row {
-      display: flex; align-items: center;
-      gap: 8px; margin-bottom: 10px;
-    }
-    .priority-title { font-size: 14px; font-weight: 500; color: var(--text-default); flex: 1; }
-    .priority-why { font-size: 12px; color: var(--info-text); text-decoration: underline; text-decoration-style: dotted; cursor: pointer; white-space: nowrap; }
-    .priority-close { color: var(--text-tertiary); cursor: pointer; font-size: 18px; line-height: 1; background: none; border: none; padding: 4px; }
-
-    .priority-task-name { font-size: 14px; font-weight: 500; color: var(--text-default); margin-bottom: 2px; }
-    .priority-task-sub { font-size: 12px; color: #3b3a52; margin-bottom: 0; }
-
-    .rec-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
-    .rec-title { font-size: 14px; font-weight: 500; color: var(--text-default); }
-    .btn-assign-all {
-      display: inline-flex; align-items: center;
-      padding: 4px 8px; border-radius: 4px;
-      background: #12111d; color: white;
-      font-size: 12px; font-weight: 500;
-      min-height: 24px;
-      border: none; cursor: pointer; font-family: 'Inter', sans-serif;
+    .header-sub {
+      font-size: 14px;
+      color: var(--text-quieter);
+      font-weight: 400;
     }
 
-    .owner-rows { display: flex; flex-direction: column; gap: 4px; margin-bottom: 0; }
-    .owner-row {
-      display: flex; align-items: center;
-      padding-right: 16px; gap: 16px;
-      background: var(--bg-default);
-      border: 1px solid #efeff5;
-      border-radius: 8px;
+    /* ── Page ── */
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 56px 32px 100px;
+    }
+    .page-title {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--text-default);
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+    }
+    .page-desc {
+      font-size: 14px;
+      color: var(--text-quieter);
+      line-height: 1.5;
+      margin-bottom: 48px;
+    }
+
+    /* ── Section ── */
+    .section {
+      margin-bottom: 40px;
+    }
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-quieter);
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .section-items {
+      display: flex;
+      flex-direction: column;
+      background: var(--bg-raised);
+      border-radius: 10px;
+      border: 1px solid var(--border-default);
       overflow: hidden;
     }
-    .owner-row-content {
-      flex: 1; display: flex; align-items: center;
-      gap: 8px; padding: 8px; min-width: 0;
-    }
-    .dd-avatar {
-      width: 24px; height: 24px; border-radius: 50%;
-      background: #efeff5; color: #3b3a52;
-      display: inline-flex; align-items: center; justify-content: center;
-      font-size: 10px; font-weight: 600; flex-shrink: 0;
-    }
-    .owner-info { flex: 1; min-width: 0; }
-    .owner-name-text { font-size: 12px; font-weight: 500; color: #151414; }
-    .owner-sub-text { font-size: 12px; color: #3b3a52; display: flex; align-items: center; gap: 0; }
-    .owner-sub-dot { color: #6e6c6b; margin: 0 4px; }
-    .owner-sub-unassigned { font-style: italic; color: #545352; }
-    .btn-assign {
-      padding: 4px 8px; border-radius: 4px;
-      border: 1px solid #ccccde;
-      background: var(--bg-default); color: #181724;
-      font-size: 12px; font-weight: 500;
-      min-height: 24px;
-      cursor: pointer; font-family: 'Inter', sans-serif; flex-shrink: 0;
-    }
 
-    .footer-region { margin-top: 12px; display: flex; flex-direction: column; gap: 6px; padding: 4px 0; }
-    .footer-ask-row { display: flex; justify-content: flex-end; }
-    .footer-ai-row { display: flex; align-items: center; justify-content: space-between; }
-    .btn-ask-followup {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 4px 8px; border-radius: 4px;
-      border: 1px solid #ccccde;
-      background: var(--bg-default); color: var(--text-default);
-      font-size: 12px; font-weight: 500;
-      cursor: pointer; font-family: 'Inter', sans-serif;
-    }
-    .ai-attr {
-      display: inline-flex; align-items: center; gap: 4px;
-      font-size: 11px; color: var(--text-tertiary);
-    }
-    .ai-thumbs { display: flex; gap: 2px; }
-    .thumb-btn {
-      width: 24px; height: 24px;
-      display: inline-flex; align-items: center; justify-content: center;
-      border: none; background: transparent;
-      cursor: pointer; color: var(--text-tertiary); border-radius: 4px;
-    }
-    .thumb-btn:hover { background: var(--bg-neutral); }
-
-    /* Source grid */
-    .source-grid {
-      display: grid; grid-template-columns: 120px 1fr;
-      gap: 12px 8px; align-items: center;
-    }
-    .source-label { font-size: 12px; color: #6e6c6b; }
-    .source-value { font-size: 12px; color: #151414; font-weight: 500; }
-    .source-link { color: #3c63ea; text-decoration: none; font-weight: 400; }
-    .badge-in-audit {
-      display: inline-flex; align-items: center;
-      padding: 2px 8px; border-radius: 4px;
-      font-size: 12px; font-weight: 500;
-      background: var(--info-bg); color: var(--info-text);
-    }
-    .tier-row { display: inline-flex; align-items: center; gap: 6px; }
-
-    /* Common control */
-    .cc-card { }
-    .cc-top { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 6px; }
-    .cc-icon {
-      width: 24px; height: 24px; border-radius: 4px;
-      background: #f2efef;
-      display: inline-flex; align-items: center; justify-content: center;
-      flex-shrink: 0; color: #6e6c6b;
-    }
-    .cc-title { font-size: 13px; font-weight: 600; color: #151414; line-height: 1.4; }
-    .cc-subtitle { font-size: 11px; color: #6e6c6b; margin-bottom: 8px; }
-    .cc-meta { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; flex-wrap: wrap; }
-    .cc-tag {
-      font-size: 11px; color: var(--text-quiet);
-      background: var(--bg-lowered); border: 1px solid var(--border-quiet);
-      padding: 2px 6px; border-radius: 3px;
-    }
-    .badge-ok {
-      font-size: 11px; font-weight: 600;
-      background: var(--success-bg); color: var(--success-text);
-      padding: 2px 6px; border-radius: 3px;
-    }
-    .cc-desc { font-size: 12px; color: #545352; line-height: 1.5; }
-
-    /* Resource scope */
-    .scope-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
-    .scope-chip {
-      padding: 3px 8px; border-radius: 4px;
-      font-size: 11px; font-weight: 500;
-      background: #f5f4f4; color: #545352;
-    }
-    .scope-env-row { display: flex; align-items: center; gap: 8px; }
-    .scope-env-label { font-size: 12px; color: #6e6c6b; min-width: 120px; }
-    .scope-env-val { font-size: 12px; color: #151414; font-weight: 500; }
-
-    /* Health summary card */
-    .health-card {
-      background: var(--bg-default);
-      border: 1px solid var(--border-quiet);
-      border-radius: 8px;
-      padding: 16px 20px;
-      display: flex; align-items: center; gap: 24px;
-    }
-    .health-stat { display: flex; flex-direction: column; gap: 2px; }
-    .health-stat-value {
-      font-size: 22px; font-weight: 600; color: var(--text-default); line-height: 1;
-    }
-    .health-stat-value.pass { color: var(--success-text); }
-    .health-stat-value.fail { color: var(--error-text); }
-    .health-stat-label { font-size: 12px; color: var(--text-tertiary); }
-    .health-divider { width: 1px; height: 32px; background: var(--border-default); }
-    .health-bar-wrap { flex: 1; display: flex; flex-direction: column; gap: 6px; }
-    .health-bar-label { font-size: 12px; color: var(--text-quiet); display: flex; justify-content: space-between; }
-    .health-bar-track {
-      height: 6px; border-radius: 3px; background: var(--bg-neutral); overflow: hidden;
-    }
-    .health-bar-fill {
-      height: 100%; border-radius: 3px;
-      background: linear-gradient(90deg, var(--success-text) 0%, #22c55e 100%);
-    }
-    .health-badge-row { display: flex; gap: 8px; align-items: center; }
-    .health-badge {
-      display: inline-flex; align-items: center; gap: 5px;
-      padding: 3px 8px; border-radius: 4px;
-      font-size: 12px; font-weight: 500;
-    }
-    .health-badge.pass { background: var(--success-bg); color: var(--success-text); }
-    .health-badge.fail { background: #fff2f2; color: var(--error-text); }
-    .health-badge.warn { background: #fff7ed; color: #c2410c; }
-    .health-view-link { font-size: 12px; color: #3c63ea; text-decoration: underline; cursor: pointer; margin-left: auto; }
-
-    /* Impl status chip */
-    .impl-status-chip {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 2px 8px; border-radius: 4px;
-      font-size: 12px; font-weight: 500;
-      background: var(--info-bg); color: var(--info-text);
-    }
-
-    /* Scope inline */
-    .req-scope-row {
-      display: flex; align-items: flex-start; gap: 8px;
-      margin-top: 14px; padding-top: 14px;
-      border-top: 1px solid var(--border-quiet);
-    }
-    .req-scope-label { font-size: 12px; color: var(--text-tertiary); min-width: 44px; padding-top: 1px; }
-    .req-scope-chips { display: flex; flex-wrap: wrap; gap: 5px; }
-    .req-scope-chip {
-      padding: 2px 7px; border-radius: 3px;
-      font-size: 12px; color: var(--text-quiet);
-      background: var(--bg-neutral);
-    }
-
-    .impl-scope-chip {
-      padding: 2px 7px; border-radius: 3px;
-      font-size: 11px; font-weight: 500;
-      color: var(--text-quiet);
-      background: var(--bg-neutral);
-    }
-
-    /* Implementation blocks */
-    .impl-blocks { display: flex; flex-direction: column; gap: 8px; }
-    .impl-block {
-      border: 1px solid var(--border-quiet);
-      border-radius: 6px; overflow: hidden;
-    }
-    .impl-block-header {
-      display: flex; align-items: center; gap: 10px;
-      padding: 10px 14px;
-      background: var(--bg-lowered);
+    /* ── Row ── */
+    .proto-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 18px;
+      text-decoration: none;
+      color: inherit;
       border-bottom: 1px solid var(--border-quiet);
+      transition: background 0.1s;
     }
-    .impl-block-title { font-size: 13px; font-weight: 600; color: var(--text-default); flex: 1; }
-    .impl-block-req {
-      display: inline-flex; align-items: center; gap: 4px;
-      padding: 2px 7px; border-radius: 3px;
-      font-size: 11px; font-weight: 500;
-      background: var(--brand-light); color: var(--brand);
-      cursor: pointer;
+    .proto-row:last-child {
+      border-bottom: none;
     }
-    .impl-block-body { padding: 12px 14px; }
-    .impl-block-text { font-size: 13px; color: var(--text-quiet); line-height: 1.6; margin-bottom: 12px; }
-    .impl-block-links { display: flex; flex-direction: column; gap: 8px; }
-    .impl-block-link-row { display: flex; align-items: flex-start; gap: 8px; }
-    .impl-link-label {
-      font-size: 11px; font-weight: 500; color: var(--text-tertiary);
-      min-width: 44px; padding-top: 3px; flex-shrink: 0;
-      text-transform: uppercase; letter-spacing: 0.4px;
+    .proto-row:hover {
+      background: var(--bg-lowered);
     }
-    .impl-link-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-    .impl-policy-tag {
-      display: inline-flex; align-items: center; gap: 5px;
-      padding: 3px 9px 3px 7px; border-radius: 4px;
-      font-size: 11px; font-weight: 500;
-      border: 1px solid #c7d4ff;
-      background: #eef1ff; color: #2748c8;
-      cursor: pointer; text-decoration: none;
-      transition: background 0.1s, border-color 0.1s;
+    .proto-row:hover .row-arrow {
+      color: var(--text-quiet);
+      transform: translateX(2px);
     }
-    .impl-policy-tag:hover { background: #dde5ff; border-color: #a8bcff; }
-    .impl-policy-icon { flex-shrink: 0; color: #2748c8; }
 
-    .impl-block-tests { display: flex; flex-wrap: wrap; gap: 6px; }
-    .impl-test-tag {
-      display: inline-flex; align-items: center; gap: 5px;
-      padding: 3px 9px 3px 7px; border-radius: 4px;
-      font-size: 11px; font-weight: 500;
-      border: 1px solid #e0e0e0;
-      background: #ffffff; color: #3b3a52;
-      cursor: pointer; text-decoration: none;
-      transition: background 0.1s, border-color 0.1s;
+    .row-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--bg-brand);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--icon-brand);
     }
-    .impl-test-tag:hover { background: #f5f5f8; border-color: #c8c8d8; }
-    .impl-test-icon { flex-shrink: 0; color: #6e6c6b; }
-    .impl-test-dot {
-      width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0;
-    }
-    .impl-test-dot.pass { background: var(--success-text); }
-    .impl-test-dot.fail { background: var(--error-text); }
-    .impl-add-block {
-      display: flex; align-items: center; gap: 6px;
-      padding: 8px 14px;
-      border: 1px dashed var(--border-default);
-      border-radius: 6px;
-      font-size: 13px; color: var(--text-tertiary);
-      cursor: pointer; margin-top: 2px;
-      transition: border-color 0.1s, color 0.1s;
-    }
-    .impl-add-block:hover { border-color: var(--brand); color: var(--brand); }
 
-    /* Issue rows */
-    .issue-row {
-      display: flex; align-items: flex-start; gap: 10px;
-      padding: 10px 0; border-top: 1px solid var(--border-quiet);
+    .row-body {
+      flex: 1;
+      min-width: 0;
     }
-    .issue-icon {
-      width: 20px; height: 20px; border-radius: 4px;
-      background: #fff2f2; color: var(--error-text);
-      display: inline-flex; align-items: center; justify-content: center;
-      flex-shrink: 0; font-size: 10px; font-weight: 700; margin-top: 1px;
+    .row-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-default);
+      margin-bottom: 3px;
     }
-    .issue-body { flex: 1; }
-    .issue-title { font-size: 13px; font-weight: 500; color: var(--text-default); margin-bottom: 2px; }
-    .issue-meta { font-size: 11px; color: var(--text-tertiary); }
-    .issue-cta { font-size: 12px; color: #3c63ea; cursor: pointer; text-decoration: underline; flex-shrink: 0; margin-top: 2px; }
+    .row-desc {
+      font-size: 13px;
+      color: var(--text-quieter);
+      line-height: 1.4;
+    }
 
-    /* Per-block completion chips */
-    .block-completion {
-      font-size: 11px; font-weight: 500;
-      display: inline-flex; align-items: center; gap: 4px;
-      white-space: nowrap;
+    .row-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
     }
-    .block-completion.pass { color: var(--success-text); }
-    .block-completion.fail { color: var(--error-text); }
-    .block-completion-dot {
-      width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0;
-    }
-    .block-completion-dot.pass { background: var(--success-text); }
-    .block-completion-dot.fail { background: var(--error-text); }
 
-    /* Sidebar context zone separator */
-    .sidebar-context-label {
-      font-size: 10px; font-weight: 600;
-      color: var(--text-tertiary);
-      text-transform: uppercase; letter-spacing: 0.8px;
-      padding: 2px 4px 0;
+    .status-badge {
+      font-size: 12px;
+      font-weight: 500;
+      padding: 3px 9px;
+      border-radius: 5px;
+    }
+    .status-live {
+      background: var(--bg-success);
+      color: var(--text-success);
+    }
+    .status-progress {
+      background: var(--bg-neutral);
+      color: var(--text-quieter);
+    }
+
+    .row-arrow {
+      color: var(--border-default);
+      transition: color 0.1s, transform 0.15s;
     }
   </style>
 </head>
 <body>
 
-  <!-- ── Top nav ── -->
-  <header class="topnav">
-    <div class="topnav-left">
-      <span class="vanta-logo">Vanta</span>
-      <button class="workspace-chip">
-        <div class="workspace-icon">
-          <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-            <path d="M5 1L9 3.2V6.8L5 9L1 6.8V3.2L5 1Z" fill="white"/>
-          </svg>
-        </div>
-        TruSecure
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 5L6 8L9 5" stroke="#9b9a99" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
-    </div>
-    <div class="topnav-right">
-      <button class="nav-icon-btn" title="AI">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2L9.3 5.7L13 7L9.3 8.3L8 12L6.7 8.3L3 7L6.7 5.7L8 2Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M13 1L13.5 2.5L15 3L13.5 3.5L13 5L12.5 3.5L11 3L12.5 2.5L13 1Z" stroke="currentColor" stroke-width="1" stroke-linejoin="round"/></svg>
-      </button>
-      <button class="nav-icon-btn" title="Help">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.4"/><path d="M6.5 6C6.5 5.17 7.17 4.5 8 4.5S9.5 5.17 9.5 6C9.5 7.2 8 7.8 8 9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><circle cx="8" cy="11" r="0.7" fill="currentColor"/></svg>
-      </button>
-      <button class="nav-icon-btn" title="Announcements">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 6.5H4L11 3.5V12.5L4 9.5H2V6.5ZM4 9.5L4.5 13" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
-      <button class="nav-icon-btn" title="Notifications">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2C5.79 2 4 3.79 4 6V10L2.5 12H13.5L12 10V6C12 3.79 10.21 2 8 2Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M6.5 12C6.5 12.83 7.17 13.5 8 13.5S9.5 12.83 9.5 12" stroke="currentColor" stroke-width="1.4"/></svg>
-      </button>
-      <button class="nav-icon-btn" title="Settings">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="2.3" stroke="currentColor" stroke-width="1.4"/><path d="M8 1.5V3M8 13V14.5M1.5 8H3M13 8H14.5M3.4 3.4L4.4 4.4M11.6 11.6L12.6 12.6M3.4 12.6L4.4 11.6M11.6 4.4L12.6 3.4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
-      </button>
-      <button class="user-avatar">AP</button>
-    </div>
+  <header class="header">
+    <div class="header-logo">C</div>
+    <span class="header-name">Christine Asprea</span>
+    <span class="header-sep">/</span>
+    <span class="header-sub">Vanta Prototypes</span>
   </header>
 
-  <div class="appshell">
+  <div class="page">
+    <h1 class="page-title">Project files</h1>
+    <p class="page-desc">Design explorations and prototype pages for GRC product work.</p>
 
-    <!-- ── Left nav ── -->
-    <nav class="sidenav">
-      <div class="sidenav-search">
-        <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="4.5" stroke="#8c8baa" stroke-width="1.5"/><path d="M10.5 10.5L14 14" stroke="#8c8baa" stroke-width="1.5" stroke-linecap="round"/></svg>
-        <span class="sidenav-search-text">Help...</span>
-        <span class="sidenav-search-kbd">⌘+K</span>
+    <div class="section">
+      <div class="section-label">Controls</div>
+      <div class="section-items">
+        <a class="proto-row" href="https://controls-vision-prototype.vercel.app" target="_blank" rel="noopener">
+          <div class="row-icon">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <rect x="2.5" y="1.5" width="9" height="13" rx="1.5" stroke="currentColor" stroke-width="1.4"/>
+              <path d="M5 5.5h6M5 8h4.5M5 10.5h3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+              <path d="M9.5 1.5V4.5H13" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="row-body">
+            <div class="row-title">Controls vision</div>
+            <div class="row-desc">Redesigned control detail view — implementation blocks, per-block status chips, AI prioritization</div>
+          </div>
+          <div class="row-right">
+            <span class="status-badge status-live">Live</span>
+            <svg class="row-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </a>
       </div>
+    </div>
 
-      <a class="nav-item">
-        <svg class="nav-item-icon" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.4"/><rect x="9" y="2" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.4"/><rect x="2" y="9" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.4"/><rect x="9" y="9" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.4"/></svg>
-        Home
-      </a>
-      <a class="nav-item">
-        <svg class="nav-item-icon" viewBox="0 0 16 16" fill="none"><path d="M8 3L13.5 6V10L8 13L2.5 10V6L8 3Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M8 8L8 6M8 8L10 9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
-        Roadmap
-      </a>
-      <a class="nav-item">
-        <svg class="nav-item-icon" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.4"/><path d="M5.5 8l2 2 3-3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        My work
-      </a>
-      <a class="nav-item">
-        <svg class="nav-item-icon" viewBox="0 0 16 16" fill="none"><rect x="3" y="2" width="10" height="12" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M5.5 6h5M5.5 9h3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
-        Tests
-      </a>
-      <a class="nav-item">
-        <svg class="nav-item-icon" viewBox="0 0 16 16" fill="none"><path d="M2 13V10M5.5 13V7M9 13V4.5M12.5 13V2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
-        Reports
-      </a>
-
-      <div class="nav-divider"></div>
-
-      <!-- Compliance (expanded) -->
-      <div class="nav-group-header">
-        <svg class="nav-item-icon" viewBox="0 0 16 16" fill="none"><path d="M8 2L14 4.5V8C14 11.5 11.5 14.5 8 15.5 4.5 14.5 2 11.5 2 8V4.5L8 2Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
-        Compliance
-        <svg class="nav-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 5L6 8L9 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <div class="section">
+      <div class="section-label">Information Architecture</div>
+      <div class="section-items">
+        <a class="proto-row" href="https://common-controls-sidebar-nav.vanta-preview-staging-926.pages.dev/c/vantaroo/common-controls" target="_blank" rel="noopener">
+          <div class="row-icon">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <rect x="1.5" y="1.5" width="4.5" height="13" rx="1.5" stroke="currentColor" stroke-width="1.4"/>
+              <rect x="8" y="1.5" width="6.5" height="5.5" rx="1.5" stroke="currentColor" stroke-width="1.4"/>
+              <rect x="8" y="9" width="6.5" height="5.5" rx="1.5" stroke="currentColor" stroke-width="1.4"/>
+            </svg>
+          </div>
+          <div class="row-body">
+            <div class="row-title">CCF ↔ Controls IA</div>
+            <div class="row-desc">IA exploration for surfacing common controls framework in the sidebar navigation</div>
+          </div>
+          <div class="row-right">
+            <span class="status-badge status-live">Live</span>
+            <svg class="row-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </a>
       </div>
-      <a class="nav-sub">Frameworks</a>
-      <a class="nav-sub active">Controls</a>
-      <a class="nav-sub">Policies</a>
-      <a class="nav-sub">Documents</a>
-      <a class="nav-sub">Audits</a>
-      <a class="nav-sub">Issues</a>
+    </div>
 
-      <a class="nav-item" style="margin-top:2px;">
-        <svg class="nav-item-icon" viewBox="0 0 16 16" fill="none"><path d="M8 2.5L13.5 5V9C13.5 12 11 14.5 8 15.5 5 14.5 2.5 12 2.5 9V5L8 2.5Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M5.5 8l2 2 3-3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        Customer trust
-        <svg class="nav-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M5 3L8 6L5 9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
-      </a>
-      <a class="nav-item">
-        <svg class="nav-item-icon" viewBox="0 0 16 16" fill="none"><path d="M8 14C8 14 2 11 2 6.5V3.5L8 2L14 3.5V6.5C14 11 8 14 8 14Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M8 6V9M8 11v.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
-        Risk
-        <svg class="nav-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M5 3L8 6L5 9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
-      </a>
-      <a class="nav-item">
-        <svg class="nav-item-icon" viewBox="0 0 16 16" fill="none"><path d="M8 8.5a3 3 0 100-6 3 3 0 000 6ZM2 14c0-3.31 2.69-6 6-6s6 2.69 6 6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
-        Vendors
-        <svg class="nav-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M5 3L8 6L5 9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
-      </a>
-      <a class="nav-item">
-        <svg class="nav-item-icon" viewBox="0 0 16 16" fill="none"><rect x="2.5" y="3.5" width="11" height="9" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M5.5 7h5M5.5 10h3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
-        Privacy
-        <svg class="nav-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M5 3L8 6L5 9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
-      </a>
-      <a class="nav-item">
-        <svg class="nav-item-icon" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="12" height="4" rx="1" stroke="currentColor" stroke-width="1.4"/><rect x="2" y="7.5" width="12" height="4" rx="1" stroke="currentColor" stroke-width="1.4"/><circle cx="12.5" cy="4" r="1" fill="currentColor"/><circle cx="12.5" cy="9.5" r="1" fill="currentColor"/></svg>
-        Assets
-        <svg class="nav-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M5 3L8 6L5 9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
-      </a>
-      <a class="nav-item">
-        <svg class="nav-item-icon" viewBox="0 0 16 16" fill="none"><circle cx="5.5" cy="5.5" r="2.5" stroke="currentColor" stroke-width="1.4"/><circle cx="10.5" cy="5.5" r="2.5" stroke="currentColor" stroke-width="1.4"/><path d="M1 13.5c0-2.49 2.01-4.5 4.5-4.5M9 14.5c0-2.49 2.01-4.5 4.5-4.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
-        Personnel
-        <svg class="nav-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M5 3L8 6L5 9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
-      </a>
-
-      <div class="nav-divider"></div>
-
-      <a class="nav-item">
-        <svg class="nav-item-icon" viewBox="0 0 16 16" fill="none"><rect x="2" y="4" width="12" height="9" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M5 4V3a1 1 0 011-1h4a1 1 0 011 1v1" stroke="currentColor" stroke-width="1.4"/><path d="M5.5 8.5l2 2 3-3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        Integrations
-      </a>
-      <a class="nav-item">
-        <svg class="nav-item-icon" viewBox="0 0 16 16" fill="none"><path d="M2 4.5h12M2 8h8M2 11.5h5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
-        My security tasks
-      </a>
-      <a class="nav-item">
-        <svg class="nav-item-icon" viewBox="0 0 16 16" fill="none"><path d="M8 8.5a3 3 0 100-6 3 3 0 000 6Z" stroke="currentColor" stroke-width="1.4"/><path d="M2 14c0-3.31 2.69-6 6-6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M12 11v4M14 13h-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
-        My access requests
-      </a>
-
-      <div class="sidenav-collapse">←|</div>
-    </nav>
-
-    <!-- ── Main ── -->
-    <main class="main">
-
-      <!-- Detail header -->
-      <div class="detail-header">
-        <div class="detail-header-inner">
-          <div class="breadcrumb">Controls</div>
-          <div class="detail-title-row">
-            <h1 class="detail-title">Remote access</h1>
-            <div class="detail-actions">
-              <button class="btn-manage">
-                <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M8 8.5a3 3 0 100-6 3 3 0 000 6ZM2 14c0-3.31 2.69-6 6-6s6 2.69 6 6" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
-                Manage access
-              </button>
-              <button class="btn-more">
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="4" cy="8" r="1.4" fill="currentColor"/><circle cx="8" cy="8" r="1.4" fill="currentColor"/><circle cx="12" cy="8" r="1.4" fill="currentColor"/></svg>
-              </button>
-            </div>
-          </div>
-
-          <p class="detail-desc">Establish and document usage restrictions, configuration/connection requirements, and<br>implementation guidance for each type of remote access allowed; and b. Authorize each typ...</p>
-          <a class="show-more-link">Show full description</a>
-
-          <div class="detail-meta">
-            <span class="badge badge-neutral">
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M7.67578 1.99687C7.57031 2.03672 7.5 2.1375 7.5 2.25C7.5 2.3625 7.57031 2.46328 7.67578 2.50313L9 3L9.49688 4.32422C9.53672 4.42969 9.6375 4.5 9.75 4.5C9.8625 4.5 9.96328 4.42969 10.0031 4.32422L10.5 3L11.8242 2.50313C11.9297 2.46328 12 2.3625 12 2.25C12 2.1375 11.9297 2.03672 11.8242 1.99687L10.5 1.5L10.0031 0.175781C9.96328 0.0703125 9.8625 0 9.75 0C9.6375 0 9.53672 0.0703125 9.49688 0.175781L9 1.5L7.67578 1.99687ZM0.217969 5.625C0.084375 5.68594 0 5.81953 0 5.96719C0 6.11484 0.084375 6.24609 0.217969 6.30703L0.616406 6.49219L0.80625 6.57891L0.820312 6.58594L2.88984 7.54219L3.84609 9.60938L3.85312 9.62344L3.93984 9.81328L4.125 10.2141C4.18594 10.3477 4.31953 10.432 4.46484 10.432C4.61016 10.432 4.74375 10.3477 4.80469 10.2141L4.98984 9.81328L5.07656 9.62344L5.08359 9.60938L6.03984 7.53984L8.10938 6.58594L8.12344 6.57891L8.31328 6.49219L8.71406 6.30703C8.84766 6.24609 8.93203 6.1125 8.93203 5.96719C8.93203 5.82188 8.84766 5.68828 8.71406 5.62734L8.31328 5.44219L8.12344 5.35547L8.10938 5.34844L6.03984 4.39219L5.08594 2.32266L5.07891 2.30859L4.99219 2.11641L4.80703 1.71562C4.74609 1.58203 4.6125 1.49766 4.46719 1.49766C4.32188 1.49766 4.18828 1.58203 4.12734 1.71562L3.94219 2.11641L3.85547 2.30625L3.84844 2.32031L2.89219 4.38984L0.822656 5.34609L0.808594 5.35312L0.61875 5.43984L0.217969 5.625ZM2.16328 5.96484L3.36328 5.41172C3.60703 5.29922 3.80156 5.10469 3.91406 4.86094L4.46719 3.66094L5.02031 4.86094C5.13281 5.10469 5.32734 5.29922 5.57109 5.41172L6.77109 5.96484L5.57109 6.51797C5.32734 6.63047 5.13281 6.825 5.02031 7.06875L4.46719 8.26875L3.91406 7.06875C3.80156 6.825 3.60703 6.63047 3.36328 6.51797L2.16328 5.96719V5.96484ZM9 9L7.67578 9.49688C7.57031 9.53672 7.5 9.6375 7.5 9.75C7.5 9.8625 7.57031 9.96328 7.67578 10.0031L9 10.5L9.49688 11.8242C9.53672 11.9297 9.6375 12 9.75 12C9.8625 12 9.96328 11.9297 10.0031 11.8242L10.5 10.5L11.8242 10.0031C11.9297 9.96328 12 9.8625 12 9.75C12 9.6375 11.9297 9.53672 11.8242 9.49688L10.5 9L10.0031 7.67578C9.96328 7.57031 9.8625 7.5 9.75 7.5C9.6375 7.5 9.53672 7.57031 9.49688 7.67578L9 9Z" fill="currentColor"/></svg>
-              Needs evidence
-            </span>
-            <div class="meta-owner">
-              <div class="owner-avatar-sm">A</div>
-              James Adams
-            </div>
-            <span class="badge badge-status">
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="4.75" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2.4 1.2" stroke-linecap="round"/></svg>
-              In progress
-              <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M3 5L6 8L9 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-            <span class="meta-id">ID: AC-17</span>
-          </div>
-        </div>
-
-        <div class="detail-tabs">
-          <div class="detail-tab active">Overview</div>
-          <div class="detail-tab">Mapped elements</div>
-          <div class="detail-tab">Health</div>
-          <div class="detail-tab">Maturity</div>
-          <div class="detail-tab">History</div>
-          <div class="detail-tab">Comments</div>
-        </div>
-      </div>
-
-      <!-- Detail body -->
-      <div class="detail-body">
-
-        <!-- Main content -->
-        <div class="detail-main">
-
-          <!-- Requirement card -->
-          <div class="card">
-            <div class="card-header">
-              <span class="card-title">Requirement</span>
-            </div>
-            <div class="card-body">
-              <div class="soc-chip">
-                <div class="soc-icon">S2</div>
-                <span class="soc-label">SOC 2</span>
-              </div>
-              <p class="card-text">Remote access is access to organizational systems (or processes acting on behalf of users) that communicate through external networks such as the Internet. Types of remote access include dial-up, broadband, and wireless. Organizations use encrypted virtual private networks (VPNs) to enhance confidentiality and integrity for remote connections. The use of encryp...</p>
-              <a class="card-link">Show full requirement</a>
-            </div>
-          </div>
-
-          <!-- Implementation design card -->
-          <div class="card">
-            <div class="card-header" style="display:flex;align-items:center;justify-content:space-between;">
-              <span class="card-title">Implementation design</span>
-              <span class="impl-status-chip">
-                <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3.5 2"/></svg>
-                2 of 4 complete
-              </span>
-            </div>
-            <div class="card-body">
-              <div class="impl-blocks">
-
-                <div class="impl-block">
-                  <div class="impl-block-header">
-                    <span class="impl-block-title">VPN & multi-factor authentication</span>
-                    <span class="block-completion pass"><span class="block-completion-dot pass"></span>2/2 passing</span>
-                    <span class="impl-block-req">↗ SOC 2 CC 6.2a</span>
-                  </div>
-                  <div class="impl-block-body">
-                    <p class="impl-block-text">All remote connections must go through our VPN. Users verify identity with a second factor (authenticator app) before access is granted.</p>
-                    <div class="impl-block-links">
-                      <div class="impl-block-link-row">
-                        <span class="impl-link-label">Scope</span>
-                        <div class="impl-link-tags">
-                          <span class="impl-scope-chip">AWS S3</span>
-                          <span class="impl-scope-chip">AWS RDS</span>
-                          <span class="impl-scope-chip">Snowflake</span>
-                        </div>
-                      </div>
-                      <div class="impl-block-link-row">
-                        <span class="impl-link-label">Policy</span>
-                        <div class="impl-link-tags">
-                          <span class="impl-policy-tag">
-                            <svg class="impl-policy-icon" width="11" height="12" viewBox="0 0 11 12" fill="none"><path d="M1.5 1.5H6.5L9.5 4.5V10.5H1.5V1.5Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M6.5 1.5V4.5H9.5" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M3 6.5H8M3 8.5H6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
-                            Remote Access Policy §4.2
-                          </span>
-                        </div>
-                      </div>
-                      <div class="impl-block-link-row">
-                        <span class="impl-link-label">Tests</span>
-                        <div class="impl-link-tags">
-                          <span class="impl-test-tag"><svg class="impl-test-icon" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 3L2.3 4.3L4.5 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M1 7.5L2.3 8.8L4.5 6.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.5 3.5H11M6.5 8H11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg><span class="impl-test-dot pass"></span>MFA enabled — AWS</span>
-                          <span class="impl-test-tag"><svg class="impl-test-icon" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 3L2.3 4.3L4.5 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M1 7.5L2.3 8.8L4.5 6.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.5 3.5H11M6.5 8H11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg><span class="impl-test-dot pass"></span>VPN config check</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="impl-block">
-                  <div class="impl-block-header">
-                    <span class="impl-block-title">Session management & timeouts</span>
-                    <span class="block-completion pass"><span class="block-completion-dot pass"></span>2/2 passing</span>
-                    <span class="impl-block-req">↗ SOC 2 CC 6.2b</span>
-                  </div>
-                  <div class="impl-block-body">
-                    <p class="impl-block-text">Connection methods and session duration limits are documented in the remote access policy. Sessions auto-terminate after 30 minutes of inactivity.</p>
-                    <div class="impl-block-links">
-                      <div class="impl-block-link-row">
-                        <span class="impl-link-label">Scope</span>
-                        <div class="impl-link-tags">
-                          <span class="impl-scope-chip">AWS RDS</span>
-                          <span class="impl-scope-chip">Snowflake</span>
-                        </div>
-                      </div>
-                      <div class="impl-block-link-row">
-                        <span class="impl-link-label">Policy</span>
-                        <div class="impl-link-tags">
-                          <span class="impl-policy-tag">
-                            <svg class="impl-policy-icon" width="11" height="12" viewBox="0 0 11 12" fill="none"><path d="M1.5 1.5H6.5L9.5 4.5V10.5H1.5V1.5Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M6.5 1.5V4.5H9.5" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M3 6.5H8M3 8.5H6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
-                            Remote Access Policy §5.1
-                          </span>
-                        </div>
-                      </div>
-                      <div class="impl-block-link-row">
-                        <span class="impl-link-label">Tests</span>
-                        <div class="impl-link-tags">
-                          <span class="impl-test-tag"><svg class="impl-test-icon" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 3L2.3 4.3L4.5 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M1 7.5L2.3 8.8L4.5 6.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.5 3.5H11M6.5 8H11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg><span class="impl-test-dot pass"></span>Session timeout — Okta</span>
-                          <span class="impl-test-tag"><svg class="impl-test-icon" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 3L2.3 4.3L4.5 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M1 7.5L2.3 8.8L4.5 6.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.5 3.5H11M6.5 8H11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg><span class="impl-test-dot pass"></span>Remote access policy reviewed</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="impl-block">
-                  <div class="impl-block-header">
-                    <span class="impl-block-title">Privileged access via secure gateway</span>
-                    <span class="block-completion fail"><span class="block-completion-dot fail"></span>1/2 failing</span>
-                    <span class="impl-block-req">↗ SOC 2 CC 6.3</span>
-                  </div>
-                  <div class="impl-block-body">
-                    <p class="impl-block-text">Engineers accessing production systems must go through a bastion/secure gateway. All sessions are logged automatically.</p>
-                    <div class="impl-block-links">
-                      <div class="impl-block-link-row">
-                        <span class="impl-link-label">Scope</span>
-                        <div class="impl-link-tags">
-                          <span class="impl-scope-chip">AWS S3</span>
-                          <span class="impl-scope-chip">AWS RDS</span>
-                        </div>
-                      </div>
-                      <div class="impl-block-link-row">
-                        <span class="impl-link-label">Policy</span>
-                        <div class="impl-link-tags">
-                          <span class="impl-policy-tag">
-                            <svg class="impl-policy-icon" width="11" height="12" viewBox="0 0 11 12" fill="none"><path d="M1.5 1.5H6.5L9.5 4.5V10.5H1.5V1.5Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M6.5 1.5V4.5H9.5" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M3 6.5H8M3 8.5H6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
-                            Privileged Access Policy §3.1
-                          </span>
-                        </div>
-                      </div>
-                      <div class="impl-block-link-row">
-                        <span class="impl-link-label">Tests</span>
-                        <div class="impl-link-tags">
-                          <span class="impl-test-tag"><svg class="impl-test-icon" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 3L2.3 4.3L4.5 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M1 7.5L2.3 8.8L4.5 6.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.5 3.5H11M6.5 8H11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg><span class="impl-test-dot fail"></span>Bastion host logging — AWS S3 backup</span>
-                          <span class="impl-test-tag"><svg class="impl-test-icon" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 3L2.3 4.3L4.5 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M1 7.5L2.3 8.8L4.5 6.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.5 3.5H11M6.5 8H11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg><span class="impl-test-dot pass"></span>Privileged access review</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="impl-block">
-                  <div class="impl-block-header">
-                    <span class="impl-block-title">Remote access catalog</span>
-                    <span class="block-completion fail"><span class="block-completion-dot fail"></span>0/1 failing</span>
-                    <span class="impl-block-req">↗ SOC 2 CC 6.2c</span>
-                  </div>
-                  <div class="impl-block-body">
-                    <p class="impl-block-text">All remote connection types (employees, contractors, automated systems) are being cataloged. In progress — backup account pending connection.</p>
-                    <div class="impl-block-links">
-                      <div class="impl-block-link-row">
-                        <span class="impl-link-label">Scope</span>
-                        <div class="impl-link-tags">
-                          <span class="impl-scope-chip">Production</span>
-                          <span class="impl-scope-chip">Backup</span>
-                        </div>
-                      </div>
-                      <div class="impl-block-link-row">
-                        <span class="impl-link-label">Policy</span>
-                        <div class="impl-link-tags">
-                          <span class="impl-policy-tag">
-                            <svg class="impl-policy-icon" width="11" height="12" viewBox="0 0 11 12" fill="none"><path d="M1.5 1.5H6.5L9.5 4.5V10.5H1.5V1.5Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M6.5 1.5V4.5H9.5" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M3 6.5H8M3 8.5H6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
-                            Access Management Policy §2.3
-                          </span>
-                        </div>
-                      </div>
-                      <div class="impl-block-link-row">
-                        <span class="impl-link-label">Tests</span>
-                        <div class="impl-link-tags">
-                          <span class="impl-test-tag"><svg class="impl-test-icon" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 3L2.3 4.3L4.5 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M1 7.5L2.3 8.8L4.5 6.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.5 3.5H11M6.5 8H11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg><span class="impl-test-dot fail"></span>AWS S3 backup account connection</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="impl-add-block">
-                  <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-                  Add implementation block
-                </div>
-
-              </div>
-
-              <div class="card-section-label">Systems in scope</div>
-              <div class="systems-list">
-                <div class="system-row">
-                  <svg class="system-check" width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="#16a44a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  <span class="system-name">AWS S3</span>
-                  <span class="system-desc">Production buckets</span>
-                </div>
-                <div class="system-row">
-                  <svg class="system-check" width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="#16a44a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  <span class="system-name">AWS RDS</span>
-                  <span class="system-desc">Production databases</span>
-                </div>
-                <div class="system-row">
-                  <svg class="system-check" width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="#16a44a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  <span class="system-name">Snowflake</span>
-                  <span class="system-desc">Production data warehouse</span>
-                </div>
-                <div class="system-row">
-                  <svg class="system-check" width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="#16a44a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  <span class="system-name">AWS S3</span>
-                  <span class="system-desc error">Backup buckets (acme-backup-prod) — pending account connection</span>
-                </div>
-                <div class="system-row">
-                  <svg class="system-check" width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="#16a44a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  <span class="system-name">Snowflake</span>
-                  <span class="system-desc">Backup snapshots — inherits production config</span>
-                </div>
-              </div>
-
-              <div class="card-section-label" style="display:flex;align-items:center;justify-content:space-between;margin-top:24px;">
-                <span>Issues</span>
-                <span style="font-size:11px;font-weight:400;color:var(--text-tertiary);">2 open</span>
-              </div>
-              <div class="issue-row">
-                <div class="issue-icon">!</div>
-                <div class="issue-body">
-                  <div class="issue-title">Backup account connection not established</div>
-                  <div class="issue-meta">AWS S3 (acme-backup-prod) · Opened 3 days ago</div>
-                </div>
-                <a class="issue-cta">Resolve</a>
-              </div>
-              <div class="issue-row">
-                <div class="issue-icon">!</div>
-                <div class="issue-body">
-                  <div class="issue-title">2 tests missing evidence owners</div>
-                  <div class="issue-meta">S3 Backup Bucket Encryption Check, RDS Encryption at Rest</div>
-                </div>
-                <a class="issue-cta">Assign</a>
-              </div>
-            </div>
-          </div>
-
-        </div><!-- /detail-main -->
-
-        <!-- Right sidebar -->
-        <div class="detail-sidebar">
-
-          <!-- Today's top priority -->
-          <div class="sidebar-section ai-section">
-            <div class="priority-top-row">
-              <span class="priority-title">Today's top priority for you</span>
-              <a class="priority-why">Why this one?</a>
-              <span class="priority-close">×</span>
-            </div>
-
-            <div class="priority-task-name">Assign evidence owners</div>
-            <div class="priority-task-sub">2 tests need owners</div>
-
-            <div class="rec-header" style="padding-top:16px;">
-              <span class="rec-title">Recommended owners</span>
-              <button class="btn-assign-all">Assign all</button>
-            </div>
-
-            <div class="owner-rows">
-              <div class="owner-row">
-                <div class="owner-row-content">
-                  <div class="dd-avatar">DD</div>
-                  <div class="owner-info">
-                    <div class="owner-name-text">S3 Backup Bucket Encryption Check</div>
-                    <div class="owner-sub-text">Automated test<span class="owner-sub-dot">·</span><span class="owner-sub-unassigned">Unassigned</span></div>
-                  </div>
-                </div>
-                <button class="btn-assign">Assign</button>
-              </div>
-              <div class="owner-row">
-                <div class="owner-row-content">
-                  <div class="dd-avatar">DD</div>
-                  <div class="owner-info">
-                    <div class="owner-name-text">RDS Encryption at Rest</div>
-                    <div class="owner-sub-text">Automated test<span class="owner-sub-dot">·</span><span class="owner-sub-unassigned">Unassigned</span></div>
-                  </div>
-                </div>
-                <button class="btn-assign">Assign</button>
-              </div>
-            </div>
-
-            <div class="footer-region">
-              <div class="footer-ask-row">
-                <button class="btn-ask-followup">
-                  Ask follow up
-                  <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 3h10a1 1 0 011 1v7a1 1 0 01-1 1H5.5L2.5 14V4a1 1 0 011-1Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
-                </button>
-              </div>
-              <div class="footer-ai-row">
-                <span class="ai-attr">
-                  <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M7.67578 1.99687C7.57031 2.03672 7.5 2.1375 7.5 2.25C7.5 2.3625 7.57031 2.46328 7.67578 2.50313L9 3L9.49688 4.32422C9.53672 4.42969 9.6375 4.5 9.75 4.5C9.8625 4.5 9.96328 4.42969 10.0031 4.32422L10.5 3L11.8242 2.50313C11.9297 2.46328 12 2.3625 12 2.25C12 2.1375 11.9297 2.03672 11.8242 1.99687L10.5 1.5L10.0031 0.175781C9.96328 0.0703125 9.8625 0 9.75 0C9.6375 0 9.53672 0.0703125 9.49688 0.175781L9 1.5L7.67578 1.99687ZM0.217969 5.625C0.084375 5.68594 0 5.81953 0 5.96719C0 6.11484 0.084375 6.24609 0.217969 6.30703L0.616406 6.49219L0.80625 6.57891L0.820312 6.58594L2.88984 7.54219L3.84609 9.60938L3.85312 9.62344L3.93984 9.81328L4.125 10.2141C4.18594 10.3477 4.31953 10.432 4.46484 10.432C4.61016 10.432 4.74375 10.3477 4.80469 10.2141L4.98984 9.81328L5.07656 9.62344L5.08359 9.60938L6.03984 7.53984L8.10938 6.58594L8.12344 6.57891L8.31328 6.49219L8.71406 6.30703C8.84766 6.24609 8.93203 6.1125 8.93203 5.96719C8.93203 5.82188 8.84766 5.68828 8.71406 5.62734L8.31328 5.44219L8.12344 5.35547L8.10938 5.34844L6.03984 4.39219L5.08594 2.32266L5.07891 2.30859L4.99219 2.11641L4.80703 1.71562C4.74609 1.58203 4.6125 1.49766 4.46719 1.49766C4.32188 1.49766 4.18828 1.58203 4.12734 1.71562L3.94219 2.11641L3.85547 2.30625L3.84844 2.32031L2.89219 4.38984L0.822656 5.34609L0.808594 5.35312L0.61875 5.43984L0.217969 5.625ZM2.16328 5.96484L3.36328 5.41172C3.60703 5.29922 3.80156 5.10469 3.91406 4.86094L4.46719 3.66094L5.02031 4.86094C5.13281 5.10469 5.32734 5.29922 5.57109 5.41172L6.77109 5.96484L5.57109 6.51797C5.32734 6.63047 5.13281 6.825 5.02031 7.06875L4.46719 8.26875L3.91406 7.06875C3.80156 6.825 3.60703 6.63047 3.36328 6.51797L2.16328 5.96719V5.96484ZM9 9L7.67578 9.49688C7.57031 9.53672 7.5 9.6375 7.5 9.75C7.5 9.8625 7.57031 9.96328 7.67578 10.0031L9 10.5L9.49688 11.8242C9.53672 11.9297 9.6375 12 9.75 12C9.8625 12 9.96328 11.9297 10.0031 11.8242L10.5 10.5L11.8242 10.0031C11.9297 9.96328 12 9.8625 12 9.75C12 9.6375 11.9297 9.53672 11.8242 9.49688L10.5 9L10.0031 7.67578C9.96328 7.57031 9.8625 7.5 9.75 7.5C9.6375 7.5 9.53672 7.57031 9.49688 7.67578L9 9Z" fill="currentColor"/></svg>
-                  Generated by Vanta AI
-                </span>
-                <div class="ai-thumbs">
-                  <button class="thumb-btn">
-                    <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M5 7.5V14H3.5V7.5H5ZM5 7.5L8 2.5L10.5 4L9.5 7.5H13.5V12.5L12 14H6.5L5 13V7.5Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
-                  </button>
-                  <button class="thumb-btn">
-                    <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M11 8.5V2H12.5V8.5H11ZM11 8.5L8 13.5L5.5 12L6.5 8.5H2.5V3.5L4 2H9.5L11 3V8.5Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Context zone separator -->
-          <div class="sidebar-context-label">Framework context</div>
-
-          <!-- Source -->
-          <div class="sidebar-section">
-            <div class="sidebar-section-label">Source</div>
-            <div class="source-grid">
-              <span class="source-label">Framework</span>
-              <span class="source-value">SOC 2 CC 6.2</span>
-              <span class="source-label">Requirement</span>
-              <a class="source-value source-link">Article a</a>
-              <span class="source-label">Status</span>
-              <span><span class="badge-in-audit">In audit</span></span>
-              <span class="source-label">Tier</span>
-              <div class="tier-row">
-                <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M8 2L14 4.5V8C14 11.5 11.5 14.5 8 15.5 4.5 14.5 2 11.5 2 8V4.5L8 2Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
-                <span class="source-value">Enhanced</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Common control -->
-          <div class="sidebar-section">
-            <div class="sidebar-section-label">Common control</div>
-            <div class="cc-card">
-              <div class="cc-top">
-                <div class="cc-icon">
-                  <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><rect x="2" y="4" width="12" height="9" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M5 4V3a1 1 0 011-1h4a1 1 0 011 1v1" stroke="currentColor" stroke-width="1.4"/></svg>
-                </div>
-                <div>
-                  <div class="cc-title">CC-14 — Remote access authentication</div>
-                </div>
-              </div>
-              <div class="cc-subtitle">Identity and Access Management · <span class="badge-ok">OK</span></div>
-              <p class="cc-desc">The organization must authenticate remote access connections.</p>
-            </div>
-          </div>
-
-        </div><!-- /detail-sidebar -->
-      </div><!-- /detail-body -->
-
-    </main>
   </div>
 
 </body>
