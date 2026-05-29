@@ -929,21 +929,6 @@
         <!-- Main content -->
         <div class="detail-main">
 
-          <!-- Requirement card -->
-          <div class="card">
-            <div class="card-header">
-              <span class="card-title">Requirement</span>
-            </div>
-            <div class="card-body">
-              <div class="soc-chip">
-                <div class="soc-icon">S2</div>
-                <span class="soc-label">SOC 2</span>
-              </div>
-              <p class="card-text">Remote access is access to organizational systems (or processes acting on behalf of users) that communicate through external networks such as the Internet. Types of remote access include dial-up, broadband, and wireless. Organizations use encrypted virtual private networks (VPNs) to enhance confidentiality and integrity for remote connections. The use of encryp...</p>
-              <a class="card-link">Show full requirement</a>
-            </div>
-          </div>
-
           <!-- Implementation design card -->
           <div class="card">
             <div class="card-header" style="display:flex;align-items:center;justify-content:space-between;">
@@ -955,6 +940,77 @@
             </div>
             <div class="card-body">
               <div class="impl-blocks">
+
+                <div class="impl-block">
+                  <div class="impl-block-header">
+                    <span class="impl-block-title">Privileged access via secure gateway</span>
+                    <span class="block-completion fail"><span class="block-completion-dot fail"></span>1/2 failing</span>
+                    <span class="impl-block-req">↗ SOC 2 CC 6.3</span>
+                  </div>
+                  <div class="impl-block-body">
+                    <p class="impl-block-text">Engineers accessing production systems must go through a bastion/secure gateway. All sessions are logged automatically.</p>
+                    <div class="impl-block-links">
+                      <div class="impl-block-link-row">
+                        <span class="impl-link-label">Scope</span>
+                        <div class="impl-link-tags">
+                          <span class="impl-scope-chip">AWS S3</span>
+                          <span class="impl-scope-chip">AWS RDS</span>
+                        </div>
+                      </div>
+                      <div class="impl-block-link-row">
+                        <span class="impl-link-label">Policy</span>
+                        <div class="impl-link-tags">
+                          <span class="impl-policy-tag">
+                            <svg class="impl-policy-icon" width="11" height="12" viewBox="0 0 11 12" fill="none"><path d="M1.5 1.5H6.5L9.5 4.5V10.5H1.5V1.5Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M6.5 1.5V4.5H9.5" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M3 6.5H8M3 8.5H6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+                            Privileged Access Policy §3.1
+                          </span>
+                        </div>
+                      </div>
+                      <div class="impl-block-link-row">
+                        <span class="impl-link-label">Tests</span>
+                        <div class="impl-link-tags">
+                          <span class="impl-test-tag"><svg class="impl-test-icon" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 3L2.3 4.3L4.5 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M1 7.5L2.3 8.8L4.5 6.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.5 3.5H11M6.5 8H11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg><span class="impl-test-dot fail"></span>Bastion host logging — AWS S3 backup</span>
+                          <span class="impl-test-tag"><svg class="impl-test-icon" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 3L2.3 4.3L4.5 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M1 7.5L2.3 8.8L4.5 6.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.5 3.5H11M6.5 8H11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg><span class="impl-test-dot pass"></span>Privileged access review</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="impl-block">
+                  <div class="impl-block-header">
+                    <span class="impl-block-title">Remote access catalog</span>
+                    <span class="block-completion fail"><span class="block-completion-dot fail"></span>0/1 failing</span>
+                    <span class="impl-block-req">↗ SOC 2 CC 6.2c</span>
+                  </div>
+                  <div class="impl-block-body">
+                    <p class="impl-block-text">All remote connection types (employees, contractors, automated systems) are being cataloged. In progress — backup account pending connection.</p>
+                    <div class="impl-block-links">
+                      <div class="impl-block-link-row">
+                        <span class="impl-link-label">Scope</span>
+                        <div class="impl-link-tags">
+                          <span class="impl-scope-chip">Production</span>
+                          <span class="impl-scope-chip">Backup</span>
+                        </div>
+                      </div>
+                      <div class="impl-block-link-row">
+                        <span class="impl-link-label">Policy</span>
+                        <div class="impl-link-tags">
+                          <span class="impl-policy-tag">
+                            <svg class="impl-policy-icon" width="11" height="12" viewBox="0 0 11 12" fill="none"><path d="M1.5 1.5H6.5L9.5 4.5V10.5H1.5V1.5Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M6.5 1.5V4.5H9.5" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M3 6.5H8M3 8.5H6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+                            Access Management Policy §2.3
+                          </span>
+                        </div>
+                      </div>
+                      <div class="impl-block-link-row">
+                        <span class="impl-link-label">Tests</span>
+                        <div class="impl-link-tags">
+                          <span class="impl-test-tag"><svg class="impl-test-icon" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 3L2.3 4.3L4.5 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M1 7.5L2.3 8.8L4.5 6.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.5 3.5H11M6.5 8H11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg><span class="impl-test-dot fail"></span>AWS S3 backup account connection</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
                 <div class="impl-block">
                   <div class="impl-block-header">
@@ -1023,77 +1079,6 @@
                         <div class="impl-link-tags">
                           <span class="impl-test-tag"><svg class="impl-test-icon" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 3L2.3 4.3L4.5 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M1 7.5L2.3 8.8L4.5 6.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.5 3.5H11M6.5 8H11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg><span class="impl-test-dot pass"></span>Session timeout — Okta</span>
                           <span class="impl-test-tag"><svg class="impl-test-icon" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 3L2.3 4.3L4.5 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M1 7.5L2.3 8.8L4.5 6.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.5 3.5H11M6.5 8H11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg><span class="impl-test-dot pass"></span>Remote access policy reviewed</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="impl-block">
-                  <div class="impl-block-header">
-                    <span class="impl-block-title">Privileged access via secure gateway</span>
-                    <span class="block-completion fail"><span class="block-completion-dot fail"></span>1/2 failing</span>
-                    <span class="impl-block-req">↗ SOC 2 CC 6.3</span>
-                  </div>
-                  <div class="impl-block-body">
-                    <p class="impl-block-text">Engineers accessing production systems must go through a bastion/secure gateway. All sessions are logged automatically.</p>
-                    <div class="impl-block-links">
-                      <div class="impl-block-link-row">
-                        <span class="impl-link-label">Scope</span>
-                        <div class="impl-link-tags">
-                          <span class="impl-scope-chip">AWS S3</span>
-                          <span class="impl-scope-chip">AWS RDS</span>
-                        </div>
-                      </div>
-                      <div class="impl-block-link-row">
-                        <span class="impl-link-label">Policy</span>
-                        <div class="impl-link-tags">
-                          <span class="impl-policy-tag">
-                            <svg class="impl-policy-icon" width="11" height="12" viewBox="0 0 11 12" fill="none"><path d="M1.5 1.5H6.5L9.5 4.5V10.5H1.5V1.5Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M6.5 1.5V4.5H9.5" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M3 6.5H8M3 8.5H6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
-                            Privileged Access Policy §3.1
-                          </span>
-                        </div>
-                      </div>
-                      <div class="impl-block-link-row">
-                        <span class="impl-link-label">Tests</span>
-                        <div class="impl-link-tags">
-                          <span class="impl-test-tag"><svg class="impl-test-icon" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 3L2.3 4.3L4.5 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M1 7.5L2.3 8.8L4.5 6.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.5 3.5H11M6.5 8H11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg><span class="impl-test-dot fail"></span>Bastion host logging — AWS S3 backup</span>
-                          <span class="impl-test-tag"><svg class="impl-test-icon" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 3L2.3 4.3L4.5 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M1 7.5L2.3 8.8L4.5 6.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.5 3.5H11M6.5 8H11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg><span class="impl-test-dot pass"></span>Privileged access review</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="impl-block">
-                  <div class="impl-block-header">
-                    <span class="impl-block-title">Remote access catalog</span>
-                    <span class="block-completion fail"><span class="block-completion-dot fail"></span>0/1 failing</span>
-                    <span class="impl-block-req">↗ SOC 2 CC 6.2c</span>
-                  </div>
-                  <div class="impl-block-body">
-                    <p class="impl-block-text">All remote connection types (employees, contractors, automated systems) are being cataloged. In progress — backup account pending connection.</p>
-                    <div class="impl-block-links">
-                      <div class="impl-block-link-row">
-                        <span class="impl-link-label">Scope</span>
-                        <div class="impl-link-tags">
-                          <span class="impl-scope-chip">Production</span>
-                          <span class="impl-scope-chip">Backup</span>
-                        </div>
-                      </div>
-                      <div class="impl-block-link-row">
-                        <span class="impl-link-label">Policy</span>
-                        <div class="impl-link-tags">
-                          <span class="impl-policy-tag">
-                            <svg class="impl-policy-icon" width="11" height="12" viewBox="0 0 11 12" fill="none"><path d="M1.5 1.5H6.5L9.5 4.5V10.5H1.5V1.5Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M6.5 1.5V4.5H9.5" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M3 6.5H8M3 8.5H6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
-                            Access Management Policy §2.3
-                          </span>
-                        </div>
-                      </div>
-                      <div class="impl-block-link-row">
-                        <span class="impl-link-label">Tests</span>
-                        <div class="impl-link-tags">
-                          <span class="impl-test-tag"><svg class="impl-test-icon" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 3L2.3 4.3L4.5 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M1 7.5L2.3 8.8L4.5 6.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.5 3.5H11M6.5 8H11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg><span class="impl-test-dot fail"></span>AWS S3 backup account connection</span>
                         </div>
                       </div>
                     </div>
@@ -1180,6 +1165,17 @@
                 <span class="source-value">Enhanced</span>
               </div>
             </div>
+          </div>
+
+          <!-- Requirement -->
+          <div class="sidebar-section">
+            <div class="sidebar-section-label">Requirement</div>
+            <div class="soc-chip">
+              <div class="soc-icon">S2</div>
+              <span class="soc-label">SOC 2</span>
+            </div>
+            <p class="cc-desc">Remote access is access to organizational systems (or processes acting on behalf of users) that communicate through external networks such as the Internet. Types of remote access include dial-up, broadband, and wireless. Organizations use encrypted virtual private networks (VPNs) to enhance confidentiality and integrity for remote connections. The use of encryp...</p>
+            <a class="card-link" style="font-size:12px;display:inline-block;margin-top:8px;">Show full requirement</a>
           </div>
 
           <!-- Common control -->
