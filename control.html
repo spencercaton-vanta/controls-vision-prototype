@@ -398,6 +398,19 @@
     .attn-body { flex: 1; min-width: 0; }
     .attn-title { font-size: 13px; font-weight: 600; color: var(--text-default); }
     .attn-sub { font-size: 12px; color: var(--text-quiet); margin-top: 2px; line-height: 1.5; }
+    .agent-cta {
+      display: inline-flex; align-items: center; gap: 5px;
+      margin-top: 8px;
+      padding: 3px 9px; border-radius: 4px;
+      background: var(--brand-light); color: var(--brand);
+      border: 1px solid #e0d3f9;
+      font-size: 11px; font-weight: 500;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: background 0.1s;
+    }
+    .agent-cta:hover { background: #ede5fc; }
+    .agent-cta svg { flex-shrink: 0; }
     .attn-deep { font-size: 11px; color: var(--text-tertiary); margin-top: 4px; }
     .attn-arrow { color: var(--text-tertiary); flex-shrink: 0; margin-top: 4px; }
 
@@ -1177,6 +1190,10 @@
                 <div class="attn-body">
                   <div class="attn-title">Add rotation test</div>
                   <div class="attn-sub">Implementation claims it; no test runs. Add config check on Okta, AWS, Snowflake.</div>
+                  <button class="agent-cta">
+                    <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M8 2L9.3 5.7L13 7L9.3 8.3L8 12L6.7 8.3L3 7L6.7 5.7L8 2Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+                    Ask Agent to draft test
+                  </button>
                 </div>
               </div>
               <div class="attn-row">
@@ -1184,6 +1201,10 @@
                 <div class="attn-body">
                   <div class="attn-title">Resolve ISO A.9.4.3 mapping</div>
                   <div class="attn-sub">Mapped, not satisfied. Extend implementation or unmap.</div>
+                  <button class="agent-cta">
+                    <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M8 2L9.3 5.7L13 7L9.3 8.3L8 12L6.7 8.3L3 7L6.7 5.7L8 2Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+                    Ask Agent to recommend
+                  </button>
                 </div>
               </div>
               <div class="attn-row">
@@ -1191,6 +1212,10 @@
                 <div class="attn-body">
                   <div class="attn-title">Refresh Roles & Responsibilities</div>
                   <div class="attn-sub">187d stale. SEC-1042 with Maria Chen, due Jun 10.</div>
+                  <button class="agent-cta">
+                    <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M8 2L9.3 5.7L13 7L9.3 8.3L8 12L6.7 8.3L3 7L6.7 5.7L8 2Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+                    Ask Agent to nudge Maria
+                  </button>
                 </div>
               </div>
             </div>
