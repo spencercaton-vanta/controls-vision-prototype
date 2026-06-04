@@ -497,6 +497,19 @@
       margin-bottom: 16px;
     }
     .impl-statement strong { font-weight: 600; }
+    .impl-scope {
+      margin-bottom: 16px;
+      padding: 14px 16px;
+      border: 1px solid var(--border-quiet);
+      border-radius: 6px;
+      background: var(--bg-default);
+    }
+    .impl-scope-head {
+      font-size: 11px; font-weight: 600;
+      color: var(--text-tertiary);
+      text-transform: uppercase; letter-spacing: 0.5px;
+      margin-bottom: 12px;
+    }
     .scope-line {
       display: flex; flex-direction: column; gap: 6px;
       padding: 12px 14px;
@@ -969,14 +982,94 @@
                   A written <strong>Access Control Policy</strong> defines the lifecycle of access: request, approval, provisioning, role modification, quarterly review, and revocation on role change or termination. Requests are Jira tickets in the SEC project, approved by the system owner of record, and provisioned within SLAs (4h standard, 1h emergency). The policy is reviewed annually by the CISO and acknowledged at hire via the HR Onboarding Workflow.
                 </div>
 
-                <div class="scope-line">
-                  <div class="scope-line-row">
-                    <span class="scope-line-label">Inherited</span>
-                    <span class="scope-line-val">Okta · AWS · Snowflake · GitHub · Jira · Linear · Salesforce</span>
+                <div class="impl-scope">
+                  <div class="impl-scope-head">Resources in scope</div>
+
+                  <div class="rs-group">
+                    <div class="rs-group-header"><span class="rs-group-name">Okta</span></div>
+                    <div class="rs-chips">
+                      <span class="scope-chip">All Employees</span>
+                      <span class="scope-chip">Engineering</span>
+                      <span class="scope-chip">Finance</span>
+                      <span class="scope-chip">Contractors</span>
+                    </div>
                   </div>
-                  <div class="scope-line-row">
-                    <span class="scope-line-label">Narrowed</span>
-                    <span class="scope-line-val">— Sandbox · — Personal admin accounts</span>
+
+                  <div class="rs-group">
+                    <div class="rs-group-header"><span class="rs-group-name">AWS</span></div>
+                    <div class="rs-chips">
+                      <span class="scope-chip">acme-prod</span>
+                      <span class="scope-chip">acme-data</span>
+                      <span class="scope-chip">acme-platform</span>
+                    </div>
+                  </div>
+
+                  <div class="rs-group">
+                    <div class="rs-group-header"><span class="rs-group-name">Snowflake</span></div>
+                    <div class="rs-chips">
+                      <span class="scope-chip">SYSADMIN</span>
+                      <span class="scope-chip">DATA_ENGINEER</span>
+                      <span class="scope-chip">ANALYST</span>
+                      <span class="scope-chip">READ_ONLY</span>
+                    </div>
+                  </div>
+
+                  <div class="rs-group">
+                    <div class="rs-group-header"><span class="rs-group-name">GitHub</span></div>
+                    <div class="rs-chips">
+                      <span class="scope-chip">engineering</span>
+                      <span class="scope-chip">infra</span>
+                      <span class="scope-chip">security</span>
+                      <span class="scope-chip">data-platform</span>
+                    </div>
+                  </div>
+
+                  <div class="rs-group">
+                    <div class="rs-group-header"><span class="rs-group-name">Jira</span></div>
+                    <div class="rs-chips">
+                      <span class="scope-chip">SEC</span>
+                      <span class="scope-chip">ENG</span>
+                      <span class="scope-chip">OPS</span>
+                    </div>
+                  </div>
+
+                  <div class="rs-group">
+                    <div class="rs-group-header"><span class="rs-group-name">Linear</span></div>
+                    <div class="rs-chips">
+                      <span class="scope-chip">Engineering</span>
+                      <span class="scope-chip">Platform</span>
+                      <span class="scope-chip">Design</span>
+                    </div>
+                  </div>
+
+                  <div class="rs-group">
+                    <div class="rs-group-header"><span class="rs-group-name">Salesforce</span></div>
+                    <div class="rs-chips">
+                      <span class="scope-chip">System Administrator</span>
+                      <span class="scope-chip">Sales User</span>
+                      <span class="scope-chip">Standard User</span>
+                    </div>
+                  </div>
+
+                  <div class="rs-group" style="margin-top:14px;padding-top:12px;border-top:1px solid var(--border-quiet);">
+                    <div class="rs-group-header"><span class="rs-group-name" style="color:var(--text-quiet);">Tracked manually</span><span class="rs-group-meta">2</span></div>
+                    <div class="rs-chips">
+                      <span class="scope-chip">analytics-db</span>
+                      <span class="scope-chip">Compass</span>
+                    </div>
+                  </div>
+
+                  <div class="rs-group">
+                    <div class="rs-group-header"><span class="rs-group-name" style="color:var(--text-quiet);">Shadow — agent-detected</span><span class="rs-group-meta">2</span></div>
+                    <div class="rs-chips">
+                      <span class="scope-chip">Looker</span>
+                      <span class="scope-chip">PagerDuty</span>
+                    </div>
+                    <a class="shadow-cta">Triage →</a>
+                  </div>
+
+                  <div class="scope-env">
+                    Environments <span class="scope-env-val">Production</span>
                   </div>
                 </div>
 
@@ -1197,97 +1290,6 @@
                   <div class="attn-sub">Annual review missed. SEC-1042 in flight.</div>
                 </div>
               </div>
-            </div>
-          </div>
-
-          <div class="sidebar-section">
-            <div class="sidebar-section-label">Resources in scope</div>
-
-            <div class="rs-group">
-              <div class="rs-group-header"><span class="rs-group-name">Okta</span></div>
-              <div class="rs-chips">
-                <span class="scope-chip">All Employees</span>
-                <span class="scope-chip">Engineering</span>
-                <span class="scope-chip">Finance</span>
-                <span class="scope-chip">Contractors</span>
-              </div>
-            </div>
-
-            <div class="rs-group">
-              <div class="rs-group-header"><span class="rs-group-name">AWS</span></div>
-              <div class="rs-chips">
-                <span class="scope-chip">acme-prod</span>
-                <span class="scope-chip">acme-data</span>
-                <span class="scope-chip">acme-platform</span>
-              </div>
-            </div>
-
-            <div class="rs-group">
-              <div class="rs-group-header"><span class="rs-group-name">Snowflake</span></div>
-              <div class="rs-chips">
-                <span class="scope-chip">SYSADMIN</span>
-                <span class="scope-chip">DATA_ENGINEER</span>
-                <span class="scope-chip">ANALYST</span>
-                <span class="scope-chip">READ_ONLY</span>
-              </div>
-            </div>
-
-            <div class="rs-group">
-              <div class="rs-group-header"><span class="rs-group-name">GitHub</span></div>
-              <div class="rs-chips">
-                <span class="scope-chip">engineering</span>
-                <span class="scope-chip">infra</span>
-                <span class="scope-chip">security</span>
-                <span class="scope-chip">data-platform</span>
-              </div>
-            </div>
-
-            <div class="rs-group">
-              <div class="rs-group-header"><span class="rs-group-name">Jira</span></div>
-              <div class="rs-chips">
-                <span class="scope-chip">SEC</span>
-                <span class="scope-chip">ENG</span>
-                <span class="scope-chip">OPS</span>
-              </div>
-            </div>
-
-            <div class="rs-group">
-              <div class="rs-group-header"><span class="rs-group-name">Linear</span></div>
-              <div class="rs-chips">
-                <span class="scope-chip">Engineering</span>
-                <span class="scope-chip">Platform</span>
-                <span class="scope-chip">Design</span>
-              </div>
-            </div>
-
-            <div class="rs-group">
-              <div class="rs-group-header"><span class="rs-group-name">Salesforce</span></div>
-              <div class="rs-chips">
-                <span class="scope-chip">System Administrator</span>
-                <span class="scope-chip">Sales User</span>
-                <span class="scope-chip">Standard User</span>
-              </div>
-            </div>
-
-            <div class="rs-group" style="margin-top:14px;padding-top:12px;border-top:1px solid var(--border-quiet);">
-              <div class="rs-group-header"><span class="rs-group-name" style="color:var(--text-quiet);">Tracked manually</span><span class="rs-group-meta">2</span></div>
-              <div class="rs-chips">
-                <span class="scope-chip">analytics-db</span>
-                <span class="scope-chip">Compass</span>
-              </div>
-            </div>
-
-            <div class="rs-group">
-              <div class="rs-group-header"><span class="rs-group-name" style="color:var(--text-quiet);">Shadow — agent-detected</span><span class="rs-group-meta">2</span></div>
-              <div class="rs-chips">
-                <span class="scope-chip">Looker</span>
-                <span class="scope-chip">PagerDuty</span>
-              </div>
-              <a class="shadow-cta">Triage →</a>
-            </div>
-
-            <div class="scope-env">
-              Environments <span class="scope-env-val">Production</span>
             </div>
           </div>
 
