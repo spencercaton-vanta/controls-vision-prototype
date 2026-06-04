@@ -546,6 +546,11 @@
       border-bottom: 1px solid var(--border-quiet);
     }
     .impl-block-title { font-size: 13px; font-weight: 600; color: var(--text-default); flex: 1; }
+    .impl-block-owner {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 12px; color: var(--text-quiet);
+    }
+    .impl-block-owner .owner-avatar-sm { width: 18px; height: 18px; font-size: 9px; }
     .impl-block-req {
       display: inline-flex; align-items: center; gap: 4px;
       padding: 2px 7px; border-radius: 3px;
@@ -770,27 +775,10 @@
               <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M8 2L9.3 5.7L13 7L9.3 8.3L8 12L6.7 8.3L3 7L6.7 5.7L8 2Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
               Needs evidence
             </span>
-            <div class="meta-owner">
-              <div class="owner-avatar-sm">A</div>
-              James Adams
-            </div>
-            <span class="badge badge-status">
-              <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3.5 2"/></svg>
-              In progress
-              <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M3 5L6 8L9 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
             <span class="meta-id">ID: CC 6.3</span>
           </div>
         </div>
 
-        <div class="detail-tabs">
-          <div class="detail-tab active">Overview</div>
-          <div class="detail-tab">Mapped elements</div>
-          <div class="detail-tab">Health</div>
-          <div class="detail-tab">Maturity</div>
-          <div class="detail-tab">History</div>
-          <div class="detail-tab">Comments</div>
-        </div>
       </div>
 
       <!-- Detail body -->
@@ -814,6 +802,7 @@
                 <div class="impl-block">
                   <div class="impl-block-header">
                     <span class="impl-block-title">Access control procedures established</span>
+                    <div class="impl-block-owner"><div class="owner-avatar-sm">M</div>Mira Patel</div>
                     <span class="impl-block-status fail"><span class="impl-block-status-dot"></span>2 failing</span>
                   </div>
                   <div class="impl-block-body">
@@ -829,6 +818,7 @@
                 <div class="impl-block">
                   <div class="impl-block-header">
                     <span class="impl-block-title">Access requests required</span>
+                    <div class="impl-block-owner"><div class="owner-avatar-sm">D</div>David Kim</div>
                     <span class="impl-block-status fail"><span class="impl-block-status-dot"></span>1 failing</span>
                   </div>
                   <div class="impl-block-body">
@@ -843,6 +833,7 @@
                 <div class="impl-block">
                   <div class="impl-block-header">
                     <span class="impl-block-title">Unique network system authentication enforced</span>
+                    <div class="impl-block-owner" style="color:var(--text-tertiary);"><div class="owner-avatar-sm" style="background:var(--bg-neutral);color:var(--text-tertiary);">?</div>Unassigned</div>
                     <span class="impl-block-status empty"><span class="impl-block-status-dot"></span>Needs evidence</span>
                   </div>
                   <div class="impl-block-body">
@@ -856,6 +847,7 @@
                 <div class="impl-block">
                   <div class="impl-block-header">
                     <span class="impl-block-title">Access reviews conducted</span>
+                    <div class="impl-block-owner"><div class="owner-avatar-sm">S</div>Sarah Chen</div>
                     <span class="impl-block-status fail"><span class="impl-block-status-dot"></span>1 failing</span>
                   </div>
                   <div class="impl-block-body">
@@ -874,6 +866,7 @@
                 <div class="impl-block">
                   <div class="impl-block-header">
                     <span class="impl-block-title">Access revoked upon termination</span>
+                    <div class="impl-block-owner"><div class="owner-avatar-sm">M</div>Marcus Reid</div>
                     <span class="impl-block-status fail"><span class="impl-block-status-dot"></span>1 failing</span>
                   </div>
                   <div class="impl-block-body">
