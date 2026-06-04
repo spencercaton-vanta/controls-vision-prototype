@@ -771,8 +771,9 @@
             </div>
           </div>
 
-          <p class="detail-desc">The entity authorizes, modifies, or removes access to data, software, functions, and other<br>protected information assets based on roles, responsibilities, or the system design and chang...</p>
-          <a class="show-more-link">Show full description</a>
+          <p class="detail-desc" id="req-desc-short">The entity authorizes, modifies, or removes access to data, software, functions, and other<br>protected information assets based on roles, responsibilities, or the system design and chang...</p>
+          <p class="detail-desc" id="req-desc-full" hidden>The entity authorizes, modifies, or removes access to data, software, functions, and other protected information assets based on roles, responsibilities, or the system design and changes, giving consideration to the concepts of least privilege and segregation of duties, to support the entity's objectives.</p>
+          <a class="show-more-link" id="req-toggle">Show full requirement</a>
 
           <div class="detail-meta">
             <span class="badge badge-neutral">
@@ -982,5 +983,20 @@
     </main>
   </div>
 
+  <script>
+    (function () {
+      var toggle = document.getElementById('req-toggle');
+      var shortP = document.getElementById('req-desc-short');
+      var fullP = document.getElementById('req-desc-full');
+      if (!toggle || !shortP || !fullP) return;
+      toggle.addEventListener('click', function (e) {
+        e.preventDefault();
+        var expanded = !fullP.hidden;
+        fullP.hidden = expanded;
+        shortP.hidden = !expanded;
+        toggle.textContent = expanded ? 'Show full requirement' : 'Show less';
+      });
+    })();
+  </script>
 </body>
 </html>
