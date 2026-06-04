@@ -428,9 +428,9 @@
       font-size: 12px; font-weight: 500;
       line-height: 1.4;
     }
-    .badge-info { background: var(--info-bg); color: var(--info-text); }
-    .badge-warn { background: var(--warn-bg); color: var(--warn-text); }
-    .badge-ok-soft { background: var(--success-bg); color: var(--success-text); }
+    .badge-info { background: var(--bg-neutral); color: var(--text-quiet); }
+    .badge-warn { background: var(--bg-neutral); color: var(--text-quiet); }
+    .badge-neutral { background: var(--bg-neutral); color: var(--text-quiet); }
 
     /* Requirements table */
     .req-table { display: flex; flex-direction: column; }
@@ -576,39 +576,21 @@
       padding-top: 6px;
     }
     .impl-chain-chips { display: flex; flex-wrap: wrap; gap: 6px; }
-    .policy-chip {
+    /* Chain chips: all neutral. Icon differentiates kind. Test chips add a small status dot. */
+    .policy-chip, .procedure-chip, .test-chip {
       display: inline-flex; align-items: center; gap: 6px;
       padding: 4px 10px; border-radius: 4px;
-      background: #eef1ff; color: #2748c8;
-      border: 1px solid #c7d4ff;
+      background: var(--bg-neutral); color: var(--text-quiet);
       font-size: 12px; font-weight: 500;
       cursor: pointer; text-decoration: none;
       transition: background 0.1s;
     }
-    .policy-chip:hover { background: #dde4ff; }
-    .procedure-chip {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 4px 10px; border-radius: 4px;
-      background: var(--brand-light); color: var(--brand);
-      border: 1px solid #e0d3f9;
-      font-size: 12px; font-weight: 500;
-      cursor: pointer; text-decoration: none;
-      transition: background 0.1s;
+    .policy-chip:hover, .procedure-chip:hover, .test-chip:hover {
+      background: #e6e6ed;
     }
-    .procedure-chip:hover { background: #ede5fc; }
-    .test-chip {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 4px 10px; border-radius: 4px;
-      background: white; color: var(--text-quiet);
-      border: 1px solid var(--border-default);
-      font-size: 12px; font-weight: 500;
-      cursor: pointer;
-      transition: background 0.1s;
-    }
-    .test-chip:hover { background: var(--bg-lowered); }
     .test-chip-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
-    .test-chip-dot.pass { background: var(--success-text); }
-    .test-chip-dot.fail { background: var(--error-text); }
+    .test-chip-dot.pass { background: #6fa86f; }
+    .test-chip-dot.fail { background: #c47b6c; }
 
     /* Progress chip on card header */
     .progress-chip {
@@ -883,8 +865,11 @@
               <div class="owner-avatar-sm">M</div>
               Mira Patel
             </div>
-            <span class="badge badge-ok-soft">Implemented</span>
-            <span class="badge badge-warn">Needs evidence</span>
+            <span class="badge badge-neutral">Implemented</span>
+            <span class="badge badge-neutral">
+              <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M8 2L9.3 5.7L13 7L9.3 8.3L8 12L6.7 8.3L3 7L6.7 5.7L8 2Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+              Needs evidence
+            </span>
           </div>
         </div>
 
