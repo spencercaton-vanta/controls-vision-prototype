@@ -553,6 +553,20 @@
       background: var(--brand-light); color: var(--brand);
       cursor: pointer;
     }
+    .impl-block-status {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 2px 8px; border-radius: 4px;
+      font-size: 11px; font-weight: 500;
+    }
+    .impl-block-status-dot {
+      width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0;
+    }
+    .impl-block-status.pass { background: var(--success-bg); color: var(--success-text); }
+    .impl-block-status.pass .impl-block-status-dot { background: var(--success-text); }
+    .impl-block-status.fail { background: #fff2f2; color: var(--error-text); }
+    .impl-block-status.fail .impl-block-status-dot { background: var(--error-text); }
+    .impl-block-status.empty { background: var(--bg-neutral); color: var(--text-quiet); }
+    .impl-block-status.empty .impl-block-status-dot { background: var(--text-tertiary); }
     .impl-block-body { padding: 12px 14px; }
     .impl-block-text { font-size: 13px; color: var(--text-quiet); line-height: 1.6; margin-bottom: 10px; }
     .impl-block-tests { display: flex; flex-wrap: wrap; gap: 6px; }
@@ -788,7 +802,7 @@
           <!-- Implementation design card -->
           <div class="card">
             <div class="card-header" style="display:flex;align-items:center;justify-content:space-between;">
-              <span class="card-title">Implementation design</span>
+              <span class="card-title">Controls</span>
               <span class="impl-status-chip">
                 <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3.5 2"/></svg>
                 In progress
@@ -800,7 +814,7 @@
                 <div class="impl-block">
                   <div class="impl-block-header">
                     <span class="impl-block-title">Access control procedures established</span>
-                    <span class="impl-block-req">↗ IAC-2</span>
+                    <span class="impl-block-status fail"><span class="impl-block-status-dot"></span>2 failing</span>
                   </div>
                   <div class="impl-block-body">
                     <p class="impl-block-text">The access control policy documents requirements for adding new users, modifying roles, periodic reviews, and segregation of duties.</p>
@@ -815,7 +829,7 @@
                 <div class="impl-block">
                   <div class="impl-block-header">
                     <span class="impl-block-title">Access requests required</span>
-                    <span class="impl-block-req">↗ IAC-9</span>
+                    <span class="impl-block-status fail"><span class="impl-block-status-dot"></span>1 failing</span>
                   </div>
                   <div class="impl-block-body">
                     <p class="impl-block-text">User access to in-scope system components is based on job role and function, or requires a documented access request approved by the system owner.</p>
@@ -829,7 +843,7 @@
                 <div class="impl-block">
                   <div class="impl-block-header">
                     <span class="impl-block-title">Unique network system authentication enforced</span>
-                    <span class="impl-block-req">↗ IAC-10</span>
+                    <span class="impl-block-status empty"><span class="impl-block-status-dot"></span>Needs evidence</span>
                   </div>
                   <div class="impl-block-body">
                     <p class="impl-block-text">Authentication to the production network must use unique usernames and passwords or authorized SSH/SSO with MFA.</p>
@@ -842,7 +856,7 @@
                 <div class="impl-block">
                   <div class="impl-block-header">
                     <span class="impl-block-title">Access reviews conducted</span>
-                    <span class="impl-block-req">↗ IAC-7</span>
+                    <span class="impl-block-status fail"><span class="impl-block-status-dot"></span>1 failing</span>
                   </div>
                   <div class="impl-block-body">
                     <p class="impl-block-text">Access reviews are conducted at least quarterly for in-scope system components to ensure access is restricted appropriately.</p>
@@ -860,7 +874,7 @@
                 <div class="impl-block">
                   <div class="impl-block-header">
                     <span class="impl-block-title">Access revoked upon termination</span>
-                    <span class="impl-block-req">↗ IAC-8</span>
+                    <span class="impl-block-status fail"><span class="impl-block-status-dot"></span>1 failing</span>
                   </div>
                   <div class="impl-block-body">
                     <p class="impl-block-text">Termination checklists ensure access is revoked for terminated employees within defined SLAs across all in-scope systems.</p>
