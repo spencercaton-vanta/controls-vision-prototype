@@ -479,6 +479,17 @@
     }
     .scope-env { font-size: 12px; color: var(--text-tertiary); }
     .scope-env-val { color: var(--text-default); font-weight: 500; }
+    .rs-group { margin-bottom: 12px; }
+    .rs-group:last-of-type { margin-bottom: 0; }
+    .rs-group-header {
+      display: flex; align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 5px;
+    }
+    .rs-group-name { font-size: 12px; font-weight: 600; color: var(--text-default); letter-spacing: 0.1px; }
+    .rs-group-meta { font-size: 11px; color: var(--text-tertiary); }
+    .rs-chips { display: flex; flex-wrap: wrap; gap: 4px; }
+    .rs-chips .scope-chip { font-size: 11px; padding: 2px 7px; font-weight: 400; }
 
     /* Health summary card */
     .health-card {
@@ -961,16 +972,98 @@
           <!-- Resources in scope -->
           <div class="sidebar-section">
             <div class="sidebar-section-label">Resources in scope</div>
-            <div class="scope-chips">
-              <span class="scope-chip">AWS</span>
-              <span class="scope-chip">Okta</span>
-              <span class="scope-chip">Snowflake</span>
-              <span class="scope-chip">GitHub</span>
-              <span class="scope-chip">Jira</span>
-              <span class="scope-chip">Linear</span>
-              <span class="scope-chip">Salesforce</span>
+
+            <div class="rs-group">
+              <div class="rs-group-header">
+                <span class="rs-group-name">AWS</span>
+                <span class="rs-group-meta">3 accounts</span>
+              </div>
+              <div class="rs-chips">
+                <span class="scope-chip">acme-prod</span>
+                <span class="scope-chip">acme-data</span>
+                <span class="scope-chip">acme-platform</span>
+              </div>
             </div>
-            <div class="scope-env">Environments <span class="scope-env-val">Production</span></div>
+
+            <div class="rs-group">
+              <div class="rs-group-header">
+                <span class="rs-group-name">Okta</span>
+                <span class="rs-group-meta">5 groups</span>
+              </div>
+              <div class="rs-chips">
+                <span class="scope-chip">All Employees</span>
+                <span class="scope-chip">Engineering</span>
+                <span class="scope-chip">Finance</span>
+                <span class="scope-chip">Contractors</span>
+                <span class="scope-chip">+1</span>
+              </div>
+            </div>
+
+            <div class="rs-group">
+              <div class="rs-group-header">
+                <span class="rs-group-name">Snowflake</span>
+                <span class="rs-group-meta">4 roles</span>
+              </div>
+              <div class="rs-chips">
+                <span class="scope-chip">SYSADMIN</span>
+                <span class="scope-chip">DATA_ENGINEER</span>
+                <span class="scope-chip">ANALYST</span>
+                <span class="scope-chip">READ_ONLY</span>
+              </div>
+            </div>
+
+            <div class="rs-group">
+              <div class="rs-group-header">
+                <span class="rs-group-name">GitHub</span>
+                <span class="rs-group-meta">4 teams</span>
+              </div>
+              <div class="rs-chips">
+                <span class="scope-chip">engineering</span>
+                <span class="scope-chip">infra</span>
+                <span class="scope-chip">security</span>
+                <span class="scope-chip">data-platform</span>
+              </div>
+            </div>
+
+            <div class="rs-group">
+              <div class="rs-group-header">
+                <span class="rs-group-name">Jira</span>
+                <span class="rs-group-meta">3 projects</span>
+              </div>
+              <div class="rs-chips">
+                <span class="scope-chip">PROD</span>
+                <span class="scope-chip">SEC</span>
+                <span class="scope-chip">ENG</span>
+              </div>
+            </div>
+
+            <div class="rs-group">
+              <div class="rs-group-header">
+                <span class="rs-group-name">Linear</span>
+                <span class="rs-group-meta">3 teams</span>
+              </div>
+              <div class="rs-chips">
+                <span class="scope-chip">Engineering</span>
+                <span class="scope-chip">Platform</span>
+                <span class="scope-chip">Design</span>
+              </div>
+            </div>
+
+            <div class="rs-group">
+              <div class="rs-group-header">
+                <span class="rs-group-name">Salesforce</span>
+                <span class="rs-group-meta">3 profiles</span>
+              </div>
+              <div class="rs-chips">
+                <span class="scope-chip">System Administrator</span>
+                <span class="scope-chip">Sales User</span>
+                <span class="scope-chip">Standard User</span>
+              </div>
+            </div>
+
+            <div class="scope-env" style="margin-top:14px;padding-top:12px;border-top:1px solid var(--border-quiet);">
+              Environments <span class="scope-env-val">Production</span>
+            </div>
           </div>
 
           <!-- Common controls -->
