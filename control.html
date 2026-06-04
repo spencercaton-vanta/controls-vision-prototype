@@ -438,10 +438,17 @@
       display: grid;
       grid-template-columns: 110px 130px 1fr 130px;
       gap: 12px; align-items: center;
-      padding: 11px 0;
+      padding: 11px 12px;
+      margin: 0 -12px;
       border-top: 1px solid var(--border-quiet);
+      border-radius: 5px;
       font-size: 13px;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      transition: background 0.1s;
     }
+    .req-row:hover { background: var(--bg-lowered); }
     .req-row:first-child { padding-top: 4px; border-top: none; }
     .req-row.not-satisfied {
       /* No background tint — the status badge carries the signal. */
@@ -457,7 +464,7 @@
     .req-source.regulatory  { background: #eef2ff; color: #4338ca; }
     .req-source.commitment  { background: #e1e9ff; color: #2748c8; }
     .req-source.risk        { background: var(--warn-bg); color: var(--warn-text); }
-    .req-ref { font-weight: 600; color: var(--text-default); font-size: 12px; }
+    .req-ref { color: var(--text-default); font-size: 12px; }
     .req-title { color: var(--text-quiet); font-size: 13px; }
     .req-status {
       display: inline-flex; align-items: center; gap: 5px;
@@ -909,12 +916,12 @@
                     <span class="req-title">Logical and physical access controls</span>
                     <span class="req-status ok">✓ Satisfied</span>
                   </div>
-                  <div class="req-row">
+                  <a class="req-row" href="index.html">
                     <span class="req-source framework">Framework</span>
                     <span class="req-ref">SOC 2 CC 6.3</span>
                     <span class="req-title">Role-based access management</span>
                     <span class="req-status ok">✓ Satisfied</span>
-                  </div>
+                  </a>
                   <div class="req-row">
                     <span class="req-source framework">Framework</span>
                     <span class="req-ref">ISO 27001 A.9.1.1</span>
