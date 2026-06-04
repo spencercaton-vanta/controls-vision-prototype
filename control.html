@@ -467,12 +467,20 @@
     .req-ref { color: var(--text-default); font-size: 12px; }
     .req-title { color: var(--text-quiet); font-size: 13px; }
     .req-status {
-      display: inline-flex; align-items: center; gap: 5px;
+      display: inline-flex; align-items: center; gap: 6px;
       padding: 3px 8px; border-radius: 4px;
-      font-size: 11px; font-weight: 600;
+      font-size: 11px; font-weight: 500;
       width: fit-content;
     }
-    .req-status.ok   { background: var(--success-bg); color: var(--success-text); }
+    .req-status.ok {
+      background: var(--bg-default);
+      border: 1px solid var(--border-default);
+      color: var(--text-quiet);
+      font-weight: 500;
+    }
+    .req-status-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+    .req-status-dot.pass { background: var(--success-text); }
+    .req-status-dot.fail { background: var(--error-text); }
     .req-status.warn { background: var(--bg-neutral); color: var(--text-default); cursor: help; }
     .req-status-tip { position: relative; display: inline-flex; }
     .req-status-tip .tip {
@@ -914,19 +922,19 @@
                     <span class="req-source framework">Framework</span>
                     <span class="req-ref">SOC 2 CC 6.1</span>
                     <span class="req-title">Logical and physical access controls</span>
-                    <span class="req-status ok">✓ Satisfied</span>
+                    <span class="req-status ok"><span class="req-status-dot pass"></span>Satisfied</span>
                   </div>
                   <a class="req-row" href="index.html">
                     <span class="req-source framework">Framework</span>
                     <span class="req-ref">SOC 2 CC 6.3</span>
                     <span class="req-title">Role-based access management</span>
-                    <span class="req-status ok">✓ Satisfied</span>
+                    <span class="req-status ok"><span class="req-status-dot pass"></span>Satisfied</span>
                   </a>
                   <div class="req-row">
                     <span class="req-source framework">Framework</span>
                     <span class="req-ref">ISO 27001 A.9.1.1</span>
                     <span class="req-title">Access control policy</span>
-                    <span class="req-status ok">✓ Satisfied</span>
+                    <span class="req-status ok"><span class="req-status-dot pass"></span>Satisfied</span>
                   </div>
                   <div class="req-row not-satisfied">
                     <span class="req-source framework">Framework</span>
@@ -941,19 +949,19 @@
                     <span class="req-source regulatory">Regulatory</span>
                     <span class="req-ref">HIPAA §164.308(a)(4)(ii)(B)</span>
                     <span class="req-title">Access authorization</span>
-                    <span class="req-status ok">✓ Satisfied</span>
+                    <span class="req-status ok"><span class="req-status-dot pass"></span>Satisfied</span>
                   </div>
                   <div class="req-row">
                     <span class="req-source commitment">Commitment</span>
                     <span class="req-ref">Acme MSA §4.2</span>
                     <span class="req-title">Customer data access procedures</span>
-                    <span class="req-status ok">✓ Satisfied</span>
+                    <span class="req-status ok"><span class="req-status-dot pass"></span>Satisfied</span>
                   </div>
                   <div class="req-row">
                     <span class="req-source risk">Risk treatment</span>
                     <span class="req-ref">RT-014</span>
                     <span class="req-title">Unauthorized internal access</span>
-                    <span class="req-status ok">✓ Satisfied</span>
+                    <span class="req-status ok"><span class="req-status-dot pass"></span>Satisfied</span>
                   </div>
                 </div>
               </div>
