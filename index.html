@@ -36,8 +36,6 @@
       font-size: 14px;
       color: var(--text-default);
       background: var(--bg-lowered);
-      height: 100vh;
-      overflow: hidden;
     }
 
     /* ── Top nav ── */
@@ -92,20 +90,22 @@
 
     /* ── App shell ── */
     .appshell {
-      display: flex;
-      position: fixed;
-      top: var(--topbar-h); left: 0; right: 0; bottom: 0;
+      padding-top: var(--topbar-h);
+      padding-left: var(--sidenav-w);
+      min-height: 100vh;
     }
 
     /* ── Left nav ── */
     .sidenav {
+      position: fixed;
+      top: var(--topbar-h); left: 0; bottom: 0;
       width: var(--sidenav-w);
       background: var(--bg-lowered);
       border-right: 1px solid var(--border-quiet);
       display: flex; flex-direction: column;
-      flex-shrink: 0;
       overflow-y: auto;
       padding: 8px 0 0;
+      z-index: 50;
     }
     .sidenav-search {
       margin: 4px 10px 8px;
@@ -180,9 +180,7 @@
 
     /* ── Main content ── */
     .main {
-      flex: 1; display: flex; flex-direction: column;
-      overflow: hidden; background: var(--bg-default);
-      min-height: 0;
+      background: var(--bg-default);
     }
 
     /* ── Detail header ── */
@@ -282,14 +280,13 @@
     }
 
     /* ── Detail body ── */
-    .detail-body { display: flex; flex: 1; overflow: hidden; min-height: 0; }
+    .detail-body { display: flex; }
     .detail-main {
-      flex: 1; overflow-y: auto;
+      flex: 1;
       padding: 24px 28px;
       background: var(--bg-lowered);
       display: flex; flex-direction: column; gap: 16px;
     }
-    .detail-main > * { flex-shrink: 0; }
 
     /* ── Cards ── */
     .card {
@@ -344,7 +341,6 @@
     .detail-sidebar {
       width: 316px; flex-shrink: 0;
       border-left: 1px solid var(--border-quiet);
-      overflow-y: auto;
       background: var(--bg-default);
     }
     .sidebar-section {
