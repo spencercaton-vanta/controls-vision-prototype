@@ -892,41 +892,12 @@
 
                 <div class="impl-add-block">
                   <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-                  Add implementation block
+                  Add control
                 </div>
 
               </div>
 
-              <div class="card-section-label">Systems in scope</div>
-              <div class="systems-list">
-                <div class="system-row">
-                  <svg class="system-check" width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="#16a44a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  <span class="system-name">Okta</span>
-                  <span class="system-desc">Identity provider — directory of record</span>
-                </div>
-                <div class="system-row">
-                  <svg class="system-check" width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="#16a44a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  <span class="system-name">AWS IAM</span>
-                  <span class="system-desc">Production roles and policies</span>
-                </div>
-                <div class="system-row">
-                  <svg class="system-check" width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="#16a44a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  <span class="system-name">Jira</span>
-                  <span class="system-desc">Engineering access tickets and project membership</span>
-                </div>
-                <div class="system-row">
-                  <svg class="system-check" width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="#16a44a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  <span class="system-name">Linear</span>
-                  <span class="system-desc">Workspace membership</span>
-                </div>
-                <div class="system-row">
-                  <svg class="system-check" width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="#16a44a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  <span class="system-name">Snowflake</span>
-                  <span class="system-desc error">Role grants — periodic review not yet completed for Q2</span>
-                </div>
-              </div>
-
-              <div class="card-section-label" style="display:flex;align-items:center;justify-content:space-between;margin-top:24px;">
+              <div class="card-section-label" style="display:flex;align-items:center;justify-content:space-between;">
                 <span>Issues</span>
                 <span style="font-size:11px;font-weight:400;color:var(--text-tertiary);">3 open</span>
               </div>
@@ -968,11 +939,9 @@
             <div class="source-grid">
               <span class="source-label">Framework</span>
               <span class="source-value">SOC 2 CC 6.3</span>
-              <span class="source-label">Requirement</span>
-              <a class="source-value source-link">Role-based access mgmt</a>
               <span class="source-label">Status</span>
               <span><span class="badge-in-audit">In audit</span></span>
-              <span class="source-label">Tier</span>
+              <span class="source-label">Evidence tier</span>
               <div class="tier-row">
                 <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M8 2L14 4.5V8C14 11.5 11.5 14.5 8 15.5 4.5 14.5 2 11.5 2 8V4.5L8 2Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
                 <span class="source-value">Enhanced</span>
@@ -1074,12 +1043,15 @@
 
           <!-- Resource scope -->
           <div class="sidebar-section">
-            <div class="sidebar-section-label">Resource scope</div>
+            <div class="sidebar-section-label">Resources in scope</div>
             <div class="scope-chips">
-              <span class="scope-chip">Okta directory</span>
-              <span class="scope-chip">AWS IAM</span>
-              <span class="scope-chip">Jira / Linear users</span>
-              <span class="scope-chip">Snowflake roles</span>
+              <span class="scope-chip">Okta groups</span>
+              <span class="scope-chip">AWS IAM roles</span>
+              <span class="scope-chip">Snowflake role grants</span>
+              <span class="scope-chip">GitHub teams</span>
+              <span class="scope-chip">Jira projects</span>
+              <span class="scope-chip">Linear workspaces</span>
+              <span class="scope-chip">Salesforce profiles</span>
             </div>
             <div class="scope-env">Environments <span class="scope-env-val">Production</span></div>
           </div>
