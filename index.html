@@ -631,6 +631,28 @@
     .issue-title { font-size: 13px; font-weight: 500; color: var(--text-default); margin-bottom: 2px; }
     .issue-meta { font-size: 11px; color: var(--text-tertiary); }
     .issue-cta { font-size: 12px; color: #3c63ea; cursor: pointer; text-decoration: underline; flex-shrink: 0; margin-top: 2px; }
+    .issue-row {
+      cursor: pointer;
+      transition: background 0.1s;
+      margin: 0 -8px;
+      padding-left: 8px; padding-right: 8px;
+      border-radius: 4px;
+    }
+    .issue-row:hover { background: var(--bg-lowered); }
+    .issue-status {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 2px 8px; border-radius: 4px;
+      font-size: 11px; font-weight: 500;
+      flex-shrink: 0; margin-top: 2px;
+      white-space: nowrap;
+    }
+    .issue-status-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+    .issue-status.open { background: var(--bg-neutral); color: var(--text-quiet); }
+    .issue-status.open .issue-status-dot { background: var(--text-tertiary); }
+    .issue-status.in-progress { background: var(--info-bg); color: var(--info-text); }
+    .issue-status.in-progress .issue-status-dot { background: var(--info-text); }
+    .issue-status.stalled { background: #fff2f2; color: var(--error-text); }
+    .issue-status.stalled .issue-status-dot { background: var(--error-text); }
   </style>
 </head>
 <body>
@@ -923,7 +945,7 @@
                   <div class="issue-title">3 terminated employees still have Jira access</div>
                   <div class="issue-meta">IAC-8 · John Smith (45d), Maria Lopez (31d), Alex Chen (23d) past termination SLA</div>
                 </div>
-                <a class="issue-cta">Resolve</a>
+                <span class="issue-status open"><span class="issue-status-dot"></span>Open</span>
               </div>
               <div class="issue-row">
                 <div class="issue-icon">!</div>
@@ -931,7 +953,7 @@
                   <div class="issue-title">Snowflake SYSADMIN granted without documented request</div>
                   <div class="issue-meta">IAC-9 · ana.shah@acme.com · Granted May 21, no access ticket on file</div>
                 </div>
-                <a class="issue-cta">Investigate</a>
+                <span class="issue-status in-progress"><span class="issue-status-dot"></span>In progress</span>
               </div>
               <div class="issue-row">
                 <div class="issue-icon">!</div>
@@ -939,7 +961,7 @@
                   <div class="issue-title">Q2 access review proof not uploaded</div>
                   <div class="issue-meta">IAC-7 · Quarterly review window closed 2 days ago</div>
                 </div>
-                <a class="issue-cta">Upload</a>
+                <span class="issue-status open"><span class="issue-status-dot"></span>Open</span>
               </div>
               <div class="issue-row">
                 <div class="issue-icon">!</div>
@@ -947,7 +969,7 @@
                   <div class="issue-title">No mapped evidence on Unique network system authentication</div>
                   <div class="issue-meta">IAC-10 · 0 tests configured · Recommended: production network IdP check</div>
                 </div>
-                <a class="issue-cta">Add evidence</a>
+                <span class="issue-status stalled"><span class="issue-status-dot"></span>Stalled</span>
               </div>
             </div>
           </div>
