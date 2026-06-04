@@ -773,6 +773,32 @@
     .agent-summary-link { color: var(--brand); cursor: pointer; margin-left: auto; }
     .agent-summary-link:hover { text-decoration: underline; }
 
+    /* Common control card (stolen from framework page rail) */
+    .cc-card {
+      border: 1px solid var(--border-quiet);
+      border-radius: 8px; padding: 12px;
+    }
+    .cc-top { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 6px; }
+    .cc-icon {
+      width: 28px; height: 28px; border-radius: 6px;
+      background: var(--bg-lowered); border: 1px solid var(--border-quiet);
+      display: inline-flex; align-items: center; justify-content: center;
+      flex-shrink: 0; color: var(--text-quiet);
+    }
+    .cc-title { font-size: 13px; font-weight: 600; color: var(--text-default); line-height: 1.4; }
+    .cc-subtitle { font-size: 11px; color: var(--text-tertiary); margin-bottom: 8px; }
+    .cc-desc { font-size: 12px; color: var(--text-quiet); line-height: 1.5; }
+
+    /* Source grid (stolen from framework page rail) */
+    .source-grid {
+      display: grid; grid-template-columns: 100px 1fr;
+      gap: 10px 8px; align-items: center;
+    }
+    .source-label { font-size: 12px; color: var(--text-tertiary); }
+    .source-value { font-size: 13px; color: var(--text-default); font-weight: 500; }
+    .source-value a { color: var(--brand); text-decoration: none; }
+    .source-value a:hover { text-decoration: underline; }
+
     .more-link {
       display: flex; align-items: center;
       padding: 8px 0;
@@ -1193,6 +1219,36 @@
                   <div class="attn-sub">187d stale. SEC-1042 with Maria Chen, due Jun 10.</div>
                 </div>
               </div>
+            </div>
+          </div>
+
+          <div class="sidebar-section">
+            <div class="sidebar-section-label">Common control</div>
+            <div class="cc-card">
+              <div class="cc-top">
+                <div class="cc-icon">
+                  <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M10 2v3h3" stroke="currentColor" stroke-width="1.4"/></svg>
+                </div>
+                <div>
+                  <div class="cc-title">gv-gc-pp-1 — Security Policy Framework</div>
+                </div>
+              </div>
+              <div class="cc-subtitle">Governance · Policy</div>
+              <p class="cc-desc">Documented, approved security policies covering access, change management, and acceptable use across the organization.</p>
+            </div>
+          </div>
+
+          <div class="sidebar-section">
+            <div class="sidebar-section-label">Source</div>
+            <div class="source-grid">
+              <span class="source-label">Domain</span>
+              <span class="source-value">Identity & Access</span>
+              <span class="source-label">Created</span>
+              <span class="source-value">Jun 15 2025</span>
+              <span class="source-label">Created by</span>
+              <span class="source-value"><a>Pam Diaz</a></span>
+              <span class="source-label">Tier</span>
+              <span class="source-value">Enhanced</span>
             </div>
           </div>
 
