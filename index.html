@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Remote access — Controls — TruSecure</title>
+  <title>Role-based access management — Framework requirement — TruSecure</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -736,7 +736,7 @@
         <div class="detail-header-inner">
           <div class="breadcrumb">Framework requirement</div>
           <div class="detail-title-row">
-            <h1 class="detail-title">Remote access</h1>
+            <h1 class="detail-title">Role-based access management</h1>
             <div class="detail-actions">
               <button class="btn-manage">
                 <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M8 8.5a3 3 0 100-6 3 3 0 000 6ZM2 14c0-3.31 2.69-6 6-6s6 2.69 6 6" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
@@ -748,7 +748,7 @@
             </div>
           </div>
 
-          <p class="detail-desc">Establish and document usage restrictions, configuration/connection requirements, and<br>implementation guidance for each type of remote access allowed; and b. Authorize each typ...</p>
+          <p class="detail-desc">The entity authorizes, modifies, or removes access to data, software, functions, and other<br>protected information assets based on roles, responsibilities, or the system design and chang...</p>
           <a class="show-more-link">Show full description</a>
 
           <div class="detail-meta">
@@ -765,7 +765,7 @@
               In progress
               <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M3 5L6 8L9 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </span>
-            <span class="meta-id">ID: AC-17</span>
+            <span class="meta-id">ID: CC 6.3</span>
           </div>
         </div>
 
@@ -799,55 +799,79 @@
 
                 <div class="impl-block">
                   <div class="impl-block-header">
-                    <span class="impl-block-title">VPN & multi-factor authentication</span>
-                    <span class="impl-block-req">↗ SOC 2 CC 6.2a</span>
+                    <span class="impl-block-title">Access control procedures established</span>
+                    <span class="impl-block-req">↗ IAC-2</span>
                   </div>
                   <div class="impl-block-body">
-                    <p class="impl-block-text">All remote connections must go through our VPN. Users verify identity with a second factor (authenticator app) before access is granted.</p>
+                    <p class="impl-block-text">The access control policy documents requirements for adding new users, modifying roles, periodic reviews, and segregation of duties.</p>
                     <div class="impl-block-tests">
-                      <span class="impl-test-tag"><span class="impl-test-dot pass"></span>MFA enabled — AWS</span>
-                      <span class="impl-test-tag"><span class="impl-test-dot pass"></span>VPN config check</span>
+                      <span class="impl-test-tag"><span class="impl-test-dot pass"></span>Access Control Policy approved</span>
+                      <span class="impl-test-tag"><span class="impl-test-dot fail"></span>Information Security Roles & Responsibilities</span>
+                      <span class="impl-test-tag"><span class="impl-test-dot fail"></span>Access request ticket history</span>
                     </div>
                   </div>
                 </div>
 
                 <div class="impl-block">
                   <div class="impl-block-header">
-                    <span class="impl-block-title">Session management & timeouts</span>
-                    <span class="impl-block-req">↗ SOC 2 CC 6.2b</span>
+                    <span class="impl-block-title">Access requests required</span>
+                    <span class="impl-block-req">↗ IAC-9</span>
                   </div>
                   <div class="impl-block-body">
-                    <p class="impl-block-text">Connection methods and session duration limits are documented in the remote access policy. Sessions auto-terminate after 30 minutes of inactivity.</p>
+                    <p class="impl-block-text">User access to in-scope system components is based on job role and function, or requires a documented access request approved by the system owner.</p>
                     <div class="impl-block-tests">
-                      <span class="impl-test-tag"><span class="impl-test-dot pass"></span>Session timeout — Okta</span>
-                      <span class="impl-test-tag"><span class="impl-test-dot pass"></span>Remote access policy reviewed</span>
+                      <span class="impl-test-tag"><span class="impl-test-dot pass"></span>Access Control Policy approved</span>
+                      <span class="impl-test-tag"><span class="impl-test-dot fail"></span>Access request ticket history</span>
                     </div>
                   </div>
                 </div>
 
                 <div class="impl-block">
                   <div class="impl-block-header">
-                    <span class="impl-block-title">Privileged access via secure gateway</span>
-                    <span class="impl-block-req">↗ SOC 2 CC 6.3</span>
+                    <span class="impl-block-title">Unique network system authentication enforced</span>
+                    <span class="impl-block-req">↗ IAC-10</span>
                   </div>
                   <div class="impl-block-body">
-                    <p class="impl-block-text">Engineers accessing production systems must go through a bastion/secure gateway. All sessions are logged automatically.</p>
-                    <div class="impl-block-tests">
-                      <span class="impl-test-tag"><span class="impl-test-dot fail"></span>Bastion host logging — AWS S3 backup</span>
-                      <span class="impl-test-tag"><span class="impl-test-dot pass"></span>Privileged access review</span>
+                    <p class="impl-block-text">Authentication to the production network must use unique usernames and passwords or authorized SSH/SSO with MFA.</p>
+                    <div class="impl-block-tests" style="color:var(--text-tertiary);font-size:12px;font-style:italic;">
+                      No tests yet — needs evidence
                     </div>
                   </div>
                 </div>
 
                 <div class="impl-block">
                   <div class="impl-block-header">
-                    <span class="impl-block-title">Remote access catalog</span>
-                    <span class="impl-block-req">↗ SOC 2 CC 6.2c</span>
+                    <span class="impl-block-title">Access reviews conducted</span>
+                    <span class="impl-block-req">↗ IAC-7</span>
                   </div>
                   <div class="impl-block-body">
-                    <p class="impl-block-text">All remote connection types (employees, contractors, automated systems) are being cataloged. In progress — backup account pending connection.</p>
+                    <p class="impl-block-text">Access reviews are conducted at least quarterly for in-scope system components to ensure access is restricted appropriately.</p>
                     <div class="impl-block-tests">
-                      <span class="impl-test-tag"><span class="impl-test-dot fail"></span>AWS S3 backup account connection</span>
+                      <span class="impl-test-tag"><span class="impl-test-dot pass"></span>Identity provider linked — Okta</span>
+                      <span class="impl-test-tag"><span class="impl-test-dot pass"></span>Cloud infrastructure linked — AWS</span>
+                      <span class="impl-test-tag"><span class="impl-test-dot pass"></span>Jira accounts associated with users</span>
+                      <span class="impl-test-tag"><span class="impl-test-dot pass"></span>Linear accounts associated with users</span>
+                      <span class="impl-test-tag"><span class="impl-test-dot fail"></span>Q2 access review proof</span>
+                      <span class="impl-test-tag"><span class="impl-test-dot pass"></span>Access Control Policy approved</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="impl-block">
+                  <div class="impl-block-header">
+                    <span class="impl-block-title">Access revoked upon termination</span>
+                    <span class="impl-block-req">↗ IAC-8</span>
+                  </div>
+                  <div class="impl-block-body">
+                    <p class="impl-block-text">Termination checklists ensure access is revoked for terminated employees within defined SLAs across all in-scope systems.</p>
+                    <div class="impl-block-tests">
+                      <span class="impl-test-tag"><span class="impl-test-dot pass"></span>Jira deprovisioned on offboard</span>
+                      <span class="impl-test-tag"><span class="impl-test-dot pass"></span>Linear deprovisioned on offboard</span>
+                      <span class="impl-test-tag"><span class="impl-test-dot pass"></span>Offboarding completed within SLA</span>
+                      <span class="impl-test-tag"><span class="impl-test-dot pass"></span>Okta deactivation on termination</span>
+                      <span class="impl-test-tag"><span class="impl-test-dot fail"></span>Termination checklist uploaded</span>
+                      <span class="impl-test-tag"><span class="impl-test-dot pass"></span>Employee termination policy</span>
+                      <span class="impl-test-tag"><span class="impl-test-dot pass"></span>Security awareness training</span>
                     </div>
                   </div>
                 </div>
@@ -863,50 +887,58 @@
               <div class="systems-list">
                 <div class="system-row">
                   <svg class="system-check" width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="#16a44a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  <span class="system-name">AWS S3</span>
-                  <span class="system-desc">Production buckets</span>
+                  <span class="system-name">Okta</span>
+                  <span class="system-desc">Identity provider — directory of record</span>
                 </div>
                 <div class="system-row">
                   <svg class="system-check" width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="#16a44a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  <span class="system-name">AWS RDS</span>
-                  <span class="system-desc">Production databases</span>
+                  <span class="system-name">AWS IAM</span>
+                  <span class="system-desc">Production roles and policies</span>
+                </div>
+                <div class="system-row">
+                  <svg class="system-check" width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="#16a44a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <span class="system-name">Jira</span>
+                  <span class="system-desc">Engineering access tickets and project membership</span>
+                </div>
+                <div class="system-row">
+                  <svg class="system-check" width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="#16a44a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <span class="system-name">Linear</span>
+                  <span class="system-desc">Workspace membership</span>
                 </div>
                 <div class="system-row">
                   <svg class="system-check" width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="#16a44a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
                   <span class="system-name">Snowflake</span>
-                  <span class="system-desc">Production data warehouse</span>
-                </div>
-                <div class="system-row">
-                  <svg class="system-check" width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="#16a44a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  <span class="system-name">AWS S3</span>
-                  <span class="system-desc error">Backup buckets (acme-backup-prod) — pending account connection</span>
-                </div>
-                <div class="system-row">
-                  <svg class="system-check" width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="#16a44a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  <span class="system-name">Snowflake</span>
-                  <span class="system-desc">Backup snapshots — inherits production config</span>
+                  <span class="system-desc error">Role grants — periodic review not yet completed for Q2</span>
                 </div>
               </div>
 
               <div class="card-section-label" style="display:flex;align-items:center;justify-content:space-between;margin-top:24px;">
                 <span>Issues</span>
-                <span style="font-size:11px;font-weight:400;color:var(--text-tertiary);">2 open</span>
+                <span style="font-size:11px;font-weight:400;color:var(--text-tertiary);">3 open</span>
               </div>
               <div class="issue-row">
                 <div class="issue-icon">!</div>
                 <div class="issue-body">
-                  <div class="issue-title">Backup account connection not established</div>
-                  <div class="issue-meta">AWS S3 (acme-backup-prod) · Opened 3 days ago</div>
+                  <div class="issue-title">IAC-10 needs evidence</div>
+                  <div class="issue-meta">Unique network system authentication · No tests configured</div>
+                </div>
+                <a class="issue-cta">Add evidence</a>
+              </div>
+              <div class="issue-row">
+                <div class="issue-icon">!</div>
+                <div class="issue-body">
+                  <div class="issue-title">Q2 access review proof not uploaded</div>
+                  <div class="issue-meta">IAC-7 · Quarterly review window closed 2 days ago</div>
+                </div>
+                <a class="issue-cta">Upload</a>
+              </div>
+              <div class="issue-row">
+                <div class="issue-icon">!</div>
+                <div class="issue-body">
+                  <div class="issue-title">Termination checklist not uploaded for May leavers</div>
+                  <div class="issue-meta">IAC-8 · 3 personnel records pending checklist</div>
                 </div>
                 <a class="issue-cta">Resolve</a>
-              </div>
-              <div class="issue-row">
-                <div class="issue-icon">!</div>
-                <div class="issue-body">
-                  <div class="issue-title">2 tests missing evidence owners</div>
-                  <div class="issue-meta">S3 Backup Bucket Encryption Check, RDS Encryption at Rest</div>
-                </div>
-                <a class="issue-cta">Assign</a>
               </div>
             </div>
           </div>
@@ -921,9 +953,9 @@
             <div class="sidebar-section-label">Source</div>
             <div class="source-grid">
               <span class="source-label">Framework</span>
-              <span class="source-value">SOC 2 CC 6.2</span>
+              <span class="source-value">SOC 2 CC 6.3</span>
               <span class="source-label">Requirement</span>
-              <a class="source-value source-link">Article a</a>
+              <a class="source-value source-link">Role-based access mgmt</a>
               <span class="source-label">Status</span>
               <span><span class="badge-in-audit">In audit</span></span>
               <span class="source-label">Tier</span>
@@ -942,13 +974,13 @@
                 <div class="cc-icon">
                   <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><rect x="2" y="4" width="12" height="9" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M5 4V3a1 1 0 011-1h4a1 1 0 011 1v1" stroke="currentColor" stroke-width="1.4"/></svg>
                 </div>
-                <span class="cc-title">CC-14 — Remote access authentication</span>
+                <span class="cc-title">CC-IAM-3 — Role-based authorization & lifecycle</span>
               </div>
               <div class="cc-meta">
                 <span class="cc-tag">Identity and Access Management</span>
                 <span class="badge-ok">OK</span>
               </div>
-              <p class="cc-desc">The organization must authenticate remote access connections.</p>
+              <p class="cc-desc">The organization authorizes, modifies, and revokes access based on role, with periodic review and least-privilege enforcement.</p>
             </div>
           </div>
 
@@ -956,10 +988,12 @@
           <div class="sidebar-section">
             <div class="sidebar-section-label">Resource scope</div>
             <div class="scope-chips">
-              <span class="scope-chip">AWS S3 backup buckets</span>
-              <span class="scope-chip">Snowflake backups</span>
+              <span class="scope-chip">Okta directory</span>
+              <span class="scope-chip">AWS IAM</span>
+              <span class="scope-chip">Jira / Linear users</span>
+              <span class="scope-chip">Snowflake roles</span>
             </div>
-            <div class="scope-env">Environments <span class="scope-env-val">Production, Backup</span></div>
+            <div class="scope-env">Environments <span class="scope-env-val">Production</span></div>
           </div>
 
         </div><!-- /detail-sidebar -->
