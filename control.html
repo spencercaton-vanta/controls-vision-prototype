@@ -39,12 +39,10 @@
       font-size: 14px;
       color: var(--text-default);
       background: var(--bg-lowered);
-      height: 100vh;
-      overflow: hidden;
     }
     a { color: inherit; }
 
-    /* ── Top nav ── */
+    /* Top nav */
     .topnav {
       position: fixed; top: 0; left: 0; right: 0;
       height: var(--topbar-h);
@@ -54,14 +52,14 @@
       padding: 0 20px; z-index: 100;
     }
     .topnav-left { display: flex; align-items: center; gap: 16px; }
-    .vanta-logo { font-size: 16px; font-weight: 700; color: var(--text-default); letter-spacing: -0.3px; }
+    .vanta-logo { font-size: 16px; font-weight: 700; letter-spacing: -0.3px; }
     .workspace-chip {
       display: flex; align-items: center; gap: 8px;
       height: 32px; padding: 0 10px;
       border: 1px solid var(--border-default);
       border-radius: 6px; background: var(--bg-default);
       cursor: pointer; font-size: 14px; font-weight: 500;
-      color: var(--text-default); font-family: 'Inter', sans-serif;
+      font-family: 'Inter', sans-serif;
     }
     .workspace-icon {
       width: 20px; height: 20px; border-radius: 50%;
@@ -85,20 +83,23 @@
       cursor: pointer; border: none;
     }
 
-    /* ── App shell ── */
+    /* Shell */
     .appshell {
-      display: flex; position: fixed;
-      top: var(--topbar-h); left: 0; right: 0; bottom: 0;
+      padding-top: var(--topbar-h);
+      padding-left: var(--sidenav-w);
+      min-height: 100vh;
     }
 
-    /* ── Left nav ── */
+    /* Sidenav */
     .sidenav {
+      position: fixed;
+      top: var(--topbar-h); left: 0; bottom: 0;
       width: var(--sidenav-w);
       background: var(--bg-lowered);
       border-right: 1px solid var(--border-quiet);
       display: flex; flex-direction: column;
-      flex-shrink: 0; overflow-y: auto;
-      padding: 8px 0 0;
+      overflow-y: auto;
+      padding: 8px 0 0; z-index: 50;
     }
     .sidenav-search {
       margin: 4px 10px 8px;
@@ -109,212 +110,185 @@
     }
     .sidenav-search-text { font-size: 13px; color: var(--text-placeholder); flex: 1; }
     .sidenav-search-kbd { font-size: 12px; color: var(--text-tertiary); white-space: nowrap; }
-    .nav-item, .nav-sub, .nav-group-header {
+    .nav-item {
       display: flex; align-items: center;
-      padding: 6px 14px; gap: 10px;
-      font-size: 13px; font-weight: 500;
-      color: var(--text-quiet);
-      cursor: pointer; text-decoration: none;
+      height: 34px; padding: 0 10px; gap: 9px;
+      font-size: 13px; color: var(--text-default);
+      cursor: pointer; border-radius: 6px;
+      margin: 1px 6px; text-decoration: none;
     }
-    .nav-item:hover, .nav-sub:hover { background: var(--bg-neutral); }
+    .nav-item:hover { background: var(--bg-neutral); }
     .nav-item-icon { width: 16px; height: 16px; flex-shrink: 0; color: var(--text-quiet); }
-    .nav-chevron { margin-left: auto; flex-shrink: 0; color: var(--text-tertiary); }
-    .nav-group-header { color: var(--text-default); font-weight: 600; cursor: default; }
-    .nav-group-header:hover { background: transparent; }
-    .nav-sub { padding-left: 40px; font-size: 13px; font-weight: 500; }
-    .nav-sub.active { background: var(--bg-neutral); color: var(--text-default); font-weight: 600; }
-    .nav-divider { height: 1px; background: var(--border-quiet); margin: 8px 14px; }
+    .nav-chevron { margin-left: auto; color: var(--text-tertiary); flex-shrink: 0; }
+    .nav-group-header {
+      display: flex; align-items: center;
+      height: 34px; padding: 0 10px; gap: 9px;
+      font-size: 13px; font-weight: 500;
+      color: var(--text-default); cursor: pointer;
+      border-radius: 6px; margin: 1px 6px;
+    }
+    .nav-sub {
+      display: flex; align-items: center;
+      height: 30px; padding: 0 10px 0 35px;
+      font-size: 13px; color: var(--text-quiet);
+      cursor: pointer; border-radius: 6px;
+      margin: 1px 6px; text-decoration: none;
+    }
+    .nav-sub:hover { background: var(--bg-neutral); }
+    .nav-sub.active { background: var(--brand-light); color: var(--brand); font-weight: 500; }
+    .nav-divider { height: 1px; background: var(--border-quiet); margin: 6px 10px; }
     .sidenav-collapse {
-      margin: auto 10px 12px; padding: 6px 8px;
-      font-size: 12px; color: var(--text-tertiary);
-      cursor: pointer; text-align: left;
+      margin-top: auto; padding: 10px 14px;
+      border-top: 1px solid var(--border-quiet);
+      font-size: 13px; color: var(--text-tertiary); cursor: pointer;
     }
 
-    /* ── Main ── */
-    .main {
-      flex: 1; display: flex; flex-direction: column;
-      overflow: hidden; min-width: 0;
-    }
+    /* Main */
+    .main { background: var(--bg-default); }
 
-    /* ── Detail header ── */
+    /* Header */
     .detail-header {
       background: var(--bg-default);
       border-bottom: 1px solid var(--border-quiet);
-      flex-shrink: 0;
     }
     .detail-header-inner { padding: 20px 28px 0; }
-    .breadcrumb {
-      display: flex; align-items: center; gap: 6px;
-      font-size: 12px; color: var(--text-tertiary);
-      margin-bottom: 10px;
-    }
-    .breadcrumb a { color: var(--text-tertiary); text-decoration: none; cursor: pointer; }
+    .breadcrumb { font-size: 12px; color: var(--text-tertiary); margin-bottom: 10px; letter-spacing: 0.1px; }
+    .breadcrumb a { color: var(--text-tertiary); text-decoration: none; }
     .breadcrumb a:hover { color: var(--text-quiet); text-decoration: underline; }
-    .breadcrumb-sep { color: var(--text-tertiary); }
-
-    .detail-title-row { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 8px; }
-    .detail-title-stack { flex: 1; min-width: 0; }
-    .detail-title { font-size: 22px; font-weight: 600; color: var(--text-default); letter-spacing: -0.3px; }
-    .detail-id-inline { font-size: 12px; color: var(--text-tertiary); font-weight: 500; margin-left: 8px; }
+    .detail-title-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 8px; }
+    .detail-title { font-size: 24px; font-weight: 600; line-height: 1.2; }
+    .detail-id-inline { font-size: 13px; color: var(--text-tertiary); font-weight: 500; margin-left: 10px; }
     .detail-actions { display: flex; gap: 8px; align-items: center; flex-shrink: 0; }
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 6px 12px; border-radius: 6px;
-      background: var(--text-default); color: white;
-      font-size: 13px; font-weight: 500;
-      border: none; cursor: pointer; font-family: 'Inter', sans-serif;
-    }
     .btn-secondary {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 6px 12px; border-radius: 6px;
+      display: inline-flex; align-items: center; gap: 7px;
+      height: 32px; padding: 0 14px;
       background: var(--bg-default); color: var(--text-default);
-      font-size: 13px; font-weight: 500;
-      border: 1px solid var(--border-default);
-      cursor: pointer; font-family: 'Inter', sans-serif;
+      border: 1px solid var(--border-default); border-radius: 6px; cursor: pointer;
+      font-size: 13px; font-weight: 500; font-family: 'Inter', sans-serif;
     }
     .btn-more {
-      width: 30px; height: 30px;
-      border-radius: 6px;
-      background: var(--bg-default); color: var(--text-quiet);
-      border: 1px solid var(--border-default);
-      cursor: pointer; display: inline-flex;
-      align-items: center; justify-content: center;
+      width: 32px; height: 32px;
+      display: inline-flex; align-items: center; justify-content: center;
+      background: transparent; border: 1px solid var(--border-default);
+      border-radius: 6px; cursor: pointer; color: var(--text-quiet);
     }
     .detail-desc {
-      font-size: 13px; color: var(--text-quiet);
-      line-height: 1.55; margin-bottom: 14px;
-      max-width: 860px;
-    }
-    .show-more-link {
-      font-size: 12px; color: #3c63ea;
-      text-decoration: underline; cursor: pointer;
+      font-size: 14px; color: var(--text-quiet);
+      line-height: 1.5; max-width: 720px; margin-bottom: 14px;
     }
 
-    /* Composite health + meta row */
-    .header-meta {
-      display: flex; align-items: center; flex-wrap: wrap;
-      gap: 18px; padding-top: 14px; margin-top: 4px;
-      border-top: 1px solid var(--border-quiet);
+    /* Header meta */
+    .detail-meta {
+      display: flex; align-items: center; gap: 18px;
+      flex-wrap: wrap; padding-bottom: 14px;
     }
     .composite-health {
       display: inline-flex; align-items: stretch;
       border: 1px solid var(--border-default);
-      border-radius: 8px; overflow: hidden;
-      background: var(--bg-default);
+      border-radius: 6px; overflow: hidden;
     }
     .ch-axis {
       display: flex; flex-direction: column;
-      padding: 8px 14px; min-width: 150px;
+      padding: 6px 12px;
       border-right: 1px solid var(--border-default);
     }
     .ch-axis:last-child { border-right: none; }
     .ch-axis-label {
       font-size: 10px; font-weight: 600;
       color: var(--text-tertiary);
-      text-transform: uppercase; letter-spacing: 0.6px;
-      margin-bottom: 4px;
+      text-transform: uppercase; letter-spacing: 0.5px;
+      margin-bottom: 2px;
     }
     .ch-axis-value {
       display: inline-flex; align-items: center; gap: 6px;
       font-size: 13px; font-weight: 600;
     }
-    .ch-dot {
-      width: 8px; height: 8px; border-radius: 50%;
-      flex-shrink: 0;
-    }
-    .ch-dot.ok    { background: var(--success-text); }
+    .ch-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
     .ch-dot.warn  { background: #ea8c1a; }
-    .ch-dot.fail  { background: #c2410c; }
-    .ch-axis-value.ok   { color: var(--success-text); }
     .ch-axis-value.warn { color: #b45309; }
-    .ch-axis-value.fail { color: var(--error-text); }
-    .ch-axis-sub {
-      font-size: 11px; color: var(--text-tertiary);
-      margin-top: 2px;
-    }
-    .meta-pill {
+    .meta-item {
       display: inline-flex; align-items: center; gap: 6px;
-      font-size: 12px; color: var(--text-quiet);
+      font-size: 13px; color: var(--text-quiet);
     }
-    .meta-pill-label { color: var(--text-tertiary); font-size: 11px; text-transform: uppercase; letter-spacing: 0.6px; font-weight: 600; }
+    .meta-item-label { color: var(--text-tertiary); font-size: 12px; }
     .owner-avatar-sm {
       width: 20px; height: 20px; border-radius: 50%;
-      background: var(--bg-neutral); color: var(--text-quiet);
+      background: #c7d7ff; color: var(--info-text);
       display: inline-flex; align-items: center; justify-content: center;
-      font-size: 10px; font-weight: 600; flex-shrink: 0;
+      font-size: 9px; font-weight: 700; flex-shrink: 0;
     }
-    .badge {
+    .cc-link {
       display: inline-flex; align-items: center; gap: 5px;
-      padding: 3px 8px; border-radius: 4px;
-      font-size: 12px; font-weight: 500;
-    }
-    .badge-neutral { background: var(--bg-neutral); color: var(--text-quiet); }
-    .badge-info    { background: var(--info-bg);    color: var(--info-text); }
-    .badge-ok      { background: var(--success-bg); color: var(--success-text); }
-    .badge-warn    { background: var(--warn-bg);    color: var(--warn-text); }
-    .badge-fail    { background: var(--error-bg);   color: var(--error-text); }
-    .common-control-link {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 3px 8px; border-radius: 4px;
+      padding: 2px 7px; border-radius: 4px;
       background: var(--brand-light); color: var(--brand);
       font-size: 12px; font-weight: 500;
-      cursor: pointer; text-decoration: none;
+      text-decoration: none;
     }
-    .common-control-link:hover { background: #ede5fc; }
+    .cc-link:hover { background: #ede5fc; }
 
     /* Next action banner */
     .next-action {
-      margin: 14px 28px 0;
+      margin: 0 28px 14px;
       display: flex; align-items: center; gap: 12px;
       background: var(--warn-bg);
       border: 1px solid #fcd5b4;
-      border-radius: 8px; padding: 10px 14px;
+      border-radius: 6px; padding: 10px 14px;
     }
     .next-action-icon {
-      width: 26px; height: 26px; border-radius: 50%;
+      width: 22px; height: 22px; border-radius: 50%;
       background: white; color: var(--warn-text);
       display: inline-flex; align-items: center; justify-content: center;
-      flex-shrink: 0; font-weight: 700; font-size: 13px;
+      flex-shrink: 0; font-weight: 700; font-size: 12px;
     }
-    .next-action-body { flex: 1; min-width: 0; }
-    .next-action-title { font-size: 13px; font-weight: 600; color: var(--text-default); }
-    .next-action-sub { font-size: 12px; color: var(--text-quiet); margin-top: 1px; }
+    .next-action-body { flex: 1; }
+    .next-action-text { font-size: 13px; color: var(--text-default); }
+    .next-action-text strong { font-weight: 600; }
     .next-action-cta {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 5px 12px; border-radius: 6px;
+      padding: 4px 12px; border-radius: 5px;
       background: var(--text-default); color: white;
       font-size: 12px; font-weight: 500;
       border: none; cursor: pointer; flex-shrink: 0;
     }
 
-    /* Tabs (section anchors) */
+    /* Tabs */
     .detail-tabs {
-      display: flex; padding: 0 28px;
-      margin-top: 16px; border-bottom: 1px solid var(--border-quiet);
-      gap: 4px;
+      display: flex; align-items: flex-end;
+      padding: 0 28px;
     }
     .detail-tab {
-      padding: 10px 14px; font-size: 13px; font-weight: 500;
-      color: var(--text-tertiary); cursor: pointer;
-      border-bottom: 2px solid transparent; margin-bottom: -1px;
-      text-decoration: none;
+      height: 36px; margin-right: 22px;
+      display: inline-flex; align-items: center;
+      font-size: 14px; font-weight: 500;
+      color: var(--text-tertiary);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      letter-spacing: 0.1px;
+      background: transparent; border-top: none; border-left: none; border-right: none;
+      font-family: 'Inter', sans-serif;
     }
     .detail-tab:hover { color: var(--text-quiet); }
     .detail-tab.active {
-      color: var(--text-default); font-weight: 600;
+      color: var(--text-default);
       border-bottom-color: var(--brand);
     }
 
-    /* ── Body ── */
-    .detail-body { display: flex; flex: 1; overflow: hidden; min-height: 0; }
+    /* Body */
+    .detail-body { display: flex; }
     .detail-main {
-      flex: 1; overflow-y: auto;
+      flex: 1; min-width: 0;
       padding: 24px 28px;
       background: var(--bg-lowered);
       display: flex; flex-direction: column; gap: 16px;
-      scroll-padding-top: 24px;
     }
-    .detail-main > * { flex-shrink: 0; }
+    .detail-sidebar {
+      width: 320px; flex-shrink: 0;
+      border-left: 1px solid var(--border-quiet);
+      background: var(--bg-default);
+    }
+
+    .tab-panel { display: none; flex-direction: column; gap: 16px; }
+    .tab-panel.active { display: flex; }
 
     /* Cards */
     .card {
@@ -323,483 +297,251 @@
       border-radius: 8px; overflow: hidden;
     }
     .card-header {
-      padding: 14px 20px;
+      padding: 14px 18px;
       border-bottom: 1px solid var(--border-quiet);
-      display: flex; align-items: flex-start; gap: 12px;
+      display: flex; align-items: center; gap: 12px;
     }
-    .card-header-text { flex: 1; min-width: 0; }
-    .card-title {
-      font-size: 15px; font-weight: 600; color: var(--text-default);
-      display: inline-flex; align-items: center; gap: 8px;
+    .card-title { font-size: 15px; font-weight: 600; flex: 1; }
+    .card-title-count { font-weight: 400; color: var(--text-tertiary); font-size: 13px; margin-left: 4px; }
+    .card-action {
+      font-size: 12px; color: #3c63ea; cursor: pointer; text-decoration: none;
     }
-    .card-title-count { font-weight: 400; color: var(--text-tertiary); font-size: 13px; }
-    .card-subtitle { font-size: 12px; color: var(--text-tertiary); margin-top: 2px; }
-    .card-actions { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
-    .card-body { padding: 18px 20px; }
-    .card-link-btn {
-      font-size: 12px; color: #3c63ea;
-      cursor: pointer; text-decoration: none;
-    }
-    .card-link-btn:hover { text-decoration: underline; }
+    .card-action:hover { text-decoration: underline; }
+    .card-body { padding: 16px 18px; }
 
-    /* Right sidebar */
-    .detail-sidebar {
-      width: 320px; flex-shrink: 0;
-      border-left: 1px solid var(--border-quiet);
-      overflow-y: auto;
-      background: var(--bg-default);
+    /* Overview attn */
+    .attn-list { display: flex; flex-direction: column; }
+    .attn-row {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 12px 0;
+      border-top: 1px solid var(--border-quiet);
+      cursor: pointer;
     }
-    .sidebar-section {
-      padding: 16px 20px;
-      border-bottom: 1px solid var(--border-quiet);
+    .attn-row:first-child { padding-top: 4px; border-top: none; }
+    .attn-row:hover .attn-title { color: var(--brand); }
+    .attn-icon {
+      width: 22px; height: 22px; border-radius: 5px;
+      display: inline-flex; align-items: center; justify-content: center;
+      flex-shrink: 0; font-weight: 700; font-size: 12px;
     }
-    .sidebar-section-label {
-      font-size: 11px; font-weight: 600;
-      color: var(--text-tertiary);
-      text-transform: uppercase; letter-spacing: 0.6px;
-      margin-bottom: 12px;
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .sidebar-section-label-count {
-      font-weight: 400; color: var(--text-tertiary);
-      font-size: 11px; text-transform: none; letter-spacing: 0;
-    }
-    .quick-grid {
-      display: grid; grid-template-columns: 108px 1fr;
-      gap: 10px 8px; align-items: center;
-    }
-    .quick-label { font-size: 12px; color: var(--text-tertiary); }
-    .quick-value { font-size: 13px; color: var(--text-default); font-weight: 500; }
-    .quick-value a { color: var(--brand); text-decoration: none; }
-    .quick-value a:hover { text-decoration: underline; }
+    .attn-icon.warn { background: var(--warn-bg); color: var(--warn-text); }
+    .attn-icon.fail { background: var(--error-bg); color: var(--error-text); }
+    .attn-body { flex: 1; min-width: 0; }
+    .attn-title { font-size: 13px; font-weight: 600; color: var(--text-default); }
+    .attn-sub { font-size: 12px; color: var(--text-quiet); margin-top: 2px; line-height: 1.5; }
+    .attn-deep { font-size: 11px; color: var(--text-tertiary); margin-top: 4px; }
+    .attn-arrow { color: var(--text-tertiary); flex-shrink: 0; margin-top: 4px; }
 
-    /* ── Zone 2: Requirements ── */
-    .req-list { display: flex; flex-direction: column; gap: 8px; }
-    .req-row {
-      border: 1px solid var(--border-quiet);
-      border-radius: 8px; padding: 12px 14px;
-      display: flex; flex-direction: column; gap: 8px;
+    /* Overview implementation snippet */
+    .impl-snippet {
+      font-size: 13px; line-height: 1.6; color: var(--text-quiet);
     }
-    .req-row.below-bar {
-      border-color: #fcd5b4;
-      background: #fffaf3;
+    .impl-snippet strong { font-weight: 600; color: var(--text-default); }
+
+    /* Open work table */
+    .work-row {
+      display: grid;
+      grid-template-columns: 92px 1fr 130px 100px 78px;
+      gap: 10px; align-items: center;
+      padding: 9px 0;
+      border-top: 1px solid var(--border-quiet);
+      font-size: 12px;
     }
-    .req-row-top { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-    .req-source {
+    .work-row:first-child { padding-top: 4px; border-top: none; }
+    .work-row-id { color: var(--brand); font-weight: 600; }
+    .work-row-title { color: var(--text-default); font-weight: 500; }
+    .work-row-assignee { color: var(--text-quiet); display: inline-flex; align-items: center; gap: 6px; }
+    .work-row-due { color: var(--text-quiet); }
+    .work-row-status { text-align: right; }
+    .badge {
       display: inline-flex; align-items: center; gap: 5px;
-      padding: 2px 7px; border-radius: 3px;
+      padding: 2px 7px; border-radius: 4px;
       font-size: 11px; font-weight: 600;
+    }
+    .badge-info { background: var(--info-bg); color: var(--info-text); }
+    .badge-warn { background: var(--warn-bg); color: var(--warn-text); }
+
+    /* Requirements table */
+    .req-table { display: flex; flex-direction: column; }
+    .req-row {
+      display: grid;
+      grid-template-columns: 110px 130px 1fr 200px 130px;
+      gap: 12px; align-items: center;
+      padding: 11px 0;
+      border-top: 1px solid var(--border-quiet);
+      font-size: 13px;
+    }
+    .req-row:first-child { padding-top: 4px; border-top: none; }
+    .req-row.below-bar {
+      background: #fffaf3;
+      margin: 0 -12px; padding: 11px 12px;
+      border-radius: 5px;
+      border-top: 1px solid #fcd5b4;
+    }
+    .req-source {
+      display: inline-flex; align-items: center;
+      padding: 2px 7px; border-radius: 3px;
+      font-size: 10px; font-weight: 600;
       text-transform: uppercase; letter-spacing: 0.4px;
+      width: fit-content;
     }
     .req-source.framework   { background: var(--brand-light); color: var(--brand); }
     .req-source.regulatory  { background: #eef2ff; color: #4338ca; }
     .req-source.commitment  { background: #e1e9ff; color: #2748c8; }
-    .req-source.risk        { background: #fff7ed; color: #b45309; }
-    .req-ref { font-size: 13px; font-weight: 600; color: var(--text-default); }
-    .req-title { font-size: 13px; color: var(--text-quiet); }
-    .req-arrow {
-      width: 14px; height: 14px; color: var(--text-tertiary);
-      display: inline-flex; flex-shrink: 0; cursor: pointer;
-      margin-left: 2px;
-    }
-    .req-arrow:hover { color: var(--brand); }
-    .req-status {
-      display: inline-flex; align-items: center; gap: 5px;
-      padding: 2px 8px; border-radius: 4px;
-      font-size: 11px; font-weight: 600; margin-left: auto;
-    }
-    .req-status.ok   { background: var(--success-bg); color: var(--success-text); }
-    .req-status.warn { background: var(--warn-bg);    color: var(--warn-text); }
-    .req-status.fail { background: var(--error-bg);   color: var(--error-text); }
-    .req-row-bottom {
-      display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
-      padding-top: 8px; border-top: 1px solid var(--border-quiet);
-    }
-    .req-scope-label-inline {
-      font-size: 11px; color: var(--text-tertiary);
-      text-transform: uppercase; letter-spacing: 0.4px; font-weight: 600;
-    }
-    .req-scope-chip-inline {
+    .req-source.risk        { background: var(--warn-bg); color: var(--warn-text); }
+    .req-ref { font-weight: 600; color: var(--text-default); font-size: 12px; }
+    .req-title { color: var(--text-quiet); font-size: 13px; }
+    .req-scope-chip {
       padding: 2px 7px; border-radius: 3px;
       font-size: 11px; color: var(--text-quiet);
       background: var(--bg-neutral);
+      width: fit-content;
     }
-    .req-row-actions { display: flex; align-items: center; gap: 12px; margin-left: auto; }
-    .req-bar-note {
-      display: flex; align-items: flex-start; gap: 8px;
-      padding: 8px 10px;
-      background: #fff;
-      border: 1px solid #fcd5b4;
-      border-radius: 6px;
-      font-size: 12px; color: var(--text-quiet);
-      line-height: 1.5;
+    .req-status {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 3px 8px; border-radius: 4px;
+      font-size: 11px; font-weight: 600;
+      width: fit-content;
     }
-    .req-bar-note-icon { color: var(--warn-text); flex-shrink: 0; margin-top: 1px; }
-    .req-bar-note strong { color: var(--text-default); font-weight: 600; }
-    .req-consol {
-      display: flex; align-items: center; gap: 8px;
-      margin-bottom: 12px; padding: 10px 12px;
-      background: var(--brand-light);
-      border: 1px solid #e0d3f9;
-      border-radius: 8px;
-      font-size: 12px; color: var(--text-default);
+    .req-status.ok   { background: var(--success-bg); color: var(--success-text); }
+    .req-status.warn { background: var(--warn-bg); color: var(--warn-text); cursor: help; }
+    .req-status-tip { position: relative; display: inline-flex; }
+    .req-status-tip .tip {
+      display: none;
+      position: absolute; top: calc(100% + 6px); right: 0;
+      width: 260px; padding: 10px 12px;
+      background: var(--text-default); color: white;
+      border-radius: 6px; font-size: 12px; line-height: 1.5; font-weight: 400;
+      z-index: 10;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      text-transform: none; letter-spacing: 0;
     }
-    .req-consol strong { font-weight: 600; }
-    .req-consol-icon { color: var(--brand); flex-shrink: 0; }
+    .req-status-tip:hover .tip { display: block; }
 
-    /* Teaching strip (requirement → implementation arrow) */
-    .teach-strip {
-      display: flex; align-items: center; gap: 12px;
-      padding: 10px 16px; margin: -4px 0;
-      font-size: 12px; color: var(--text-tertiary);
-    }
-    .teach-strip-arrow {
-      flex: 1; height: 1px; background: var(--border-default);
-    }
-    .teach-strip-text {
-      padding: 4px 10px; border-radius: 9999px;
-      background: var(--bg-default);
-      border: 1px solid var(--border-default);
-      font-size: 11px; font-weight: 500;
-      color: var(--text-quiet);
-    }
-
-    /* ── Zone 3: Implementation ── */
+    /* Implementation tab */
     .impl-statement {
-      font-size: 14px; line-height: 1.65; color: var(--text-default);
-      padding: 14px 16px; border-left: 3px solid var(--brand);
-      background: var(--bg-lowered); border-radius: 0 6px 6px 0;
-      margin-bottom: 16px;
-    }
-    .impl-section-label {
-      font-size: 11px; font-weight: 600;
-      color: var(--text-tertiary);
-      text-transform: uppercase; letter-spacing: 0.6px;
-      margin-bottom: 8px;
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .impl-scope-block {
-      border: 1px solid var(--border-quiet);
-      border-radius: 8px; padding: 12px 14px;
-      margin-bottom: 16px;
-    }
-    .impl-scope-row { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 8px; }
-    .impl-scope-row:last-child { margin-bottom: 0; }
-    .impl-scope-row-label {
-      font-size: 11px; font-weight: 600;
-      text-transform: uppercase; letter-spacing: 0.4px;
-      color: var(--text-tertiary); min-width: 100px; padding-top: 3px;
-    }
-    .impl-scope-chips-inline { display: flex; flex-wrap: wrap; gap: 5px; flex: 1; }
-    .impl-scope-chip {
-      padding: 2px 8px; border-radius: 3px;
-      font-size: 12px; color: var(--text-quiet);
-      background: var(--bg-neutral);
-    }
-    .impl-scope-chip.narrowed {
-      background: white;
-      border: 1px dashed var(--border-default);
-      color: var(--text-quiet);
-    }
-    .impl-link-row {
-      display: flex; align-items: center; gap: 10px;
-      padding: 10px 0; border-top: 1px solid var(--border-quiet);
-    }
-    .impl-link-row:first-of-type { border-top: none; padding-top: 4px; }
-    .impl-link-icon {
-      width: 28px; height: 28px; border-radius: 6px;
+      font-size: 14px; line-height: 1.65;
+      padding: 14px 16px;
+      border-left: 3px solid var(--brand);
       background: var(--bg-lowered);
+      border-radius: 0 6px 6px 0;
+      margin-bottom: 16px;
+    }
+    .impl-statement strong { font-weight: 600; }
+    .scope-line {
+      display: flex; flex-direction: column; gap: 6px;
+      padding: 12px 14px;
       border: 1px solid var(--border-quiet);
-      display: inline-flex; align-items: center; justify-content: center;
-      flex-shrink: 0; color: var(--text-quiet);
-    }
-    .impl-link-stack { flex: 1; min-width: 0; }
-    .impl-link-title { font-size: 13px; font-weight: 600; color: var(--text-default); }
-    .impl-link-title a { color: var(--text-default); text-decoration: none; }
-    .impl-link-title a:hover { color: var(--brand); }
-    .impl-link-meta {
-      font-size: 11px; color: var(--text-tertiary);
-      margin-top: 2px;
-      display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
-    }
-    .impl-link-meta-item { display: inline-flex; align-items: center; gap: 4px; }
-    .impl-link-meta-item strong { font-weight: 600; color: var(--text-quiet); }
-    .impl-link-arrow {
-      color: var(--text-tertiary); flex-shrink: 0; cursor: pointer;
-    }
-    .impl-link-arrow:hover { color: var(--brand); }
-
-    .first-class-note {
-      display: flex; align-items: center; gap: 8px;
-      padding: 8px 12px; margin-top: 10px;
-      background: var(--brand-light);
       border-radius: 6px;
-      font-size: 11px; color: var(--brand);
+      margin-bottom: 14px;
     }
-    .first-class-note-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--brand); flex-shrink: 0; }
-
-    .design-adequacy {
-      display: flex; align-items: flex-start; gap: 10px;
-      margin-top: 16px; padding: 12px 14px;
-      background: var(--bg-lowered);
-      border-radius: 8px;
-      border: 1px solid var(--border-quiet);
-    }
-    .design-adequacy-icon {
-      width: 24px; height: 24px; border-radius: 50%;
-      background: var(--warn-bg); color: var(--warn-text);
-      display: inline-flex; align-items: center; justify-content: center;
-      flex-shrink: 0; font-weight: 700; font-size: 12px;
-    }
-    .design-adequacy-body { flex: 1; min-width: 0; font-size: 12px; color: var(--text-quiet); line-height: 1.55; }
-    .design-adequacy-body strong { color: var(--text-default); font-weight: 600; }
-
-    /* ── Zone 4: Evidence ── */
-    .ev-section-label {
+    .scope-line-row { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+    .scope-line-label {
       font-size: 11px; font-weight: 600;
       color: var(--text-tertiary);
-      text-transform: uppercase; letter-spacing: 0.6px;
-      margin-bottom: 8px; margin-top: 16px;
+      text-transform: uppercase; letter-spacing: 0.4px;
+      min-width: 80px;
     }
-    .ev-section-label:first-of-type { margin-top: 0; }
+    .scope-line-val { font-size: 13px; color: var(--text-quiet); }
+    details.artifacts { border: 1px solid var(--border-quiet); border-radius: 6px; overflow: hidden; }
+    details.artifacts > summary { list-style: none; cursor: pointer; }
+    details.artifacts > summary::-webkit-details-marker { display: none; }
+    .artifacts-summary {
+      display: flex; align-items: center; gap: 14px;
+      padding: 12px 14px;
+    }
+    .artifacts-summary:hover { background: var(--bg-lowered); }
+    .artifacts-stat { display: flex; flex-direction: column; gap: 1px; }
+    .artifacts-stat-val { font-size: 18px; font-weight: 600; }
+    .artifacts-stat-label { font-size: 11px; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.4px; }
+    .artifacts-divider { width: 1px; height: 24px; background: var(--border-default); }
+    .artifacts-cta { margin-left: auto; font-size: 12px; color: #3c63ea; }
+    details.artifacts > summary .artifacts-cta::before { content: 'Expand ↓'; }
+    details.artifacts[open] > summary .artifacts-cta::before { content: 'Collapse ↑'; }
+    details.artifacts[open] > summary .artifacts-summary { border-bottom: 1px solid var(--border-quiet); }
+    .artifacts-list { padding: 4px 14px 10px; }
+    .artifact-row {
+      display: flex; align-items: center; gap: 10px;
+      padding: 8px 0; font-size: 12px;
+      border-top: 1px solid var(--border-quiet);
+    }
+    .artifact-row:first-child { border-top: none; }
+    .artifact-kind {
+      font-size: 10px; font-weight: 600;
+      color: var(--text-tertiary);
+      text-transform: uppercase; letter-spacing: 0.4px;
+      min-width: 64px;
+    }
+    .artifact-title { font-weight: 500; color: var(--text-default); flex: 1; }
+    .artifact-title a { color: inherit; text-decoration: none; }
+    .artifact-title a:hover { color: var(--brand); }
+    .artifact-meta { font-size: 11px; color: var(--text-tertiary); }
+
+    /* Evidence tab */
     .ev-row {
       display: flex; align-items: center; gap: 12px;
-      padding: 10px 0; border-top: 1px solid var(--border-quiet);
+      padding: 11px 0;
+      border-top: 1px solid var(--border-quiet);
     }
-    .ev-row:first-of-type { border-top: none; padding-top: 4px; }
-    .ev-icon {
-      width: 28px; height: 28px; border-radius: 6px;
-      background: var(--bg-lowered);
-      border: 1px solid var(--border-quiet);
-      display: inline-flex; align-items: center; justify-content: center;
-      flex-shrink: 0; color: var(--text-quiet);
+    .ev-row:first-child { padding-top: 4px; border-top: none; }
+    .ev-kind {
+      font-size: 10px; font-weight: 600;
+      color: var(--text-tertiary);
+      text-transform: uppercase; letter-spacing: 0.4px;
+      min-width: 44px;
     }
     .ev-stack { flex: 1; min-width: 0; }
-    .ev-title { font-size: 13px; font-weight: 600; color: var(--text-default); }
+    .ev-title { font-size: 13px; font-weight: 600; }
+    .ev-title a { color: inherit; text-decoration: none; }
+    .ev-title a:hover { color: var(--brand); }
     .ev-meta { font-size: 11px; color: var(--text-tertiary); margin-top: 2px; }
     .ev-stale { color: var(--warn-text); font-weight: 600; }
     .ev-status {
       display: inline-flex; align-items: center; gap: 5px;
       padding: 2px 8px; border-radius: 4px;
-      font-size: 11px; font-weight: 600; flex-shrink: 0;
+      font-size: 11px; font-weight: 600;
     }
     .ev-status.pass { background: var(--success-bg); color: var(--success-text); }
-    .ev-status.fail { background: var(--error-bg);   color: var(--error-text); }
+    .ev-status.fail { background: var(--error-bg); color: var(--error-text); }
     .gap-callout {
       display: flex; align-items: flex-start; gap: 10px;
-      margin-top: 16px; padding: 12px 14px;
+      margin-top: 14px; padding: 12px 14px;
       background: #fffaf3;
       border: 1px solid #fcd5b4;
-      border-radius: 8px;
+      border-radius: 6px;
     }
     .gap-icon {
-      width: 24px; height: 24px; border-radius: 50%;
+      width: 22px; height: 22px; border-radius: 50%;
       background: white; color: var(--warn-text);
       display: inline-flex; align-items: center; justify-content: center;
       flex-shrink: 0; font-weight: 700; font-size: 12px;
     }
-    .gap-body { flex: 1; min-width: 0; }
-    .gap-title { font-size: 13px; font-weight: 600; color: var(--text-default); margin-bottom: 2px; }
+    .gap-title { font-size: 13px; font-weight: 600; margin-bottom: 2px; }
     .gap-text { font-size: 12px; color: var(--text-quiet); line-height: 1.55; }
+    .gap-text a { color: #3c63ea; text-decoration: underline; cursor: pointer; }
 
-    /* ── Zone 5: Health ── */
-    .health-axes-row {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 12px; margin-bottom: 16px;
-    }
-    .health-axis-card {
-      border: 1px solid var(--border-quiet);
-      border-radius: 8px; padding: 14px 16px;
-      background: var(--bg-default);
-    }
-    .health-axis-head {
-      display: flex; align-items: center; gap: 8px;
-      margin-bottom: 8px;
-    }
-    .health-axis-name {
-      font-size: 11px; font-weight: 600;
-      text-transform: uppercase; letter-spacing: 0.6px;
-      color: var(--text-tertiary); flex: 1;
-    }
-    .health-axis-value {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: 18px; font-weight: 600;
-      margin-bottom: 6px;
-    }
-    .health-axis-value.ok   { color: var(--success-text); }
-    .health-axis-value.warn { color: #b45309; }
-    .health-axis-value.fail { color: var(--error-text); }
-    .health-axis-reason { font-size: 12px; color: var(--text-quiet); line-height: 1.5; margin-bottom: 10px; }
-    .health-axis-trend {
-      margin-top: 8px;
-      display: flex; align-items: center; gap: 8px;
-      font-size: 11px; color: var(--text-tertiary);
-    }
-    .sparkline { width: 100%; height: 28px; flex: 1; }
-    .never-vs-failing {
-      display: flex; align-items: flex-start; gap: 10px;
-      padding: 12px 14px;
-      background: var(--brand-light);
-      border-radius: 8px;
-      margin-bottom: 14px;
-    }
-    .nvf-icon {
-      width: 24px; height: 24px; border-radius: 50%;
-      background: white; color: var(--brand);
-      display: inline-flex; align-items: center; justify-content: center;
-      flex-shrink: 0; font-weight: 700; font-size: 12px;
-    }
-    .nvf-body { flex: 1; min-width: 0; font-size: 12px; color: var(--text-quiet); line-height: 1.55; }
-    .nvf-body strong { color: var(--text-default); font-weight: 600; }
-    .health-detail-grid {
-      display: grid; grid-template-columns: 130px 1fr;
-      gap: 8px 14px; font-size: 12px;
-    }
-    .health-detail-grid dt { color: var(--text-tertiary); }
-    .health-detail-grid dd { color: var(--text-default); font-weight: 500; }
-    .health-detail-grid dd .badge { font-size: 11px; }
-
-    /* ── Zone 6: Coordination ── */
-    .coord-tree { display: flex; flex-direction: column; gap: 6px; }
-    .coord-node {
-      display: flex; align-items: center; gap: 10px;
-      padding: 8px 10px; border-radius: 6px;
-      border: 1px solid var(--border-quiet);
-    }
-    .coord-node.root { background: var(--bg-lowered); }
-    .coord-node-avatar {
-      width: 28px; height: 28px; border-radius: 50%;
-      background: var(--bg-neutral); color: var(--text-quiet);
-      display: inline-flex; align-items: center; justify-content: center;
-      font-size: 11px; font-weight: 600; flex-shrink: 0;
-    }
-    .coord-node-stack { flex: 1; min-width: 0; }
-    .coord-node-name { font-size: 13px; font-weight: 600; color: var(--text-default); }
-    .coord-node-role { font-size: 11px; color: var(--text-tertiary); margin-top: 1px; }
-    .coord-node-tag {
-      font-size: 11px; color: var(--text-quiet);
-      background: var(--bg-neutral);
-      padding: 2px 7px; border-radius: 3px;
-      flex-shrink: 0;
-    }
-    .coord-children {
-      margin-left: 18px; padding-left: 14px;
-      border-left: 1px dashed var(--border-default);
-      display: flex; flex-direction: column; gap: 6px;
-      padding-top: 6px;
-    }
-    .work-table { display: flex; flex-direction: column; }
-    .work-row {
-      display: grid;
-      grid-template-columns: 110px 1fr 140px 110px 90px;
-      gap: 12px; align-items: center;
-      padding: 10px 0;
-      border-top: 1px solid var(--border-quiet);
-      font-size: 12px;
-    }
-    .work-row:first-of-type { border-top: none; padding-top: 4px; }
-    .work-row-id { color: var(--brand); font-weight: 600; font-size: 12px; }
-    .work-row-title { color: var(--text-default); font-weight: 500; }
-    .work-row-assignee { color: var(--text-quiet); display: inline-flex; align-items: center; gap: 6px; }
-    .work-row-due { color: var(--text-quiet); }
-    .work-row-status .badge { font-size: 10px; padding: 2px 6px; }
-
-    .agent-feed {
-      display: flex; flex-direction: column; gap: 0;
-      margin-top: 8px;
-    }
-    .agent-event {
-      display: flex; gap: 12px;
-      padding: 10px 0; border-top: 1px solid var(--border-quiet);
-    }
-    .agent-event:first-of-type { border-top: none; padding-top: 4px; }
-    .agent-event-icon {
-      width: 24px; height: 24px; border-radius: 6px;
-      background: var(--brand-light); color: var(--brand);
-      display: inline-flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-    }
-    .agent-event-body { flex: 1; min-width: 0; }
-    .agent-event-text { font-size: 12px; color: var(--text-default); line-height: 1.5; }
-    .agent-event-text strong { font-weight: 600; }
-    .agent-event-meta { font-size: 11px; color: var(--text-tertiary); margin-top: 2px; }
-
-    /* ── Zone 7: Maturity ── */
-    .maturity-level-row {
-      display: flex; align-items: center; gap: 14px;
-      margin-bottom: 16px;
-    }
-    .maturity-level {
-      flex: 1; padding: 12px 14px;
-      border: 1px solid var(--border-quiet);
-      border-radius: 8px;
-      background: var(--bg-default);
-    }
-    .maturity-level.current { border-color: var(--brand); background: var(--brand-light); }
-    .maturity-level-label {
-      font-size: 11px; font-weight: 600;
-      color: var(--text-tertiary);
-      text-transform: uppercase; letter-spacing: 0.6px;
-      margin-bottom: 4px;
-    }
-    .maturity-level.current .maturity-level-label { color: var(--brand); }
-    .maturity-level-value {
-      font-size: 16px; font-weight: 600; color: var(--text-default);
-    }
-    .maturity-arrow {
-      color: var(--text-tertiary); flex-shrink: 0;
-    }
-    .maturity-criteria-list { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
-    .maturity-criterion {
-      display: flex; align-items: center; gap: 10px;
-      padding: 8px 10px;
-      border-radius: 6px;
-      background: var(--bg-lowered);
-    }
-    .maturity-criterion-icon {
-      width: 18px; height: 18px; border-radius: 50%;
-      display: inline-flex; align-items: center; justify-content: center;
-      flex-shrink: 0; font-size: 10px; font-weight: 700;
-    }
-    .maturity-criterion-icon.met { background: var(--success-bg); color: var(--success-text); }
-    .maturity-criterion-icon.partial { background: var(--warn-bg); color: var(--warn-text); }
-    .maturity-criterion-icon.todo { background: var(--bg-neutral); color: var(--text-tertiary); }
-    .maturity-criterion-text { font-size: 13px; color: var(--text-default); flex: 1; }
-    .maturity-criterion-sub { font-size: 11px; color: var(--text-tertiary); }
-    .maturity-cadence {
-      margin-top: 14px; padding-top: 12px;
-      border-top: 1px solid var(--border-quiet);
-      font-size: 12px; color: var(--text-quiet);
-      display: flex; align-items: center; gap: 14px;
-    }
-    .maturity-cadence-item { display: flex; flex-direction: column; gap: 1px; }
-    .maturity-cadence-label { font-size: 11px; color: var(--text-tertiary); }
-    .maturity-cadence-val { font-size: 13px; color: var(--text-default); font-weight: 500; }
-
-    /* ── Zone 9: History ── */
-    .timeline { display: flex; flex-direction: column; gap: 0; padding-left: 4px; }
+    /* History tab */
+    .timeline { display: flex; flex-direction: column; padding-left: 4px; }
     .timeline-event {
-      display: flex; gap: 14px; padding: 8px 0;
+      display: flex; gap: 12px; padding: 8px 0;
       position: relative;
     }
     .timeline-event:not(:last-child)::before {
       content: ''; position: absolute;
-      left: 7px; top: 22px; bottom: -2px;
+      left: 6px; top: 20px; bottom: -2px;
       width: 1px; background: var(--border-default);
     }
     .timeline-dot {
-      width: 14px; height: 14px; border-radius: 50%;
+      width: 12px; height: 12px; border-radius: 50%;
       background: white;
       border: 2px solid var(--border-default);
-      flex-shrink: 0; margin-top: 3px;
-      z-index: 1;
+      flex-shrink: 0; margin-top: 4px; z-index: 1;
     }
     .timeline-dot.brand { border-color: var(--brand); }
     .timeline-dot.warn { border-color: var(--warn-text); }
     .timeline-dot.fail { border-color: var(--error-text); }
     .timeline-dot.ok { border-color: var(--success-text); }
-    .timeline-body { flex: 1; min-width: 0; }
-    .timeline-text { font-size: 13px; color: var(--text-default); line-height: 1.5; }
+    .timeline-text { font-size: 13px; line-height: 1.5; }
     .timeline-text strong { font-weight: 600; }
     .timeline-meta { font-size: 11px; color: var(--text-tertiary); margin-top: 2px; }
     .pit-capture {
@@ -809,31 +551,45 @@
       font-size: 12px; font-weight: 500;
       border: 1px solid var(--border-default);
       cursor: pointer;
+      font-family: 'Inter', sans-serif;
     }
 
-    /* ── Zone 8: Scope detail (right rail) ── */
-    .scope-block { margin-bottom: 16px; }
-    .scope-block:last-child { margin-bottom: 0; }
-    .scope-block-head {
-      display: flex; align-items: center; gap: 6px;
+    /* Right rail */
+    .rail-section {
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--border-quiet);
+    }
+    .rail-label {
+      font-size: 11px; font-weight: 600;
+      color: var(--text-tertiary);
+      text-transform: uppercase; letter-spacing: 0.5px;
+      margin-bottom: 10px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .rail-label-count {
+      font-size: 11px; color: var(--text-tertiary);
+      font-weight: 500; text-transform: none; letter-spacing: 0;
+    }
+    .scope-group { margin-bottom: 12px; }
+    .scope-group:last-child { margin-bottom: 0; }
+    .scope-group-head {
       font-size: 11px; font-weight: 600;
       color: var(--text-quiet);
-      margin-bottom: 8px;
+      margin-bottom: 6px;
+      display: flex; align-items: center;
     }
-    .scope-block-count {
+    .scope-group-count {
       font-size: 10px; color: var(--text-tertiary);
       font-weight: 500; margin-left: auto;
     }
     .system-row {
       display: flex; align-items: center; gap: 8px;
-      padding: 6px 0;
-      font-size: 12px;
+      padding: 5px 0; font-size: 12px;
       border-top: 1px solid var(--border-quiet);
     }
-    .system-row:first-of-type { border-top: none; }
+    .system-row:first-child { border-top: none; }
     .system-dot {
-      width: 6px; height: 6px; border-radius: 50%;
-      flex-shrink: 0;
+      width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0;
     }
     .system-dot.ok { background: var(--success-text); }
     .system-dot.warn { background: #ea8c1a; }
@@ -846,76 +602,71 @@
       text-decoration: underline; cursor: pointer;
     }
 
-    /* RBAC indicator */
-    .rbac-eyebrow {
-      display: inline-flex; align-items: center; gap: 5px;
-      padding: 2px 7px; border-radius: 3px;
-      background: var(--bg-lowered);
-      border: 1px solid var(--border-quiet);
-      font-size: 10px; color: var(--text-tertiary);
-      font-weight: 500; margin-left: 6px;
+    .coord-row {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 12px;
+      margin-bottom: 8px;
     }
-
-    /* utilities */
-    .row-flex { display: flex; align-items: center; gap: 8px; }
-    .mt-8 { margin-top: 8px; }
-    .mt-12 { margin-top: 12px; }
-    .text-quiet { color: var(--text-quiet); }
-    .text-tertiary { color: var(--text-tertiary); }
-    .sticky { position: sticky; top: 0; }
-
-    .helper-bar {
-      display: flex; align-items: center; gap: 10px;
-      padding: 10px 12px; margin-bottom: 14px;
+    .coord-row-label { color: var(--text-tertiary); }
+    .avatar-stack { display: inline-flex; align-items: center; }
+    .avatar-stack .owner-avatar-sm {
+      width: 22px; height: 22px;
+      border: 2px solid white;
+      margin-left: -6px;
+    }
+    .avatar-stack .owner-avatar-sm:first-child { margin-left: 0; }
+    .agent-summary {
+      font-size: 12px; color: var(--text-quiet);
+      padding: 8px 10px;
       background: var(--brand-light);
-      border: 1px solid #e0d3f9;
-      border-radius: 8px;
-      font-size: 12px; color: var(--text-default);
-      line-height: 1.5;
+      border-radius: 5px;
+      display: flex; align-items: center; gap: 8px;
+      margin-top: 4px;
     }
-    .helper-bar-icon { color: var(--brand); flex-shrink: 0; }
-    .helper-bar strong { font-weight: 600; }
+    .agent-summary-icon { color: var(--brand); flex-shrink: 0; }
+    .agent-summary-link { color: var(--brand); cursor: pointer; margin-left: auto; }
+    .agent-summary-link:hover { text-decoration: underline; }
+
+    .more-link {
+      display: flex; align-items: center;
+      padding: 8px 0;
+      font-size: 12px;
+      color: var(--text-default);
+      cursor: pointer;
+      border-top: 1px solid var(--border-quiet);
+      text-decoration: none;
+    }
+    .more-link:first-child { border-top: none; }
+    .more-link:hover { color: var(--brand); }
+    .more-link-icon { width: 14px; margin-right: 8px; color: var(--text-tertiary); flex-shrink: 0; }
+    .more-link-arrow { margin-left: auto; color: var(--text-tertiary); }
   </style>
 </head>
 <body>
 
-  <!-- ── Top nav ── -->
+  <!-- Top nav -->
   <header class="topnav">
     <div class="topnav-left">
       <span class="vanta-logo">Vanta</span>
       <button class="workspace-chip">
         <div class="workspace-icon">
-          <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-            <path d="M5 1L9 3.2V6.8L5 9L1 6.8V3.2L5 1Z" fill="white"/>
-          </svg>
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1L9 3.2V6.8L5 9L1 6.8V3.2L5 1Z" fill="white"/></svg>
         </div>
         TruSecure
         <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 5L6 8L9 5" stroke="#9b9a99" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
     </div>
     <div class="topnav-right">
-      <button class="nav-icon-btn" title="AI">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2L9.3 5.7L13 7L9.3 8.3L8 12L6.7 8.3L3 7L6.7 5.7L8 2Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M13 1L13.5 2.5L15 3L13.5 3.5L13 5L12.5 3.5L11 3L12.5 2.5L13 1Z" stroke="currentColor" stroke-width="1" stroke-linejoin="round"/></svg>
-      </button>
-      <button class="nav-icon-btn" title="Help">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.4"/><path d="M6.5 6C6.5 5.17 7.17 4.5 8 4.5S9.5 5.17 9.5 6C9.5 7.2 8 7.8 8 9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><circle cx="8" cy="11" r="0.7" fill="currentColor"/></svg>
-      </button>
-      <button class="nav-icon-btn" title="Announcements">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 6.5H4L11 3.5V12.5L4 9.5H2V6.5ZM4 9.5L4.5 13" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
-      <button class="nav-icon-btn" title="Notifications">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2C5.79 2 4 3.79 4 6V10L2.5 12H13.5L12 10V6C12 3.79 10.21 2 8 2Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M6.5 12C6.5 12.83 7.17 13.5 8 13.5S9.5 12.83 9.5 12" stroke="currentColor" stroke-width="1.4"/></svg>
-      </button>
-      <button class="nav-icon-btn" title="Settings">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="2.3" stroke="currentColor" stroke-width="1.4"/><path d="M8 1.5V3M8 13V14.5M1.5 8H3M13 8H14.5M3.4 3.4L4.4 4.4M11.6 11.6L12.6 12.6M3.4 12.6L4.4 11.6M11.6 4.4L12.6 3.4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
-      </button>
+      <button class="nav-icon-btn" title="AI"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2L9.3 5.7L13 7L9.3 8.3L8 12L6.7 8.3L3 7L6.7 5.7L8 2Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg></button>
+      <button class="nav-icon-btn" title="Help"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.4"/><path d="M6.5 6C6.5 5.17 7.17 4.5 8 4.5S9.5 5.17 9.5 6C9.5 7.2 8 7.8 8 9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><circle cx="8" cy="11" r="0.7" fill="currentColor"/></svg></button>
+      <button class="nav-icon-btn" title="Notifications"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2C5.79 2 4 3.79 4 6V10L2.5 12H13.5L12 10V6C12 3.79 10.21 2 8 2Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg></button>
+      <button class="nav-icon-btn" title="Settings"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="2.3" stroke="currentColor" stroke-width="1.4"/><path d="M8 1.5V3M8 13V14.5M1.5 8H3M13 8H14.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></button>
       <button class="user-avatar">AP</button>
     </div>
   </header>
 
   <div class="appshell">
 
-    <!-- ── Left nav ── -->
     <nav class="sidenav">
       <div class="sidenav-search">
         <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="4.5" stroke="#8c8baa" stroke-width="1.5"/><path d="M10.5 10.5L14 14" stroke="#8c8baa" stroke-width="1.5" stroke-linecap="round"/></svg>
@@ -923,9 +674,8 @@
         <span class="sidenav-search-kbd">⌘+K</span>
       </div>
       <a class="nav-item"><svg class="nav-item-icon" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.4"/><rect x="9" y="2" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.4"/><rect x="2" y="9" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.4"/><rect x="9" y="9" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.4"/></svg>Home</a>
-      <a class="nav-item"><svg class="nav-item-icon" viewBox="0 0 16 16" fill="none"><path d="M8 3L13.5 6V10L8 13L2.5 10V6L8 3Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M8 8L8 6M8 8L10 9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>Roadmap</a>
       <a class="nav-item"><svg class="nav-item-icon" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.4"/><path d="M5.5 8l2 2 3-3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>My work</a>
-      <a class="nav-item"><svg class="nav-item-icon" viewBox="0 0 16 16" fill="none"><rect x="3" y="2" width="10" height="12" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M5.5 6h5M5.5 9h3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>Tests</a>
+      <a class="nav-item"><svg class="nav-item-icon" viewBox="0 0 16 16" fill="none"><rect x="3" y="2" width="10" height="12" rx="1.5" stroke="currentColor" stroke-width="1.4"/></svg>Tests</a>
       <a class="nav-item"><svg class="nav-item-icon" viewBox="0 0 16 16" fill="none"><path d="M2 13V10M5.5 13V7M9 13V4.5M12.5 13V2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>Reports</a>
 
       <div class="nav-divider"></div>
@@ -942,50 +692,34 @@
       <a class="nav-sub">Audits</a>
       <a class="nav-sub">Issues</a>
 
-      <a class="nav-item" style="margin-top:2px;"><svg class="nav-item-icon" viewBox="0 0 16 16" fill="none"><path d="M8 2.5L13.5 5V9C13.5 12 11 14.5 8 15.5 5 14.5 2.5 12 2.5 9V5L8 2.5Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M5.5 8l2 2 3-3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Customer trust<svg class="nav-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M5 3L8 6L5 9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></a>
-      <a class="nav-item"><svg class="nav-item-icon" viewBox="0 0 16 16" fill="none"><path d="M8 14C8 14 2 11 2 6.5V3.5L8 2L14 3.5V6.5C14 11 8 14 8 14Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M8 6V9M8 11v.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>Risk<svg class="nav-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M5 3L8 6L5 9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></a>
-      <a class="nav-item"><svg class="nav-item-icon" viewBox="0 0 16 16" fill="none"><path d="M8 8.5a3 3 0 100-6 3 3 0 000 6ZM2 14c0-3.31 2.69-6 6-6s6 2.69 6 6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>Vendors<svg class="nav-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M5 3L8 6L5 9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></a>
-      <a class="nav-item"><svg class="nav-item-icon" viewBox="0 0 16 16" fill="none"><rect x="2.5" y="3.5" width="11" height="9" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M5.5 7h5M5.5 10h3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>Privacy<svg class="nav-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M5 3L8 6L5 9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></a>
-      <a class="nav-item"><svg class="nav-item-icon" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="12" height="4" rx="1" stroke="currentColor" stroke-width="1.4"/><rect x="2" y="7.5" width="12" height="4" rx="1" stroke="currentColor" stroke-width="1.4"/><circle cx="12.5" cy="4" r="1" fill="currentColor"/><circle cx="12.5" cy="9.5" r="1" fill="currentColor"/></svg>Assets<svg class="nav-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M5 3L8 6L5 9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></a>
-      <a class="nav-item"><svg class="nav-item-icon" viewBox="0 0 16 16" fill="none"><circle cx="5.5" cy="5.5" r="2.5" stroke="currentColor" stroke-width="1.4"/><circle cx="10.5" cy="5.5" r="2.5" stroke="currentColor" stroke-width="1.4"/><path d="M1 13.5c0-2.49 2.01-4.5 4.5-4.5M9 14.5c0-2.49 2.01-4.5 4.5-4.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>Personnel<svg class="nav-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M5 3L8 6L5 9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></a>
+      <a class="nav-item" style="margin-top:2px;"><svg class="nav-item-icon" viewBox="0 0 16 16" fill="none"><path d="M8 2.5L13.5 5V9C13.5 12 11 14.5 8 15.5 5 14.5 2.5 12 2.5 9V5L8 2.5Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>Customer trust</a>
+      <a class="nav-item"><svg class="nav-item-icon" viewBox="0 0 16 16" fill="none"><path d="M8 14C8 14 2 11 2 6.5V3.5L8 2L14 3.5V6.5C14 11 8 14 8 14Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>Risk</a>
+      <a class="nav-item"><svg class="nav-item-icon" viewBox="0 0 16 16" fill="none"><path d="M8 8.5a3 3 0 100-6 3 3 0 000 6ZM2 14c0-3.31 2.69-6 6-6s6 2.69 6 6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>Vendors</a>
+      <a class="nav-item"><svg class="nav-item-icon" viewBox="0 0 16 16" fill="none"><rect x="2.5" y="3.5" width="11" height="9" rx="1.5" stroke="currentColor" stroke-width="1.4"/></svg>Privacy</a>
+      <a class="nav-item"><svg class="nav-item-icon" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="12" height="4" rx="1" stroke="currentColor" stroke-width="1.4"/><rect x="2" y="7.5" width="12" height="4" rx="1" stroke="currentColor" stroke-width="1.4"/></svg>Assets</a>
+      <a class="nav-item"><svg class="nav-item-icon" viewBox="0 0 16 16" fill="none"><circle cx="5.5" cy="5.5" r="2.5" stroke="currentColor" stroke-width="1.4"/><circle cx="10.5" cy="5.5" r="2.5" stroke="currentColor" stroke-width="1.4"/></svg>Personnel</a>
 
       <div class="nav-divider"></div>
 
-      <a class="nav-item"><svg class="nav-item-icon" viewBox="0 0 16 16" fill="none"><rect x="2" y="4" width="12" height="9" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M5 4V3a1 1 0 011-1h4a1 1 0 011 1v1" stroke="currentColor" stroke-width="1.4"/><path d="M5.5 8.5l2 2 3-3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Integrations</a>
-      <a class="nav-item"><svg class="nav-item-icon" viewBox="0 0 16 16" fill="none"><path d="M2 4.5h12M2 8h8M2 11.5h5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>My security tasks</a>
-      <a class="nav-item"><svg class="nav-item-icon" viewBox="0 0 16 16" fill="none"><path d="M8 8.5a3 3 0 100-6 3 3 0 000 6Z" stroke="currentColor" stroke-width="1.4"/><path d="M2 14c0-3.31 2.69-6 6-6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M12 11v4M14 13h-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>My access requests</a>
+      <a class="nav-item"><svg class="nav-item-icon" viewBox="0 0 16 16" fill="none"><rect x="2" y="4" width="12" height="9" rx="1.5" stroke="currentColor" stroke-width="1.4"/></svg>Integrations</a>
 
       <div class="sidenav-collapse">←|</div>
     </nav>
 
-    <!-- ── Main ── -->
     <main class="main">
 
-      <!-- Detail header (Zone 1) -->
       <div class="detail-header">
         <div class="detail-header-inner">
           <div class="breadcrumb">
-            <a href="index.html">Controls</a>
-            <span class="breadcrumb-sep">›</span>
-            <a href="index.html">Framework controls</a>
-            <span class="breadcrumb-sep">›</span>
-            <a href="index.html">Role-based access management</a>
-            <span class="breadcrumb-sep">›</span>
-            <span>Access control procedures established</span>
+            <a href="index.html">Controls</a> › <a href="index.html">Role-based access management</a> › Access control procedures established
           </div>
 
           <div class="detail-title-row">
-            <div class="detail-title-stack">
-              <h1 class="detail-title">Access control procedures established<span class="detail-id-inline">VC-CTRL-0142</span></h1>
-            </div>
+            <h1 class="detail-title">Access control procedures established<span class="detail-id-inline">VC-CTRL-0142</span></h1>
             <div class="detail-actions">
               <button class="btn-secondary">
                 <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M11 2L14 5L6 13H3V10L11 2Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
-                Edit implementation
-              </button>
-              <button class="btn-secondary">
-                <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.4"/><path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="1.4"/></svg>
-                Manage scope
+                Edit
               </button>
               <button class="btn-more">
                 <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="4" cy="8" r="1.4" fill="currentColor"/><circle cx="8" cy="8" r="1.4" fill="currentColor"/><circle cx="12" cy="8" r="1.4" fill="currentColor"/></svg>
@@ -993,973 +727,462 @@
             </div>
           </div>
 
-          <p class="detail-desc">The organization maintains a documented access control policy and procedures that govern how user access is requested, approved, provisioned, periodically reviewed, and revoked across in-scope systems. Personnel acknowledge the policy on hire and at least annually.</p>
-          <a class="show-more-link">Show full description</a>
+          <p class="detail-desc">A documented access control policy and procedures that govern how user access is requested, approved, provisioned, periodically reviewed, and revoked across in-scope systems.</p>
 
-          <div class="header-meta">
-
+          <div class="detail-meta">
             <div class="composite-health">
               <div class="ch-axis">
-                <div class="ch-axis-label">Design quality</div>
+                <div class="ch-axis-label">Design</div>
                 <div class="ch-axis-value warn"><span class="ch-dot warn"></span>Partial</div>
-                <div class="ch-axis-sub">1 of 7 requirements below bar</div>
               </div>
               <div class="ch-axis">
                 <div class="ch-axis-label">Effectiveness</div>
                 <div class="ch-axis-value warn"><span class="ch-dot warn"></span>At risk</div>
-                <div class="ch-axis-sub">2 of 3 tests failing · 14d</div>
               </div>
             </div>
-
-            <div class="meta-pill">
-              <span class="meta-pill-label">Owner</span>
-              <span class="owner-avatar-sm">MP</span>
-              <span>Mira Patel</span>
-            </div>
-
-            <div class="meta-pill">
-              <span class="meta-pill-label">Rolls up to</span>
-              <a class="common-control-link" href="index.html">
-                <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 4h10v9H3z" stroke="currentColor" stroke-width="1.4"/><path d="M5.5 7h5M5.5 10h3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
-                gv-gc-pp-1 — Security Policy Framework
-              </a>
-            </div>
-
-            <div class="meta-pill">
-              <span class="meta-pill-label">Lifecycle</span>
-              <span class="badge badge-ok">Active</span>
-            </div>
-
-            <div class="meta-pill">
-              <span class="meta-pill-label">Scope</span>
-              <span>Production · 7 systems · 1 BU</span>
-            </div>
-
+            <div class="meta-item"><span class="owner-avatar-sm">M</span>Mira Patel</div>
+            <div class="meta-item"><span class="meta-item-label">Rolls up to</span><a class="cc-link" href="index.html">gv-gc-pp-1</a></div>
+            <div class="meta-item"><span class="meta-item-label">Covers</span>7 requirements · 7 systems · Production</div>
           </div>
         </div>
 
-        <!-- Next action -->
         <div class="next-action">
           <div class="next-action-icon">!</div>
           <div class="next-action-body">
-            <div class="next-action-title">Refresh "Information Security Roles & Responsibilities" — stale by 187 days</div>
-            <div class="next-action-sub">Holding back design adequacy and effectiveness. Assigned to Maria Chen (SEC-1042), due 2026-06-10.</div>
+            <div class="next-action-text"><strong>Refresh the Information Security Roles & Responsibilities doc.</strong> Stale 187 days. SEC-1042 assigned to Maria Chen, due Jun 10.</div>
           </div>
           <button class="next-action-cta">Open task</button>
         </div>
 
-        <!-- Section tabs -->
         <div class="detail-tabs">
-          <a class="detail-tab active" href="#overview">Overview</a>
-          <a class="detail-tab" href="#requirements">Requirements</a>
-          <a class="detail-tab" href="#implementation">Implementation</a>
-          <a class="detail-tab" href="#evidence">Evidence</a>
-          <a class="detail-tab" href="#health">Health</a>
-          <a class="detail-tab" href="#coordination">Coordination</a>
-          <a class="detail-tab" href="#maturity">Maturity</a>
-          <a class="detail-tab" href="#history">History</a>
+          <button class="detail-tab active" data-tab="overview">Overview</button>
+          <button class="detail-tab" data-tab="requirements">Requirements <span style="color:var(--text-tertiary);font-weight:400;">· 7</span></button>
+          <button class="detail-tab" data-tab="implementation">Implementation</button>
+          <button class="detail-tab" data-tab="evidence">Evidence <span style="color:var(--text-tertiary);font-weight:400;">· 6</span></button>
+          <button class="detail-tab" data-tab="history">History</button>
         </div>
       </div>
 
-      <!-- Body -->
       <div class="detail-body">
+
         <div class="detail-main">
 
-          <!-- Zone 2: Requirements satisfied -->
-          <div class="card" id="requirements">
-            <div class="card-header">
-              <div class="card-header-text">
-                <div class="card-title">
-                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 1.5L14 4V8C14 11.31 11.5 14 8 14.5 4.5 14 2 11.31 2 8V4L8 1.5Z" stroke="#2748c8" stroke-width="1.4" stroke-linejoin="round"/><path d="M5.5 8l2 2 3-3" stroke="#2748c8" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  Requirements satisfied <span class="card-title-count">· 7</span>
-                </div>
-                <div class="card-subtitle">What this control must answer — across frameworks, commitments, and risks.</div>
+          <!-- OVERVIEW -->
+          <div class="tab-panel active" data-tab="overview">
+
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">What needs your attention</div>
+                <span style="font-size:11px;color:var(--text-tertiary);">3 items</span>
               </div>
-              <div class="card-actions">
-                <button class="btn-secondary">
-                  <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-                  Map requirement
-                </button>
+              <div class="card-body">
+                <div class="attn-list">
+                  <div class="attn-row" data-jump="evidence">
+                    <div class="attn-icon warn">!</div>
+                    <div class="attn-body">
+                      <div class="attn-title">Design says one thing, evidence says nothing</div>
+                      <div class="attn-sub">Implementation claims password rotation is enforced. No test validates it on Okta, AWS, or Snowflake — and the policy text doesn't define values either.</div>
+                      <div class="attn-deep">In Evidence ↗</div>
+                    </div>
+                    <svg class="attn-arrow" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M5 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  </div>
+                  <div class="attn-row" data-jump="requirements">
+                    <div class="attn-icon warn">⚠</div>
+                    <div class="attn-body">
+                      <div class="attn-title">ISO 27001 A.9.4.3 mapped but below the bar</div>
+                      <div class="attn-sub">Implementation doesn't address rotation or complexity. The mapping currently reads as compliant — it isn't.</div>
+                      <div class="attn-deep">In Requirements ↗</div>
+                    </div>
+                    <svg class="attn-arrow" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M5 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  </div>
+                  <div class="attn-row" data-jump="evidence">
+                    <div class="attn-icon fail">!</div>
+                    <div class="attn-body">
+                      <div class="attn-title">Roles & Responsibilities doc 187 days stale</div>
+                      <div class="attn-sub">Annual review missed. SEC-1042 in progress — Maria Chen, due Jun 10.</div>
+                      <div class="attn-deep">In Evidence ↗</div>
+                    </div>
+                    <svg class="attn-arrow" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M5 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="card-body">
 
-              <div class="req-consol">
-                <svg class="req-consol-icon" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M5 8h6M8 5v6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.4"/></svg>
-                <div>One control. Seven requirements. <strong>SOC 2, ISO 27001, HIPAA, the Acme MSA, and a risk treatment</strong> all sit on this single implementation — managed once.</div>
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">Implementation</div>
+                <a class="card-action" data-jump="implementation">Open ↗</a>
               </div>
-
-              <div class="req-list">
-
-                <div class="req-row">
-                  <div class="req-row-top">
-                    <span class="req-source framework">Framework</span>
-                    <span class="req-ref">SOC 2 CC 6.1</span>
-                    <span class="req-title">Logical and physical access controls</span>
-                    <svg class="req-arrow" viewBox="0 0 16 16" fill="none"><path d="M5 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                    <span class="req-status ok">✓ Satisfied</span>
-                  </div>
-                  <div class="req-row-bottom">
-                    <span class="req-scope-label-inline">Scope</span>
-                    <span class="req-scope-chip-inline">Production</span>
-                    <span class="req-scope-chip-inline">All in-scope systems</span>
-                    <span class="req-row-actions">
-                      <a class="card-link-btn">Source</a>
-                      <a class="card-link-btn">Unmap</a>
-                    </span>
-                  </div>
-                </div>
-
-                <div class="req-row">
-                  <div class="req-row-top">
-                    <span class="req-source framework">Framework</span>
-                    <span class="req-ref">SOC 2 CC 6.3</span>
-                    <span class="req-title">Role-based access management</span>
-                    <svg class="req-arrow" viewBox="0 0 16 16" fill="none"><path d="M5 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                    <span class="req-status ok">✓ Satisfied</span>
-                  </div>
-                  <div class="req-row-bottom">
-                    <span class="req-scope-label-inline">Scope</span>
-                    <span class="req-scope-chip-inline">Production</span>
-                    <span class="req-row-actions">
-                      <a class="card-link-btn">Source</a>
-                      <a class="card-link-btn">Unmap</a>
-                    </span>
-                  </div>
-                </div>
-
-                <div class="req-row">
-                  <div class="req-row-top">
-                    <span class="req-source framework">Framework</span>
-                    <span class="req-ref">ISO 27001 A.9.1.1</span>
-                    <span class="req-title">Access control policy</span>
-                    <svg class="req-arrow" viewBox="0 0 16 16" fill="none"><path d="M5 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                    <span class="req-status ok">✓ Satisfied</span>
-                  </div>
-                  <div class="req-row-bottom">
-                    <span class="req-scope-label-inline">Scope</span>
-                    <span class="req-scope-chip-inline">All BUs</span>
-                    <span class="req-row-actions">
-                      <a class="card-link-btn">Source</a>
-                      <a class="card-link-btn">Unmap</a>
-                    </span>
-                  </div>
-                </div>
-
-                <div class="req-row below-bar">
-                  <div class="req-row-top">
-                    <span class="req-source framework">Framework</span>
-                    <span class="req-ref">ISO 27001 A.9.4.3</span>
-                    <span class="req-title">Password management system</span>
-                    <svg class="req-arrow" viewBox="0 0 16 16" fill="none"><path d="M5 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                    <span class="req-status warn">⚠ Mapped, below bar</span>
-                  </div>
-                  <div class="req-bar-note">
-                    <svg class="req-bar-note-icon" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 2L14 13H2L8 2Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M8 7v3M8 12v.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
-                    <div>
-                      <strong>Mapped but the bar isn't met.</strong> A.9.4.3 requires the policy to define password rotation cadence and minimum complexity. The current implementation states neither. Either extend the implementation, or remove this mapping. <em>Don't let this stand as "compliant."</em>
-                    </div>
-                  </div>
-                  <div class="req-row-bottom">
-                    <span class="req-scope-label-inline">Scope</span>
-                    <span class="req-scope-chip-inline">All BUs</span>
-                    <span class="req-row-actions">
-                      <a class="card-link-btn">Extend implementation</a>
-                      <a class="card-link-btn">Unmap</a>
-                    </span>
-                  </div>
-                </div>
-
-                <div class="req-row">
-                  <div class="req-row-top">
-                    <span class="req-source regulatory">Regulatory</span>
-                    <span class="req-ref">HIPAA §164.308(a)(4)(ii)(B)</span>
-                    <span class="req-title">Access authorization</span>
-                    <svg class="req-arrow" viewBox="0 0 16 16" fill="none"><path d="M5 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                    <span class="req-status ok">✓ Satisfied</span>
-                  </div>
-                  <div class="req-row-bottom">
-                    <span class="req-scope-label-inline">Scope</span>
-                    <span class="req-scope-chip-inline">PHI systems · Production</span>
-                    <span class="req-row-actions">
-                      <a class="card-link-btn">Source</a>
-                      <a class="card-link-btn">Unmap</a>
-                    </span>
-                  </div>
-                </div>
-
-                <div class="req-row">
-                  <div class="req-row-top">
-                    <span class="req-source commitment">Commitment</span>
-                    <span class="req-ref">Acme MSA §4.2</span>
-                    <span class="req-title">Customer data access procedures</span>
-                    <svg class="req-arrow" viewBox="0 0 16 16" fill="none"><path d="M5 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                    <span class="req-status ok">✓ Satisfied</span>
-                  </div>
-                  <div class="req-row-bottom">
-                    <span class="req-scope-label-inline">Scope</span>
-                    <span class="req-scope-chip-inline">Acme tenant only</span>
-                    <span class="req-row-actions">
-                      <a class="card-link-btn">Contract clause</a>
-                      <a class="card-link-btn">Unmap</a>
-                    </span>
-                  </div>
-                </div>
-
-                <div class="req-row">
-                  <div class="req-row-top">
-                    <span class="req-source risk">Risk treatment</span>
-                    <span class="req-ref">RT-014</span>
-                    <span class="req-title">Unauthorized internal access</span>
-                    <svg class="req-arrow" viewBox="0 0 16 16" fill="none"><path d="M5 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                    <span class="req-status ok">✓ Satisfied</span>
-                  </div>
-                  <div class="req-row-bottom">
-                    <span class="req-scope-label-inline">Scope</span>
-                    <span class="req-scope-chip-inline">Production</span>
-                    <span class="req-row-actions">
-                      <a class="card-link-btn">Risk register</a>
-                      <a class="card-link-btn">Unmap</a>
-                    </span>
-                  </div>
-                </div>
-
-              </div>
-
-            </div>
-          </div>
-
-          <!-- Teach strip -->
-          <div class="teach-strip">
-            <div class="teach-strip-arrow"></div>
-            <div class="teach-strip-text">↓  Requirements describe <strong>what</strong>. Implementation describes <strong>how</strong>.</div>
-            <div class="teach-strip-arrow"></div>
-          </div>
-
-          <!-- Zone 3: Implementation / design -->
-          <div class="card" id="implementation">
-            <div class="card-header">
-              <div class="card-header-text">
-                <div class="card-title">
-                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 4h10v9H3z" stroke="#8e34e3" stroke-width="1.4"/><path d="M5.5 7h5M5.5 10h3" stroke="#8e34e3" stroke-width="1.4" stroke-linecap="round"/></svg>
-                  Implementation
-                  <span class="rbac-eyebrow">Editable by owner</span>
-                </div>
-                <div class="card-subtitle">How the organization meets the requirements above. The substance of the control.</div>
-              </div>
-              <div class="card-actions">
-                <button class="btn-secondary">
-                  <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M11 2L14 5L6 13H3V10L11 2Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
-                  Edit
-                </button>
+              <div class="card-body">
+                <p class="impl-snippet">A written <strong>Access Control Policy</strong> defines the lifecycle of access — request, approval, provisioning, modification, quarterly review, revocation. Requests are Jira tickets approved by the system owner of record; the policy is reviewed annually by the CISO and acknowledged at hire.</p>
               </div>
             </div>
-            <div class="card-body">
 
-              <div class="impl-statement">
-                Vanta maintains a written <strong>Access Control Policy</strong> that defines the lifecycle of access: request, approval, provisioning, role modification, quarterly review, and revocation on role change or termination. Access requests are recorded as Jira tickets in the SEC project, approved by the system owner of record, and provisioned within defined SLAs (4 business hours standard, 1 hour emergency). The policy is reviewed annually by the CISO and acknowledged by all personnel during onboarding via the HR Onboarding Workflow.
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">Open work<span class="card-title-count">· 2</span></div>
               </div>
-
-              <div class="impl-section-label">Scope of this implementation</div>
-              <div class="impl-scope-block">
-                <div class="impl-scope-row">
-                  <span class="impl-scope-row-label">Inherited</span>
-                  <div class="impl-scope-chips-inline">
-                    <span class="impl-scope-chip">Okta groups</span>
-                    <span class="impl-scope-chip">AWS IAM roles</span>
-                    <span class="impl-scope-chip">Snowflake role grants</span>
-                    <span class="impl-scope-chip">GitHub teams</span>
-                    <span class="impl-scope-chip">Jira projects</span>
-                    <span class="impl-scope-chip">Linear workspaces</span>
-                    <span class="impl-scope-chip">Salesforce profiles</span>
-                  </div>
-                </div>
-                <div class="impl-scope-row">
-                  <span class="impl-scope-row-label">Narrowed by Pam</span>
-                  <div class="impl-scope-chips-inline">
-                    <span class="impl-scope-chip narrowed">— Sandbox environments</span>
-                    <span class="impl-scope-chip narrowed">— Personal admin accounts</span>
-                  </div>
-                </div>
-                <div class="impl-scope-row" style="margin-top:6px;">
-                  <span class="impl-scope-row-label">&nbsp;</span>
-                  <div style="font-size:11px;color:var(--text-tertiary);line-height:1.5;">Scope can be narrowed below the requirements' scope, never expanded above it.</div>
-                </div>
-              </div>
-
-              <div class="impl-section-label">Linked policies <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--text-tertiary);">— what we commit to</span></div>
-              <div>
-                <div class="impl-link-row">
-                  <div class="impl-link-icon">
-                    <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M10 2v3h3" stroke="currentColor" stroke-width="1.4"/></svg>
-                  </div>
-                  <div class="impl-link-stack">
-                    <div class="impl-link-title"><a>Access Control Policy §2.1 — Lifecycle of Access</a></div>
-                    <div class="impl-link-meta"><span>v3.2 · Approved 2026-04-12 · Section anchor</span></div>
-                  </div>
-                  <svg class="impl-link-arrow" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M5 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                </div>
-                <div class="impl-link-row">
-                  <div class="impl-link-icon">
-                    <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M10 2v3h3" stroke="currentColor" stroke-width="1.4"/></svg>
-                  </div>
-                  <div class="impl-link-stack">
-                    <div class="impl-link-title"><a>Access Control Policy §3.4 — Approval Matrix</a></div>
-                    <div class="impl-link-meta"><span>v3.2 · Approved 2026-04-12 · Section anchor</span></div>
-                  </div>
-                  <svg class="impl-link-arrow" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M5 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                </div>
-                <div class="impl-link-row">
-                  <div class="impl-link-icon">
-                    <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M10 2v3h3" stroke="currentColor" stroke-width="1.4"/></svg>
-                  </div>
-                  <div class="impl-link-stack">
-                    <div class="impl-link-title"><a>Acceptable Use Policy §1.2 — Account Use</a></div>
-                    <div class="impl-link-meta"><span>v2.0 · Approved 2025-12-04 · Section anchor</span></div>
-                  </div>
-                  <svg class="impl-link-arrow" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M5 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                </div>
-              </div>
-
-              <div class="impl-section-label" style="margin-top:18px;">Linked procedures <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--text-tertiary);">— how it's executed</span></div>
-              <div>
-                <div class="impl-link-row">
-                  <div class="impl-link-icon">
-                    <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.4"/><path d="M8 5v3l2 1.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
-                  </div>
-                  <div class="impl-link-stack">
-                    <div class="impl-link-title"><a>Access request workflow</a></div>
-                    <div class="impl-link-meta">
-                      <span class="impl-link-meta-item"><strong>Owner</strong> IT Ops</span>
-                      <span class="impl-link-meta-item"><strong>Trigger</strong> Jira ticket</span>
-                      <span class="impl-link-meta-item"><strong>System</strong> Jira</span>
-                      <span class="impl-link-meta-item"><strong>Cadence</strong> Ad-hoc</span>
-                    </div>
-                  </div>
-                  <svg class="impl-link-arrow" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M5 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                </div>
-                <div class="impl-link-row">
-                  <div class="impl-link-icon">
-                    <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.4"/><path d="M8 5v3l2 1.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
-                  </div>
-                  <div class="impl-link-stack">
-                    <div class="impl-link-title"><a>Quarterly access review</a></div>
-                    <div class="impl-link-meta">
-                      <span class="impl-link-meta-item"><strong>Owner</strong> Security</span>
-                      <span class="impl-link-meta-item"><strong>Trigger</strong> Calendar reminder</span>
-                      <span class="impl-link-meta-item"><strong>System</strong> Vanta + Okta</span>
-                      <span class="impl-link-meta-item"><strong>Cadence</strong> Quarterly</span>
-                    </div>
-                  </div>
-                  <svg class="impl-link-arrow" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M5 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                </div>
-                <div class="impl-link-row">
-                  <div class="impl-link-icon">
-                    <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.4"/><path d="M8 5v3l2 1.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
-                  </div>
-                  <div class="impl-link-stack">
-                    <div class="impl-link-title"><a>Termination access revocation</a></div>
-                    <div class="impl-link-meta">
-                      <span class="impl-link-meta-item"><strong>Owner</strong> IT Ops + HRBP</span>
-                      <span class="impl-link-meta-item"><strong>Trigger</strong> BambooHR offboard</span>
-                      <span class="impl-link-meta-item"><strong>System</strong> BambooHR + Okta</span>
-                      <span class="impl-link-meta-item"><strong>Cadence</strong> Per termination</span>
-                    </div>
-                  </div>
-                  <svg class="impl-link-arrow" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M5 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                </div>
-              </div>
-
-              <div class="first-class-note">
-                <span class="first-class-note-dot"></span>
-                Procedures will be a first-class object in CCF v3. Operational metadata shown here is pulled from procedure headers today.
-              </div>
-
-              <div class="design-adequacy">
-                <div class="design-adequacy-icon">!</div>
-                <div class="design-adequacy-body">
-                  <strong>Design adequacy:</strong> covers SOC 2 CC 6.1, CC 6.3, ISO A.9.1.1, HIPAA §164.308(a)(4)(ii)(B), Acme MSA §4.2, and RT-014. <strong>ISO A.9.4.3 mapped but not covered</strong> — implementation does not address password rotation cadence or complexity. This contributes to the <em>Partial</em> design rating.
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-          <!-- Zone 4: Evidence / proof -->
-          <div class="card" id="evidence">
-            <div class="card-header">
-              <div class="card-header-text">
-                <div class="card-title">
-                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="#16a44a" stroke-width="1.4"/><path d="M5.5 8l2 2 3-3" stroke="#16a44a" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  Evidence
-                </div>
-                <div class="card-subtitle">Proof the implementation operates as designed.</div>
-              </div>
-              <div class="card-actions">
-                <button class="btn-secondary">
-                  <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-                  Add test
-                </button>
-                <button class="btn-secondary">
-                  <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
-                  Attach document
-                </button>
-              </div>
-            </div>
-            <div class="card-body">
-
-              <div class="ev-section-label">Tests · 3</div>
-              <div>
-                <div class="ev-row">
-                  <div class="ev-icon">
-                    <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><rect x="3" y="2" width="10" height="12" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M5.5 6h5M5.5 9h3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
-                  </div>
-                  <div class="ev-stack">
-                    <div class="ev-title">Access Control Policy approved</div>
-                    <div class="ev-meta">Last validated 2026-04-12 (52 days ago) · CISO re-approval · Annual cadence</div>
-                  </div>
-                  <span class="ev-status pass">✓ Pass</span>
-                </div>
-                <div class="ev-row">
-                  <div class="ev-icon">
-                    <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><rect x="3" y="2" width="10" height="12" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M5.5 6h5M5.5 9h3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
-                  </div>
-                  <div class="ev-stack">
-                    <div class="ev-title">Information Security Roles & Responsibilities</div>
-                    <div class="ev-meta"><span class="ev-stale">Last validated 2025-11-30 — 187 days ago (stale)</span> · Annual cadence missed</div>
-                  </div>
-                  <span class="ev-status fail">✕ Fail</span>
-                </div>
-                <div class="ev-row">
-                  <div class="ev-icon">
-                    <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><rect x="3" y="2" width="10" height="12" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M5.5 6h5M5.5 9h3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
-                  </div>
-                  <div class="ev-stack">
-                    <div class="ev-title">Access request ticket history</div>
-                    <div class="ev-meta">Sampled 12 tickets · 3 missing approval records · Last run 2026-05-29 · Nightly</div>
-                  </div>
-                  <span class="ev-status fail">✕ Fail</span>
-                </div>
-              </div>
-
-              <div class="ev-section-label">Documents · 3</div>
-              <div>
-                <div class="ev-row">
-                  <div class="ev-icon">
-                    <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M10 2v3h3" stroke="currentColor" stroke-width="1.4"/></svg>
-                  </div>
-                  <div class="ev-stack">
-                    <div class="ev-title">Access Control Policy v3.2</div>
-                    <div class="ev-meta">Owner Mira Patel · Approved 2026-04-12 · Annual review</div>
-                  </div>
-                  <span class="ev-status pass">Current</span>
-                </div>
-                <div class="ev-row">
-                  <div class="ev-icon">
-                    <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M10 2v3h3" stroke="currentColor" stroke-width="1.4"/></svg>
-                  </div>
-                  <div class="ev-stack">
-                    <div class="ev-title">Information Security Roles & Responsibilities v1.4</div>
-                    <div class="ev-meta"><span class="ev-stale">Owner Maria Chen · Last reviewed 2025-11-30 (stale)</span></div>
-                  </div>
-                  <span class="ev-status fail">Stale</span>
-                </div>
-                <div class="ev-row">
-                  <div class="ev-icon">
-                    <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M10 2v3h3" stroke="currentColor" stroke-width="1.4"/></svg>
-                  </div>
-                  <div class="ev-stack">
-                    <div class="ev-title">Q1 2026 Access Review Export</div>
-                    <div class="ev-meta">Owner Security · Exported 2026-04-04 · 312 user-permission pairs reviewed</div>
-                  </div>
-                  <span class="ev-status pass">Current</span>
-                </div>
-              </div>
-
-              <div class="gap-callout">
-                <div class="gap-icon">!</div>
-                <div class="gap-body">
-                  <div class="gap-title">Design ↔ evidence gap detected</div>
-                  <div class="gap-text">
-                    The implementation says the policy covers <strong>password rotation and complexity</strong>. No test validates rotation enforcement on Okta, AWS, or Snowflake — and the policy text doesn't actually define those values either. Two options: <a class="card-link-btn">add a configuration test</a> or <a class="card-link-btn">remove the claim from the implementation</a>.
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-          <!-- Zone 5: Health detail -->
-          <div class="card" id="health">
-            <div class="card-header">
-              <div class="card-header-text">
-                <div class="card-title">
-                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2 8h3l2-4 3 8 2-4h2" stroke="#181724" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  Health
-                </div>
-                <div class="card-subtitle">Design adequacy × operating effectiveness — never one number, never collapsed.</div>
-              </div>
-              <div class="card-actions">
-                <a class="card-link-btn">View 90-day trend</a>
-              </div>
-            </div>
-            <div class="card-body">
-
-              <div class="health-axes-row">
-
-                <div class="health-axis-card">
-                  <div class="health-axis-head">
-                    <span class="health-axis-name">Design quality</span>
-                  </div>
-                  <div class="health-axis-value warn"><span class="ch-dot warn"></span>Partial</div>
-                  <div class="health-axis-reason">
-                    Implementation covers 6 of 7 mapped requirements. <strong>ISO A.9.4.3 (password management)</strong> is mapped but the implementation does not meet its bar.
-                  </div>
-                  <div class="health-axis-trend">
-                    <svg class="sparkline" viewBox="0 0 200 28" preserveAspectRatio="none">
-                      <polyline fill="none" stroke="#22c55e" stroke-width="1.5" points="0,5 20,5 40,5 60,5 80,5 100,18 120,18 140,18 160,18 180,18 200,18"/>
-                    </svg>
-                    <span>Stable since 2026-03-18</span>
-                  </div>
-                </div>
-
-                <div class="health-axis-card">
-                  <div class="health-axis-head">
-                    <span class="health-axis-name">Operating effectiveness</span>
-                  </div>
-                  <div class="health-axis-value warn"><span class="ch-dot warn"></span>At risk</div>
-                  <div class="health-axis-reason">
-                    <strong>2 of 3 tests failing</strong>. Roles & Responsibilities doc is 187d stale; ticket history sample regressed on 2026-05-20 with 3 of 12 sampled tickets missing approval records.
-                  </div>
-                  <div class="health-axis-trend">
-                    <svg class="sparkline" viewBox="0 0 200 28" preserveAspectRatio="none">
-                      <polyline fill="none" stroke="#22c55e" stroke-width="1.5" points="0,5 20,5 40,5 60,5 80,5 100,5 120,5 140,18 160,18 180,18 200,18"/>
-                    </svg>
-                    <span>Dropped 2026-05-20 · 14d at risk</span>
-                  </div>
-                </div>
-
-              </div>
-
-              <div class="never-vs-failing">
-                <div class="nvf-icon">i</div>
-                <div class="nvf-body">
-                  <strong>This control is implemented but failing</strong> — not unstarted. The design exists and is approved; the evidence has decayed. Today Vanta would mark these the same; this page distinguishes them so the work can be triaged correctly.
-                </div>
-              </div>
-
-              <dl class="health-detail-grid">
-                <dt>State</dt>
-                <dd>Implemented · effectiveness decay</dd>
-                <dt>At-risk duration</dt>
-                <dd>14 days</dd>
-                <dt>Last green</dt>
-                <dd>2026-05-19 (15 days ago)</dd>
-                <dt>Fix in progress</dt>
-                <dd><span class="badge badge-info">SEC-1042 · Maria Chen · due 2026-06-10</span></dd>
-                <dt>Coverage confidence</dt>
-                <dd>High for integrated systems · <span class="ev-stale">low</span> for shadow systems (see right rail)</dd>
-              </dl>
-
-            </div>
-          </div>
-
-          <!-- Zone 6: Coordination -->
-          <div class="card" id="coordination">
-            <div class="card-header">
-              <div class="card-header-text">
-                <div class="card-title">
-                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="5.5" cy="5.5" r="2.5" stroke="#b45309" stroke-width="1.4"/><circle cx="10.5" cy="5.5" r="2.5" stroke="#b45309" stroke-width="1.4"/><path d="M1 13.5c0-2.49 2.01-4.5 4.5-4.5M9 14.5c0-2.49 2.01-4.5 4.5-4.5" stroke="#b45309" stroke-width="1.4" stroke-linecap="round"/></svg>
-                  Coordination
-                </div>
-                <div class="card-subtitle">Ownership, open work, and what the agent is doing about it.</div>
-              </div>
-            </div>
-            <div class="card-body">
-
-              <div class="impl-section-label">Accountability chain</div>
-              <div class="coord-tree">
-                <div class="coord-node root">
-                  <div class="coord-node-avatar">MP</div>
-                  <div class="coord-node-stack">
-                    <div class="coord-node-name">Mira Patel</div>
-                    <div class="coord-node-role">Head of Security · Control owner</div>
-                  </div>
-                  <span class="coord-node-tag">Accountable</span>
-                </div>
-                <div class="coord-children">
-                  <div class="coord-node">
-                    <div class="coord-node-avatar">MP</div>
-                    <div class="coord-node-stack">
-                      <div class="coord-node-name">Mira Patel</div>
-                      <div class="coord-node-role">Owns evidence · Access Control Policy</div>
-                    </div>
-                    <span class="coord-node-tag">Document</span>
-                  </div>
-                  <div class="coord-node">
-                    <div class="coord-node-avatar">MC</div>
-                    <div class="coord-node-stack">
-                      <div class="coord-node-name">Maria Chen</div>
-                      <div class="coord-node-role">HR Ops · Owns Roles & Responsibilities doc</div>
-                    </div>
-                    <span class="coord-node-tag">Document</span>
-                  </div>
-                  <div class="coord-node">
-                    <div class="coord-node-avatar">SP</div>
-                    <div class="coord-node-stack">
-                      <div class="coord-node-name">Sam Patel</div>
-                      <div class="coord-node-role">IT Ops · Owns access request ticket evidence</div>
-                    </div>
-                    <span class="coord-node-tag">Test</span>
-                  </div>
-                  <div class="coord-node">
-                    <div class="coord-node-avatar">PS</div>
-                    <div class="coord-node-stack">
-                      <div class="coord-node-name">Priya Singh</div>
-                      <div class="coord-node-role">IT · Okta system owner</div>
-                    </div>
-                    <span class="coord-node-tag">System</span>
-                  </div>
-                  <div class="coord-node">
-                    <div class="coord-node-avatar">DW</div>
-                    <div class="coord-node-stack">
-                      <div class="coord-node-name">Daniel Wu</div>
-                      <div class="coord-node-role">Platform · AWS IAM system owner</div>
-                    </div>
-                    <span class="coord-node-tag">System</span>
-                  </div>
-                  <div class="coord-node">
-                    <div class="coord-node-avatar">LH</div>
-                    <div class="coord-node-stack">
-                      <div class="coord-node-name">Layla Hassan</div>
-                      <div class="coord-node-role">Data · Snowflake system owner</div>
-                    </div>
-                    <span class="coord-node-tag">System</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="impl-section-label" style="margin-top:20px;">Open work · 2</div>
-              <div class="work-table">
+              <div class="card-body">
                 <div class="work-row">
                   <span class="work-row-id">SEC-1042</span>
-                  <span class="work-row-title">Refresh Information Security Roles & Responsibilities doc</span>
-                  <span class="work-row-assignee"><span class="owner-avatar-sm">MC</span>Maria Chen</span>
-                  <span class="work-row-due">Due 2026-06-10</span>
+                  <span class="work-row-title">Refresh Roles & Responsibilities doc</span>
+                  <span class="work-row-assignee"><span class="owner-avatar-sm">M</span>Maria Chen</span>
+                  <span class="work-row-due">Due Jun 10</span>
                   <span class="work-row-status"><span class="badge badge-info">In progress</span></span>
                 </div>
                 <div class="work-row">
                   <span class="work-row-id">SEC-1043</span>
                   <span class="work-row-title">Backfill 3 missing approval records</span>
-                  <span class="work-row-assignee"><span class="owner-avatar-sm">SP</span>Sam Patel</span>
-                  <span class="work-row-due">Due 2026-06-05</span>
+                  <span class="work-row-assignee"><span class="owner-avatar-sm">S</span>Sam Patel</span>
+                  <span class="work-row-due">Due Jun 5</span>
                   <span class="work-row-status"><span class="badge badge-warn">Open</span></span>
                 </div>
               </div>
+            </div>
 
-              <div class="impl-section-label" style="margin-top:20px;">Agent activity</div>
-              <div class="agent-feed">
-                <div class="agent-event">
-                  <div class="agent-event-icon">
-                    <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M8 2L9.3 5.7L13 7L9.3 8.3L8 12L6.7 8.3L3 7L6.7 5.7L8 2Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+          </div>
+
+          <!-- REQUIREMENTS -->
+          <div class="tab-panel" data-tab="requirements">
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">Requirements satisfied<span class="card-title-count">· 7</span></div>
+                <a class="card-action">+ Map requirement</a>
+              </div>
+              <div class="card-body">
+                <div class="req-table">
+
+                  <div class="req-row">
+                    <span class="req-source framework">Framework</span>
+                    <span class="req-ref">SOC 2 CC 6.1</span>
+                    <span class="req-title">Logical and physical access controls</span>
+                    <span class="req-scope-chip">Production</span>
+                    <span class="req-status ok">✓ Satisfied</span>
                   </div>
-                  <div class="agent-event-body">
-                    <div class="agent-event-text">Re-routed <strong>SEC-1042</strong> follow-up: Maria Chen on PTO through 2026-06-04. Notified Priya Singh as interim.</div>
-                    <div class="agent-event-meta">2026-06-02 · 14:22</div>
+                  <div class="req-row">
+                    <span class="req-source framework">Framework</span>
+                    <span class="req-ref">SOC 2 CC 6.3</span>
+                    <span class="req-title">Role-based access management</span>
+                    <span class="req-scope-chip">Production</span>
+                    <span class="req-status ok">✓ Satisfied</span>
                   </div>
-                </div>
-                <div class="agent-event">
-                  <div class="agent-event-icon">
-                    <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M8 2L9.3 5.7L13 7L9.3 8.3L8 12L6.7 8.3L3 7L6.7 5.7L8 2Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+                  <div class="req-row">
+                    <span class="req-source framework">Framework</span>
+                    <span class="req-ref">ISO 27001 A.9.1.1</span>
+                    <span class="req-title">Access control policy</span>
+                    <span class="req-scope-chip">All BUs</span>
+                    <span class="req-status ok">✓ Satisfied</span>
                   </div>
-                  <div class="agent-event-body">
-                    <div class="agent-event-text">Nightly sample detected <strong>3 missing approval records</strong> on access tickets. Opened SEC-1043 against Sam Patel.</div>
-                    <div class="agent-event-meta">2026-05-29 · 03:00</div>
+                  <div class="req-row below-bar">
+                    <span class="req-source framework">Framework</span>
+                    <span class="req-ref">ISO 27001 A.9.4.3</span>
+                    <span class="req-title">Password management system</span>
+                    <span class="req-scope-chip">All BUs</span>
+                    <span class="req-status-tip">
+                      <span class="req-status warn">⚠ Below bar</span>
+                      <span class="tip">Requires rotation cadence and minimum complexity. Implementation addresses neither. Extend the implementation or remove this mapping.</span>
+                    </span>
                   </div>
-                </div>
-                <div class="agent-event">
-                  <div class="agent-event-icon">
-                    <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M8 2L9.3 5.7L13 7L9.3 8.3L8 12L6.7 8.3L3 7L6.7 5.7L8 2Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+                  <div class="req-row">
+                    <span class="req-source regulatory">Regulatory</span>
+                    <span class="req-ref">HIPAA §164.308(a)(4)(ii)(B)</span>
+                    <span class="req-title">Access authorization</span>
+                    <span class="req-scope-chip">PHI · Production</span>
+                    <span class="req-status ok">✓ Satisfied</span>
                   </div>
-                  <div class="agent-event-body">
-                    <div class="agent-event-text">Nudged <strong>Maria Chen</strong> on SEC-1042. No response in 5 days; queued escalation to Priya Singh.</div>
-                    <div class="agent-event-meta">2026-05-28 · 09:15</div>
+                  <div class="req-row">
+                    <span class="req-source commitment">Commitment</span>
+                    <span class="req-ref">Acme MSA §4.2</span>
+                    <span class="req-title">Customer data access procedures</span>
+                    <span class="req-scope-chip">Acme tenant</span>
+                    <span class="req-status ok">✓ Satisfied</span>
                   </div>
-                </div>
-                <div class="agent-event">
-                  <div class="agent-event-icon">
-                    <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M8 2L9.3 5.7L13 7L9.3 8.3L8 12L6.7 8.3L3 7L6.7 5.7L8 2Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+                  <div class="req-row">
+                    <span class="req-source risk">Risk treatment</span>
+                    <span class="req-ref">RT-014</span>
+                    <span class="req-title">Unauthorized internal access</span>
+                    <span class="req-scope-chip">Production</span>
+                    <span class="req-status ok">✓ Satisfied</span>
                   </div>
-                  <div class="agent-event-body">
-                    <div class="agent-event-text">Effectiveness dropped to <strong>At risk</strong> following ticket-history regression.</div>
-                    <div class="agent-event-meta">2026-05-20 · 11:45</div>
-                  </div>
+
                 </div>
               </div>
-
             </div>
           </div>
 
-          <!-- Zone 7: Maturity -->
-          <div class="card" id="maturity">
-            <div class="card-header">
-              <div class="card-header-text">
-                <div class="card-title">
-                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2 14h12M3 11l3-3 3 2 4-5" stroke="#8e34e3" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  Maturity
-                </div>
-                <div class="card-subtitle">Where this control sits on the CMMI-style maturity ladder, and where it's going.</div>
+          <!-- IMPLEMENTATION -->
+          <div class="tab-panel" data-tab="implementation">
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">Implementation</div>
+                <a class="card-action">Edit</a>
               </div>
-            </div>
-            <div class="card-body">
+              <div class="card-body">
 
-              <div class="maturity-level-row">
-                <div class="maturity-level current">
-                  <div class="maturity-level-label">Current</div>
-                  <div class="maturity-level-value">Level 3 — Defined</div>
+                <div class="impl-statement">
+                  A written <strong>Access Control Policy</strong> defines the lifecycle of access: request, approval, provisioning, role modification, quarterly review, and revocation on role change or termination. Requests are Jira tickets in the SEC project, approved by the system owner of record, and provisioned within SLAs (4h standard, 1h emergency). The policy is reviewed annually by the CISO and acknowledged at hire via the HR Onboarding Workflow.
                 </div>
-                <svg class="maturity-arrow" width="20" height="20" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                <div class="maturity-level">
-                  <div class="maturity-level-label">Goal</div>
-                  <div class="maturity-level-value">Level 4 — Managed</div>
+
+                <div class="scope-line">
+                  <div class="scope-line-row">
+                    <span class="scope-line-label">Inherited</span>
+                    <span class="scope-line-val">Okta · AWS · Snowflake · GitHub · Jira · Linear · Salesforce</span>
+                  </div>
+                  <div class="scope-line-row">
+                    <span class="scope-line-label">Narrowed</span>
+                    <span class="scope-line-val">— Sandbox · — Personal admin accounts</span>
+                  </div>
                 </div>
+
+                <details class="artifacts">
+                  <summary>
+                    <div class="artifacts-summary">
+                      <div class="artifacts-stat">
+                        <span class="artifacts-stat-val">3</span>
+                        <span class="artifacts-stat-label">Policies</span>
+                      </div>
+                      <div class="artifacts-divider"></div>
+                      <div class="artifacts-stat">
+                        <span class="artifacts-stat-val">3</span>
+                        <span class="artifacts-stat-label">Procedures</span>
+                      </div>
+                      <span class="artifacts-cta"></span>
+                    </div>
+                  </summary>
+                  <div class="artifacts-list">
+                    <div class="artifact-row">
+                      <span class="artifact-kind">Policy</span>
+                      <span class="artifact-title"><a>Access Control Policy §2.1 — Lifecycle of Access</a></span>
+                      <span class="artifact-meta">v3.2</span>
+                    </div>
+                    <div class="artifact-row">
+                      <span class="artifact-kind">Policy</span>
+                      <span class="artifact-title"><a>Access Control Policy §3.4 — Approval Matrix</a></span>
+                      <span class="artifact-meta">v3.2</span>
+                    </div>
+                    <div class="artifact-row">
+                      <span class="artifact-kind">Policy</span>
+                      <span class="artifact-title"><a>Acceptable Use Policy §1.2 — Account Use</a></span>
+                      <span class="artifact-meta">v2.0</span>
+                    </div>
+                    <div class="artifact-row">
+                      <span class="artifact-kind">Procedure</span>
+                      <span class="artifact-title"><a>Access request workflow</a></span>
+                      <span class="artifact-meta">IT Ops · Jira · ad-hoc</span>
+                    </div>
+                    <div class="artifact-row">
+                      <span class="artifact-kind">Procedure</span>
+                      <span class="artifact-title"><a>Quarterly access review</a></span>
+                      <span class="artifact-meta">Security · quarterly</span>
+                    </div>
+                    <div class="artifact-row">
+                      <span class="artifact-kind">Procedure</span>
+                      <span class="artifact-title"><a>Termination access revocation</a></span>
+                      <span class="artifact-meta">IT Ops + HRBP · per termination</span>
+                    </div>
+                  </div>
+                </details>
+
               </div>
-
-              <div class="impl-section-label">Sub-criteria progress</div>
-              <div class="maturity-criteria-list">
-                <div class="maturity-criterion">
-                  <div class="maturity-criterion-icon met">✓</div>
-                  <div class="maturity-criterion-text">Documented<span class="maturity-criterion-sub"> · Access Control Policy v3.2, current</span></div>
-                </div>
-                <div class="maturity-criterion">
-                  <div class="maturity-criterion-icon met">✓</div>
-                  <div class="maturity-criterion-text">Repeatable<span class="maturity-criterion-sub"> · Procedures linked, quarterly cadence in place</span></div>
-                </div>
-                <div class="maturity-criterion">
-                  <div class="maturity-criterion-icon partial">~</div>
-                  <div class="maturity-criterion-text">Measured with metrics<span class="maturity-criterion-sub"> · Access review pass-rate tracked. Request SLA not tracked yet.</span></div>
-                </div>
-                <div class="maturity-criterion">
-                  <div class="maturity-criterion-icon todo">○</div>
-                  <div class="maturity-criterion-text">Continuous improvement loop<span class="maturity-criterion-sub"> · No retro cadence defined</span></div>
-                </div>
-              </div>
-
-              <div class="maturity-cadence">
-                <div class="maturity-cadence-item">
-                  <span class="maturity-cadence-label">Reassessment cadence</span>
-                  <span class="maturity-cadence-val">Annual</span>
-                </div>
-                <div class="maturity-cadence-item">
-                  <span class="maturity-cadence-label">Next review</span>
-                  <span class="maturity-cadence-val">2026-12-15</span>
-                </div>
-                <div class="maturity-cadence-item">
-                  <span class="maturity-cadence-label">Last assessed</span>
-                  <span class="maturity-cadence-val">2025-12-15 · Mira Patel</span>
-                </div>
-              </div>
-
             </div>
           </div>
 
-          <!-- Zone 9: History -->
-          <div class="card" id="history">
-            <div class="card-header">
-              <div class="card-header-text">
-                <div class="card-title">
-                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="#3b3a52" stroke-width="1.4"/><path d="M8 4v4l3 2" stroke="#3b3a52" stroke-width="1.4" stroke-linecap="round"/></svg>
-                  History
-                </div>
-                <div class="card-subtitle">Change log, mapping decisions, and point-in-time capture for audit.</div>
+          <!-- EVIDENCE -->
+          <div class="tab-panel" data-tab="evidence">
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">Evidence<span class="card-title-count">· 6</span></div>
+                <a class="card-action">+ Add</a>
               </div>
-              <div class="card-actions">
+              <div class="card-body">
+
+                <div class="ev-row">
+                  <span class="ev-kind">Test</span>
+                  <div class="ev-stack">
+                    <div class="ev-title"><a>Access Control Policy approved</a></div>
+                    <div class="ev-meta">Last validated Apr 12 · CISO re-approval · Annual</div>
+                  </div>
+                  <span class="ev-status pass">✓ Pass</span>
+                </div>
+                <div class="ev-row">
+                  <span class="ev-kind">Test</span>
+                  <div class="ev-stack">
+                    <div class="ev-title"><a>Information Security Roles & Responsibilities</a></div>
+                    <div class="ev-meta"><span class="ev-stale">Last validated 187d ago — stale</span> · Annual cadence missed</div>
+                  </div>
+                  <span class="ev-status fail">✕ Fail</span>
+                </div>
+                <div class="ev-row">
+                  <span class="ev-kind">Test</span>
+                  <div class="ev-stack">
+                    <div class="ev-title"><a>Access request ticket history</a></div>
+                    <div class="ev-meta">12 sampled · 3 missing approvals · Last run May 29 · Nightly</div>
+                  </div>
+                  <span class="ev-status fail">✕ Fail</span>
+                </div>
+                <div class="ev-row">
+                  <span class="ev-kind">Doc</span>
+                  <div class="ev-stack">
+                    <div class="ev-title"><a>Access Control Policy v3.2</a></div>
+                    <div class="ev-meta">Mira Patel · Approved Apr 12</div>
+                  </div>
+                  <span class="ev-status pass">Current</span>
+                </div>
+                <div class="ev-row">
+                  <span class="ev-kind">Doc</span>
+                  <div class="ev-stack">
+                    <div class="ev-title"><a>Info Sec Roles & Responsibilities v1.4</a></div>
+                    <div class="ev-meta"><span class="ev-stale">Maria Chen · Last reviewed Nov 30 2025</span></div>
+                  </div>
+                  <span class="ev-status fail">Stale</span>
+                </div>
+                <div class="ev-row">
+                  <span class="ev-kind">Doc</span>
+                  <div class="ev-stack">
+                    <div class="ev-title"><a>Q1 2026 Access Review Export</a></div>
+                    <div class="ev-meta">Security · Exported Apr 4 · 312 pairs reviewed</div>
+                  </div>
+                  <span class="ev-status pass">Current</span>
+                </div>
+
+                <div class="gap-callout">
+                  <div class="gap-icon">!</div>
+                  <div>
+                    <div class="gap-title">Design ↔ evidence gap</div>
+                    <div class="gap-text">Implementation says the policy covers password rotation and complexity. No test validates rotation on Okta, AWS, or Snowflake — and the policy text doesn't define values either. <a>Add a test</a> or <a>remove the claim</a>.</div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- HISTORY -->
+          <div class="tab-panel" data-tab="history">
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">History</div>
                 <button class="pit-capture">
                   <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><rect x="2" y="3.5" width="12" height="10" rx="1.5" stroke="currentColor" stroke-width="1.4"/><circle cx="8" cy="8.5" r="2.5" stroke="currentColor" stroke-width="1.4"/></svg>
                   Capture point-in-time
                 </button>
               </div>
-            </div>
-            <div class="card-body">
-
-              <div class="timeline">
-
-                <div class="timeline-event">
-                  <div class="timeline-dot brand"></div>
-                  <div class="timeline-body">
-                    <div class="timeline-text">Agent re-routed open work on <strong>SEC-1042</strong> (Maria Chen → Priya Singh).</div>
-                    <div class="timeline-meta">2026-06-02 14:22 · Vanta agent</div>
-                  </div>
+              <div class="card-body">
+                <div class="timeline">
+                  <div class="timeline-event"><div class="timeline-dot brand"></div><div><div class="timeline-text">Agent re-routed <strong>SEC-1042</strong> (Maria Chen → Priya Singh).</div><div class="timeline-meta">Jun 2 · 14:22</div></div></div>
+                  <div class="timeline-event"><div class="timeline-dot"></div><div><div class="timeline-text"><strong>Mira Patel</strong> edited implementation (SLA: 4h → 1h emergency).</div><div class="timeline-meta">Jun 2 · 09:14</div></div></div>
+                  <div class="timeline-event"><div class="timeline-dot brand"></div><div><div class="timeline-text">Mapping added: <strong>HIPAA §164.308(a)(4)(ii)(B)</strong>. Agent-suggested, Pam-accepted.</div><div class="timeline-meta">May 28</div></div></div>
+                  <div class="timeline-event"><div class="timeline-dot fail"></div><div><div class="timeline-text">Test failed: <strong>Access request ticket history</strong>.</div><div class="timeline-meta">May 20</div></div></div>
+                  <div class="timeline-event"><div class="timeline-dot ok"></div><div><div class="timeline-text">Test passed: <strong>Access Control Policy approved</strong>.</div><div class="timeline-meta">Apr 12</div></div></div>
+                  <div class="timeline-event"><div class="timeline-dot warn"></div><div><div class="timeline-text">Mapping added: <strong>ISO 27001 A.9.4.3</strong>, flagged below-bar at creation.</div><div class="timeline-meta">Mar 18</div></div></div>
+                  <div class="timeline-event"><div class="timeline-dot fail"></div><div><div class="timeline-text">Test failed: <strong>Roles & Responsibilities</strong>.</div><div class="timeline-meta">Nov 30 2025</div></div></div>
+                  <div class="timeline-event"><div class="timeline-dot"></div><div><div class="timeline-text">Owner change: Jordan Lee → <strong>Mira Patel</strong>.</div><div class="timeline-meta">Sep 1 2025</div></div></div>
+                  <div class="timeline-event"><div class="timeline-dot brand"></div><div><div class="timeline-text">Control created via merge: <strong>"Access policy" (SOC 2) + "Access management procedures" (ISO)</strong>.</div><div class="timeline-meta">Jun 15 2025 · Pam Diaz</div></div></div>
                 </div>
-
-                <div class="timeline-event">
-                  <div class="timeline-dot"></div>
-                  <div class="timeline-body">
-                    <div class="timeline-text"><strong>Mira Patel</strong> edited implementation statement (SLA tightening: 4h → 1h emergency).</div>
-                    <div class="timeline-meta">2026-06-02 09:14</div>
-                  </div>
-                </div>
-
-                <div class="timeline-event">
-                  <div class="timeline-dot brand"></div>
-                  <div class="timeline-body">
-                    <div class="timeline-text">Mapping added: <strong>HIPAA §164.308(a)(4)(ii)(B)</strong>. Suggested by agent, accepted by Pam Diaz.</div>
-                    <div class="timeline-meta">2026-05-28 14:01</div>
-                  </div>
-                </div>
-
-                <div class="timeline-event">
-                  <div class="timeline-dot fail"></div>
-                  <div class="timeline-body">
-                    <div class="timeline-text">Test failed: <strong>Access request ticket history</strong> (3 of 12 sampled tickets missing approvals).</div>
-                    <div class="timeline-meta">2026-05-20 11:45</div>
-                  </div>
-                </div>
-
-                <div class="timeline-event">
-                  <div class="timeline-dot ok"></div>
-                  <div class="timeline-body">
-                    <div class="timeline-text">Test passed: <strong>Access Control Policy approved</strong> (CISO re-approval, v3.2).</div>
-                    <div class="timeline-meta">2026-04-12 16:30</div>
-                  </div>
-                </div>
-
-                <div class="timeline-event">
-                  <div class="timeline-dot warn"></div>
-                  <div class="timeline-body">
-                    <div class="timeline-text">Mapping added: <strong>ISO 27001 A.9.4.3</strong> by Pam Diaz. Flagged as below-bar at creation — implementation does not address rotation.</div>
-                    <div class="timeline-meta">2026-03-18 10:02</div>
-                  </div>
-                </div>
-
-                <div class="timeline-event">
-                  <div class="timeline-dot fail"></div>
-                  <div class="timeline-body">
-                    <div class="timeline-text">Test failed: <strong>Information Security Roles & Responsibilities</strong> (annual review window missed).</div>
-                    <div class="timeline-meta">2025-11-30 00:00</div>
-                  </div>
-                </div>
-
-                <div class="timeline-event">
-                  <div class="timeline-dot"></div>
-                  <div class="timeline-body">
-                    <div class="timeline-text">Owner change: <strong>Jordan Lee → Mira Patel</strong>.</div>
-                    <div class="timeline-meta">2025-09-01 09:00</div>
-                  </div>
-                </div>
-
-                <div class="timeline-event">
-                  <div class="timeline-dot brand"></div>
-                  <div class="timeline-body">
-                    <div class="timeline-text">Control created via merge: combined <strong>"Access policy" (SOC 2)</strong> + <strong>"Access management procedures" (ISO 27001)</strong> into a single implementation.</div>
-                    <div class="timeline-meta">2025-06-15 13:11 · Decision authored by Pam Diaz</div>
-                  </div>
-                </div>
-
               </div>
-
             </div>
           </div>
 
-        </div><!-- /detail-main -->
+        </div>
 
-        <!-- Right sidebar -->
+        <!-- Right rail (always visible) -->
         <div class="detail-sidebar">
 
-          <div class="sidebar-section">
-            <div class="sidebar-section-label">Quick facts</div>
-            <div class="quick-grid">
-              <span class="quick-label">Control ID</span>
-              <span class="quick-value">VC-CTRL-0142</span>
-
-              <span class="quick-label">Lifecycle</span>
-              <span class="quick-value"><span class="badge badge-ok">Active</span></span>
-
-              <span class="quick-label">Control owner</span>
-              <span class="quick-value"><span class="owner-avatar-sm" style="margin-right:6px;">MP</span>Mira Patel</span>
-
-              <span class="quick-label">Rolls up to</span>
-              <span class="quick-value"><a href="index.html">gv-gc-pp-1</a></span>
-
-              <span class="quick-label">Framework refs</span>
-              <span class="quick-value">7 (1 below bar)</span>
-
-              <span class="quick-label">Tests</span>
-              <span class="quick-value">3 · 1 pass · 2 fail</span>
-
-              <span class="quick-label">Open work</span>
-              <span class="quick-value">2 items</span>
-
-              <span class="quick-label">Created</span>
-              <span class="quick-value">2025-06-15 (merge)</span>
-            </div>
-          </div>
-
-          <!-- Zone 8: Scope detail -->
-          <div class="sidebar-section">
-            <div class="sidebar-section-label">
-              <span>Scope detail</span>
-              <span class="sidebar-section-label-count">7 in scope · 2 manual · 2 shadow</span>
+          <div class="rail-section">
+            <div class="rail-label">
+              <span>Scope</span>
+              <span class="rail-label-count">7 in scope · 2 manual · 2 shadow</span>
             </div>
 
-            <div class="scope-block">
-              <div class="scope-block-head">
-                Integrated systems
-                <span class="scope-block-count">7</span>
-              </div>
-              <div class="system-row"><span class="system-dot ok"></span><span class="system-name">Okta</span><span class="system-sub">Production tenant</span></div>
+            <div class="scope-group">
+              <div class="scope-group-head">Integrated<span class="scope-group-count">7</span></div>
+              <div class="system-row"><span class="system-dot ok"></span><span class="system-name">Okta</span><span class="system-sub">Production</span></div>
               <div class="system-row"><span class="system-dot ok"></span><span class="system-name">AWS</span><span class="system-sub">3 accounts</span></div>
-              <div class="system-row"><span class="system-dot ok"></span><span class="system-name">Snowflake</span><span class="system-sub">Production warehouse</span></div>
+              <div class="system-row"><span class="system-dot ok"></span><span class="system-name">Snowflake</span><span class="system-sub">Production</span></div>
               <div class="system-row"><span class="system-dot ok"></span><span class="system-name">GitHub</span><span class="system-sub">Acme org</span></div>
               <div class="system-row"><span class="system-dot ok"></span><span class="system-name">Jira</span><span class="system-sub">SEC, ENG, OPS</span></div>
               <div class="system-row"><span class="system-dot ok"></span><span class="system-name">Linear</span><span class="system-sub">Engineering</span></div>
-              <div class="system-row"><span class="system-dot ok"></span><span class="system-name">Salesforce</span><span class="system-sub">Production org</span></div>
+              <div class="system-row"><span class="system-dot ok"></span><span class="system-name">Salesforce</span><span class="system-sub">Production</span></div>
             </div>
 
-            <div class="scope-block">
-              <div class="scope-block-head">
-                Known-uncovered <span style="font-weight:400;color:var(--text-tertiary);font-size:10px;">(manual)</span>
-                <span class="scope-block-count">2</span>
-              </div>
-              <div class="system-row"><span class="system-dot warn"></span><span class="system-name">analytics-db</span><span class="system-sub">Self-hosted PG · Layla Hassan</span></div>
-              <div class="system-row"><span class="system-dot warn"></span><span class="system-name">Compass</span><span class="system-sub">Internal admin tool · Daniel Wu</span></div>
+            <div class="scope-group">
+              <div class="scope-group-head">Known-uncovered<span class="scope-group-count">2</span></div>
+              <div class="system-row"><span class="system-dot warn"></span><span class="system-name">analytics-db</span><span class="system-sub">Self-hosted PG</span></div>
+              <div class="system-row"><span class="system-dot warn"></span><span class="system-name">Compass</span><span class="system-sub">Internal admin tool</span></div>
             </div>
 
-            <div class="scope-block">
-              <div class="scope-block-head">
-                Unknown / shadow <span style="font-weight:400;color:var(--error-text);font-size:10px;">(agent)</span>
-                <span class="scope-block-count">2</span>
-              </div>
-              <div class="system-row"><span class="system-dot unknown"></span><span class="system-name">Looker</span><span class="system-sub">"acme-prod" · no owner</span></div>
-              <div class="system-row"><span class="system-dot unknown"></span><span class="system-name">PagerDuty</span><span class="system-sub">Admin role · no owner</span></div>
-              <a class="shadow-cta">Triage 2 shadow systems →</a>
-            </div>
-
-            <div class="scope-block">
-              <div class="scope-block-head">Business units</div>
-              <div class="system-row"><span class="system-dot ok"></span><span class="system-name">Acme HQ</span><span class="system-sub">Active</span></div>
-            </div>
-
-            <div class="scope-block">
-              <div class="scope-block-head">NA states</div>
-              <div style="font-size:11px;color:var(--text-tertiary);">None for this control.</div>
-            </div>
-
-          </div>
-
-          <div class="sidebar-section">
-            <div class="sidebar-section-label">Continuous monitoring</div>
-            <div style="font-size:12px;color:var(--text-quiet);line-height:1.5;">
-              Tests run on their declared cadence; the agent watches between runs. The trend in <a class="card-link-btn" href="#health">Health</a> is continuous; the <a class="card-link-btn" href="#history">point-in-time</a> capture is exportable for audit.
+            <div class="scope-group">
+              <div class="scope-group-head">Shadow<span class="scope-group-count" style="color:var(--error-text);">2</span></div>
+              <div class="system-row"><span class="system-dot unknown"></span><span class="system-name">Looker</span><span class="system-sub">no owner</span></div>
+              <div class="system-row"><span class="system-dot unknown"></span><span class="system-name">PagerDuty</span><span class="system-sub">no owner</span></div>
+              <a class="shadow-cta">Triage shadow systems →</a>
             </div>
           </div>
 
-        </div><!-- /detail-sidebar -->
+          <div class="rail-section">
+            <div class="rail-label">Coordination</div>
+            <div class="coord-row">
+              <span class="coord-row-label">Owner</span>
+              <span class="owner-avatar-sm">M</span>
+              <span style="font-weight:500;color:var(--text-default);">Mira Patel</span>
+            </div>
+            <div class="coord-row">
+              <span class="coord-row-label">Evidence owners</span>
+              <span class="avatar-stack">
+                <span class="owner-avatar-sm">M</span>
+                <span class="owner-avatar-sm">S</span>
+                <span class="owner-avatar-sm">M</span>
+              </span>
+              <span style="font-size:11px;color:var(--text-tertiary);">3</span>
+            </div>
+            <div class="agent-summary">
+              <svg class="agent-summary-icon" width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M8 2L9.3 5.7L13 7L9.3 8.3L8 12L6.7 8.3L3 7L6.7 5.7L8 2Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+              <span>Agent acted 4× · last 14d</span>
+              <span class="agent-summary-link">View →</span>
+            </div>
+          </div>
 
-      </div><!-- /detail-body -->
+          <div class="rail-section">
+            <div class="rail-label">More</div>
+            <a class="more-link">
+              <svg class="more-link-icon" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2 8h3l2-4 3 8 2-4h2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Health detail & trend
+              <svg class="more-link-arrow" width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M5 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </a>
+            <a class="more-link">
+              <svg class="more-link-icon" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2 14h12M3 11l3-3 3 2 4-5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Maturity · Defined → Managed
+              <svg class="more-link-arrow" width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M5 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </a>
+            <a class="more-link">
+              <svg class="more-link-icon" width="14" height="14" viewBox="0 0 16 16" fill="none"><rect x="2" y="3.5" width="12" height="10" rx="1.5" stroke="currentColor" stroke-width="1.4"/><circle cx="8" cy="8.5" r="2.5" stroke="currentColor" stroke-width="1.4"/></svg>
+              Capture point-in-time
+              <svg class="more-link-arrow" width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M5 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </a>
+          </div>
 
+        </div>
+
+      </div>
     </main>
   </div>
 
+  <script>
+    function activate(name) {
+      document.querySelectorAll('.detail-tab').forEach(t => t.classList.toggle('active', t.dataset.tab === name));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.dataset.tab === name));
+    }
+    document.querySelectorAll('.detail-tab').forEach(tab => {
+      tab.addEventListener('click', () => activate(tab.dataset.tab));
+    });
+    document.querySelectorAll('[data-jump]').forEach(el => {
+      el.style.cursor = 'pointer';
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        activate(el.dataset.jump);
+        window.scrollTo({top: 0, behavior: 'smooth'});
+      });
+    });
+  </script>
 </body>
 </html>
