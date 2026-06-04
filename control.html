@@ -500,10 +500,83 @@
     }
     .ev-row:first-child { padding-top: 4px; border-top: none; }
     .ev-kind {
+      display: inline-flex; align-items: center; justify-content: center;
       font-size: 10px; font-weight: 600;
-      color: var(--text-tertiary);
       text-transform: uppercase; letter-spacing: 0.4px;
-      min-width: 44px;
+      padding: 3px 7px; border-radius: 3px;
+      min-width: 44px; flex-shrink: 0;
+    }
+    .ev-kind.test-kind { background: #eef1ff; color: #2748c8; }
+    .ev-kind.doc-kind { background: var(--bg-neutral); color: var(--text-quiet); }
+
+    /* Labeled chain — POLICY / PROCEDURES / TESTS inside Implementation */
+    .impl-chain { display: flex; flex-direction: column; gap: 14px; margin-top: 4px; }
+    .impl-chain-row {
+      display: grid; grid-template-columns: 90px 1fr;
+      gap: 12px; align-items: flex-start;
+    }
+    .impl-chain-label {
+      font-size: 11px; font-weight: 600;
+      color: var(--text-tertiary);
+      text-transform: uppercase; letter-spacing: 0.5px;
+      padding-top: 6px;
+    }
+    .impl-chain-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .policy-chip {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 10px; border-radius: 4px;
+      background: #eef1ff; color: #2748c8;
+      border: 1px solid #c7d4ff;
+      font-size: 12px; font-weight: 500;
+      cursor: pointer; text-decoration: none;
+      transition: background 0.1s;
+    }
+    .policy-chip:hover { background: #dde4ff; }
+    .procedure-chip {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 10px; border-radius: 4px;
+      background: var(--brand-light); color: var(--brand);
+      border: 1px solid #e0d3f9;
+      font-size: 12px; font-weight: 500;
+      cursor: pointer; text-decoration: none;
+      transition: background 0.1s;
+    }
+    .procedure-chip:hover { background: #ede5fc; }
+    .test-chip {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 10px; border-radius: 4px;
+      background: white; color: var(--text-quiet);
+      border: 1px solid var(--border-default);
+      font-size: 12px; font-weight: 500;
+      cursor: pointer;
+      transition: background 0.1s;
+    }
+    .test-chip:hover { background: var(--bg-lowered); }
+    .test-chip-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+    .test-chip-dot.pass { background: var(--success-text); }
+    .test-chip-dot.fail { background: var(--error-text); }
+
+    /* Progress chip on card header */
+    .progress-chip {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 3px 9px; border-radius: 4px;
+      background: var(--warn-bg); color: var(--warn-text);
+      font-size: 12px; font-weight: 500;
+      line-height: 1.4;
+    }
+    .progress-chip svg { flex-shrink: 0; }
+
+    /* Empty placeholder for decorative tabs */
+    .tab-empty {
+      text-align: center; padding: 80px 28px 100px;
+    }
+    .tab-empty-title {
+      font-size: 16px; font-weight: 600;
+      color: var(--text-quiet); margin-bottom: 8px;
+    }
+    .tab-empty-sub {
+      font-size: 13px; color: var(--text-tertiary);
+      max-width: 440px; margin: 0 auto; line-height: 1.55;
     }
     .ev-stack { flex: 1; min-width: 0; }
     .ev-title { font-size: 13px; font-weight: 600; }
@@ -758,7 +831,10 @@
           <button class="detail-tab" data-tab="requirements">Requirements <span style="color:var(--text-tertiary);font-weight:400;">· 7</span></button>
           <button class="detail-tab" data-tab="implementation">Implementation</button>
           <button class="detail-tab" data-tab="evidence">Evidence <span style="color:var(--text-tertiary);font-weight:400;">· 6</span></button>
+          <button class="detail-tab" data-tab="mapped">Mapped elements</button>
+          <button class="detail-tab" data-tab="maturity">Maturity</button>
           <button class="detail-tab" data-tab="history">History</button>
+          <button class="detail-tab" data-tab="comments">Comments</button>
         </div>
       </div>
 
@@ -914,6 +990,10 @@
             <div class="card">
               <div class="card-header">
                 <div class="card-title">Implementation</div>
+                <span class="progress-chip">
+                  <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3.5 2"/></svg>
+                  1 of 3 tests passing
+                </span>
                 <a class="card-action">Edit</a>
               </div>
               <div class="card-body">
@@ -933,54 +1013,54 @@
                   </div>
                 </div>
 
-                <details class="artifacts">
-                  <summary>
-                    <div class="artifacts-summary">
-                      <div class="artifacts-stat">
-                        <span class="artifacts-stat-val">3</span>
-                        <span class="artifacts-stat-label">Policies</span>
-                      </div>
-                      <div class="artifacts-divider"></div>
-                      <div class="artifacts-stat">
-                        <span class="artifacts-stat-val">3</span>
-                        <span class="artifacts-stat-label">Procedures</span>
-                      </div>
-                      <span class="artifacts-cta"></span>
-                    </div>
-                  </summary>
-                  <div class="artifacts-list">
-                    <div class="artifact-row">
-                      <span class="artifact-kind">Policy</span>
-                      <span class="artifact-title"><a>Access Control Policy §2.1 — Lifecycle of Access</a></span>
-                      <span class="artifact-meta">v3.2</span>
-                    </div>
-                    <div class="artifact-row">
-                      <span class="artifact-kind">Policy</span>
-                      <span class="artifact-title"><a>Access Control Policy §3.4 — Approval Matrix</a></span>
-                      <span class="artifact-meta">v3.2</span>
-                    </div>
-                    <div class="artifact-row">
-                      <span class="artifact-kind">Policy</span>
-                      <span class="artifact-title"><a>Acceptable Use Policy §1.2 — Account Use</a></span>
-                      <span class="artifact-meta">v2.0</span>
-                    </div>
-                    <div class="artifact-row">
-                      <span class="artifact-kind">Procedure</span>
-                      <span class="artifact-title"><a>Access request workflow</a></span>
-                      <span class="artifact-meta">IT Ops · Jira · ad-hoc</span>
-                    </div>
-                    <div class="artifact-row">
-                      <span class="artifact-kind">Procedure</span>
-                      <span class="artifact-title"><a>Quarterly access review</a></span>
-                      <span class="artifact-meta">Security · quarterly</span>
-                    </div>
-                    <div class="artifact-row">
-                      <span class="artifact-kind">Procedure</span>
-                      <span class="artifact-title"><a>Termination access revocation</a></span>
-                      <span class="artifact-meta">IT Ops + HRBP · per termination</span>
+                <div class="impl-chain">
+
+                  <div class="impl-chain-row">
+                    <span class="impl-chain-label">Policy</span>
+                    <div class="impl-chain-chips">
+                      <a class="policy-chip">
+                        <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M10 2v3h3" stroke="currentColor" stroke-width="1.4"/></svg>
+                        Access Control Policy §2.1 — Lifecycle
+                      </a>
+                      <a class="policy-chip">
+                        <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M10 2v3h3" stroke="currentColor" stroke-width="1.4"/></svg>
+                        Access Control Policy §3.4 — Approval Matrix
+                      </a>
+                      <a class="policy-chip">
+                        <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M10 2v3h3" stroke="currentColor" stroke-width="1.4"/></svg>
+                        Acceptable Use Policy §1.2 — Account Use
+                      </a>
                     </div>
                   </div>
-                </details>
+
+                  <div class="impl-chain-row">
+                    <span class="impl-chain-label">Procedures</span>
+                    <div class="impl-chain-chips">
+                      <a class="procedure-chip">
+                        <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.4"/><path d="M8 5v3l2 1.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+                        Access request workflow
+                      </a>
+                      <a class="procedure-chip">
+                        <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.4"/><path d="M8 5v3l2 1.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+                        Quarterly access review
+                      </a>
+                      <a class="procedure-chip">
+                        <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.4"/><path d="M8 5v3l2 1.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+                        Termination access revocation
+                      </a>
+                    </div>
+                  </div>
+
+                  <div class="impl-chain-row">
+                    <span class="impl-chain-label">Tests</span>
+                    <div class="impl-chain-chips">
+                      <a class="test-chip"><span class="test-chip-dot pass"></span>Access Control Policy approved</a>
+                      <a class="test-chip"><span class="test-chip-dot fail"></span>Information Security Roles & Responsibilities</a>
+                      <a class="test-chip"><span class="test-chip-dot fail"></span>Access request ticket history</a>
+                    </div>
+                  </div>
+
+                </div>
 
               </div>
             </div>
@@ -996,7 +1076,7 @@
               <div class="card-body">
 
                 <div class="ev-row">
-                  <span class="ev-kind">Test</span>
+                  <span class="ev-kind test-kind">Test</span>
                   <div class="ev-stack">
                     <div class="ev-title"><a>Access Control Policy approved</a></div>
                     <div class="ev-meta">Last validated Apr 12 · CISO re-approval · Annual</div>
@@ -1004,7 +1084,7 @@
                   <span class="ev-status pass">✓ Pass</span>
                 </div>
                 <div class="ev-row">
-                  <span class="ev-kind">Test</span>
+                  <span class="ev-kind test-kind">Test</span>
                   <div class="ev-stack">
                     <div class="ev-title"><a>Information Security Roles & Responsibilities</a></div>
                     <div class="ev-meta"><span class="ev-stale">Last validated 187d ago — stale</span> · Annual cadence missed</div>
@@ -1012,7 +1092,7 @@
                   <span class="ev-status fail">✕ Fail</span>
                 </div>
                 <div class="ev-row">
-                  <span class="ev-kind">Test</span>
+                  <span class="ev-kind test-kind">Test</span>
                   <div class="ev-stack">
                     <div class="ev-title"><a>Access request ticket history</a></div>
                     <div class="ev-meta">12 sampled · 3 missing approvals · Last run May 29 · Nightly</div>
@@ -1020,7 +1100,7 @@
                   <span class="ev-status fail">✕ Fail</span>
                 </div>
                 <div class="ev-row">
-                  <span class="ev-kind">Doc</span>
+                  <span class="ev-kind doc-kind">Doc</span>
                   <div class="ev-stack">
                     <div class="ev-title"><a>Access Control Policy v3.2</a></div>
                     <div class="ev-meta">Mira Patel · Approved Apr 12</div>
@@ -1028,7 +1108,7 @@
                   <span class="ev-status pass">Current</span>
                 </div>
                 <div class="ev-row">
-                  <span class="ev-kind">Doc</span>
+                  <span class="ev-kind doc-kind">Doc</span>
                   <div class="ev-stack">
                     <div class="ev-title"><a>Info Sec Roles & Responsibilities v1.4</a></div>
                     <div class="ev-meta"><span class="ev-stale">Maria Chen · Last reviewed Nov 30 2025</span></div>
@@ -1036,7 +1116,7 @@
                   <span class="ev-status fail">Stale</span>
                 </div>
                 <div class="ev-row">
-                  <span class="ev-kind">Doc</span>
+                  <span class="ev-kind doc-kind">Doc</span>
                   <div class="ev-stack">
                     <div class="ev-title"><a>Q1 2026 Access Review Export</a></div>
                     <div class="ev-meta">Security · Exported Apr 4 · 312 pairs reviewed</div>
@@ -1082,15 +1162,51 @@
             </div>
           </div>
 
+          <!-- MAPPED ELEMENTS (placeholder) -->
+          <div class="tab-panel" data-tab="mapped">
+            <div class="card">
+              <div class="card-body">
+                <div class="tab-empty">
+                  <div class="tab-empty-title">Mapped elements</div>
+                  <div class="tab-empty-sub">Every framework, common control, requirement, and risk this control is mapped to — bidirectional links and a graph view. Lives here when the mapping graph is built out.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- MATURITY (placeholder) -->
+          <div class="tab-panel" data-tab="maturity">
+            <div class="card">
+              <div class="card-body">
+                <div class="tab-empty">
+                  <div class="tab-empty-title">Maturity</div>
+                  <div class="tab-empty-sub">Current: Defined (Level 3) → Goal: Managed (Level 4). Sub-criteria progress, reassessment cadence, and program-wide maturity rollup live here.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- COMMENTS (placeholder) -->
+          <div class="tab-panel" data-tab="comments">
+            <div class="card">
+              <div class="card-body">
+                <div class="tab-empty">
+                  <div class="tab-empty-title">Comments</div>
+                  <div class="tab-empty-sub">Discussion on this control — design questions, evidence requests, owner-to-owner threads, and audit-trail-preserving notes.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
 
         <!-- Right rail (always visible) -->
         <div class="detail-sidebar">
 
-          <div class="rail-section">
-            <div class="rail-label">
+          <div class="sidebar-section">
+            <div class="sidebar-section-label">
               <span>Scope</span>
-              <span class="rail-label-count">7 in scope · 2 manual · 2 shadow</span>
+              <span class="sidebar-section-label-count">7 in scope · 2 manual · 2 shadow</span>
             </div>
 
             <div class="scope-group">
@@ -1118,8 +1234,8 @@
             </div>
           </div>
 
-          <div class="rail-section">
-            <div class="rail-label">Coordination</div>
+          <div class="sidebar-section">
+            <div class="sidebar-section-label">Coordination</div>
             <div class="coord-row">
               <span class="coord-row-label">Owner</span>
               <span class="owner-avatar-sm">M</span>
@@ -1141,8 +1257,8 @@
             </div>
           </div>
 
-          <div class="rail-section">
-            <div class="rail-label">More</div>
+          <div class="sidebar-section">
+            <div class="sidebar-section-label">More</div>
             <a class="more-link">
               <svg class="more-link-icon" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2 8h3l2-4 3 8 2-4h2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
               Health detail & trend
