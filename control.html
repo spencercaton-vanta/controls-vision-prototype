@@ -975,6 +975,55 @@
                   A written <strong>Access Control Policy</strong> defines the lifecycle of access: request, approval, provisioning, role modification, quarterly review, and revocation on role change or termination. Requests are Jira tickets in the SEC project, approved by the system owner of record, and provisioned within SLAs (4h standard, 1h emergency). The policy is reviewed annually by the CISO and acknowledged at hire via the HR Onboarding Workflow.
                 </div>
 
+                <div class="impl-chain">
+
+                  <div class="impl-chain-row">
+                    <span class="impl-chain-label">Policy</span>
+                    <div class="impl-chain-chips">
+                      <a class="policy-chip">
+                        <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M10 2v3h3" stroke="currentColor" stroke-width="1.4"/></svg>
+                        Access Control Policy §2.1 — Lifecycle
+                      </a>
+                      <a class="policy-chip">
+                        <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M10 2v3h3" stroke="currentColor" stroke-width="1.4"/></svg>
+                        Access Control Policy §3.4 — Approval Matrix
+                      </a>
+                      <a class="policy-chip">
+                        <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M10 2v3h3" stroke="currentColor" stroke-width="1.4"/></svg>
+                        Acceptable Use Policy §1.2 — Account Use
+                      </a>
+                    </div>
+                  </div>
+
+                  <div class="impl-chain-row">
+                    <span class="impl-chain-label">Procedures</span>
+                    <div class="impl-chain-chips">
+                      <a class="procedure-chip">
+                        <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.4"/><path d="M8 5v3l2 1.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+                        Access request workflow
+                      </a>
+                      <a class="procedure-chip">
+                        <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.4"/><path d="M8 5v3l2 1.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+                        Quarterly access review
+                      </a>
+                      <a class="procedure-chip">
+                        <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.4"/><path d="M8 5v3l2 1.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+                        Termination access revocation
+                      </a>
+                    </div>
+                  </div>
+
+                  <div class="impl-chain-row">
+                    <span class="impl-chain-label">Tests</span>
+                    <div class="impl-chain-chips">
+                      <a class="test-chip"><span class="test-chip-dot pass"></span>Access Control Policy approved</a>
+                      <a class="test-chip"><span class="test-chip-dot fail"></span>Information Security Roles & Responsibilities</a>
+                      <a class="test-chip"><span class="test-chip-dot fail"></span>Access request ticket history</a>
+                    </div>
+                  </div>
+
+                </div>
+
                 <div class="impl-scope">
                   <div class="impl-scope-head">Resources in scope</div>
 
@@ -1042,84 +1091,6 @@
                       <span class="scope-chip">Sales User</span>
                       <span class="scope-chip">Standard User</span>
                     </div>
-                  </div>
-
-                  <div class="rs-group" style="margin-top:14px;padding-top:12px;border-top:1px solid var(--border-quiet);">
-                    <div class="rs-group-header"><span class="rs-group-name" style="color:var(--text-quiet);">Tracked manually</span><span class="rs-group-meta">2</span></div>
-                    <div class="rs-chips">
-                      <span class="scope-chip">analytics-db</span>
-                      <span class="scope-chip">Compass</span>
-                    </div>
-                  </div>
-
-                  <div class="rs-group">
-                    <div class="rs-group-header"><span class="rs-group-name" style="color:var(--text-quiet);">Shadow — agent-detected</span><span class="rs-group-meta">2</span></div>
-                    <div class="rs-chips">
-                      <span class="scope-chip">Looker</span>
-                      <span class="scope-chip">PagerDuty</span>
-                    </div>
-                    <a class="shadow-cta">Triage →</a>
-                  </div>
-
-                  <div class="scope-env">
-                    Environments <span class="scope-env-val">Production</span>
-                  </div>
-                </div>
-
-                <div class="impl-chain">
-
-                  <div class="impl-chain-row">
-                    <span class="impl-chain-label">Policy</span>
-                    <div class="impl-chain-chips">
-                      <a class="policy-chip">
-                        <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M10 2v3h3" stroke="currentColor" stroke-width="1.4"/></svg>
-                        Access Control Policy §2.1 — Lifecycle
-                      </a>
-                      <a class="policy-chip">
-                        <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M10 2v3h3" stroke="currentColor" stroke-width="1.4"/></svg>
-                        Access Control Policy §3.4 — Approval Matrix
-                      </a>
-                      <a class="policy-chip">
-                        <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M10 2v3h3" stroke="currentColor" stroke-width="1.4"/></svg>
-                        Acceptable Use Policy §1.2 — Account Use
-                      </a>
-                    </div>
-                  </div>
-
-                  <div class="impl-chain-row">
-                    <span class="impl-chain-label">Procedures</span>
-                    <div class="impl-chain-chips">
-                      <a class="procedure-chip">
-                        <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.4"/><path d="M8 5v3l2 1.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
-                        Access request workflow
-                      </a>
-                      <a class="procedure-chip">
-                        <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.4"/><path d="M8 5v3l2 1.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
-                        Quarterly access review
-                      </a>
-                      <a class="procedure-chip">
-                        <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.4"/><path d="M8 5v3l2 1.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
-                        Termination access revocation
-                      </a>
-                    </div>
-                  </div>
-
-                  <div class="impl-chain-row">
-                    <span class="impl-chain-label">Tests</span>
-                    <div class="impl-chain-chips">
-                      <a class="test-chip"><span class="test-chip-dot pass"></span>Access Control Policy approved</a>
-                      <a class="test-chip"><span class="test-chip-dot fail"></span>Information Security Roles & Responsibilities</a>
-                      <a class="test-chip"><span class="test-chip-dot fail"></span>Access request ticket history</a>
-                    </div>
-                  </div>
-
-                </div>
-
-                <div class="gap-callout">
-                  <div class="gap-icon">!</div>
-                  <div>
-                    <div class="gap-title">Design ↔ evidence gap</div>
-                    <div class="gap-text">Implementation says the policy covers password rotation and complexity. No test validates rotation on Okta, AWS, or Snowflake — and the policy text doesn't define values either. <a>Add a test</a> or <a>remove the claim</a>.</div>
                   </div>
                 </div>
 
@@ -1265,22 +1236,22 @@
               <div class="attn-row">
                 <div class="attn-icon warn">!</div>
                 <div class="attn-body">
-                  <div class="attn-title">Design says one thing, evidence says nothing</div>
-                  <div class="attn-sub">Implementation claims password rotation is enforced. No test validates it on Okta, AWS, or Snowflake.</div>
+                  <div class="attn-title">Add rotation test</div>
+                  <div class="attn-sub">Implementation claims it; no test runs. Add config check on Okta, AWS, Snowflake.</div>
                 </div>
               </div>
               <div class="attn-row">
                 <div class="attn-icon warn">⚠</div>
                 <div class="attn-body">
-                  <div class="attn-title">ISO A.9.4.3 mapped but not satisfied</div>
-                  <div class="attn-sub">Implementation doesn't address rotation or complexity. Mapping reads as compliant — it isn't.</div>
+                  <div class="attn-title">Resolve ISO A.9.4.3 mapping</div>
+                  <div class="attn-sub">Mapped, not satisfied. Extend implementation or unmap.</div>
                 </div>
               </div>
               <div class="attn-row">
                 <div class="attn-icon fail">!</div>
                 <div class="attn-body">
-                  <div class="attn-title">Roles & Responsibilities doc 187 days stale</div>
-                  <div class="attn-sub">Annual review missed. SEC-1042 in flight.</div>
+                  <div class="attn-title">Refresh Roles & Responsibilities</div>
+                  <div class="attn-sub">187d stale. SEC-1042 with Maria Chen, due Jun 10.</div>
                 </div>
               </div>
             </div>
