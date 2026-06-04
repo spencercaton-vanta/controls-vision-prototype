@@ -592,6 +592,11 @@
     }
     .impl-test-dot.pass { background: var(--success-text); }
     .impl-test-dot.fail { background: var(--error-text); }
+    .impl-test-tag.is-add {
+      border-style: dashed; color: var(--text-tertiary);
+      transition: border-color 0.1s, color 0.1s;
+    }
+    .impl-test-tag.is-add:hover { border-color: var(--brand); color: var(--brand); }
     .impl-add-block {
       display: flex; align-items: center; gap: 6px;
       padding: 8px 14px;
@@ -845,9 +850,11 @@
                   </div>
                   <div class="impl-block-body">
                     <p class="impl-block-text">Authentication to the production network must use unique usernames and passwords or authorized SSH/SSO with MFA.</p>
-                    <div class="impl-add-block">
-                      <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-                      Add evidence
+                    <div class="impl-block-tests">
+                      <span class="impl-test-tag is-add">
+                        <svg width="9" height="9" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                        Add evidence
+                      </span>
                     </div>
                   </div>
                 </div>
