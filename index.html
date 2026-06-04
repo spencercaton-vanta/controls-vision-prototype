@@ -335,6 +335,17 @@
       margin-bottom: 12px; margin-top: 20px;
       letter-spacing: 0.1px;
     }
+    .card-section-header {
+      display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+      font-size: 15px; font-weight: 600;
+      color: var(--text-default);
+      margin-bottom: 14px;
+    }
+    .card-section-header + .card-section-header { margin-top: 28px; }
+    .card-section-header-meta {
+      font-size: 12px; font-weight: 400;
+      color: var(--text-tertiary);
+    }
     .systems-list { display: flex; flex-direction: column; gap: 6px; }
     .system-row {
       display: flex; align-items: baseline; gap: 10px;
@@ -850,6 +861,10 @@
           <!-- Controls card -->
           <div class="card">
             <div class="card-body">
+              <div class="card-section-header">
+                <span>Implementing controls</span>
+                <span class="card-section-header-meta">5 · 4 with open issues</span>
+              </div>
               <div class="impl-blocks">
 
                 <a class="impl-block" href="control.html" style="display:block;text-decoration:none;color:inherit;cursor:pointer;">
@@ -946,9 +961,9 @@
 
               </div>
 
-              <div class="card-section-label" style="display:flex;align-items:center;justify-content:space-between;">
+              <div class="card-section-header">
                 <span>Issues</span>
-                <span style="font-size:11px;font-weight:400;color:var(--text-tertiary);">4 open · inherited from the controls above</span>
+                <span class="card-section-header-meta">4 open · inherited from the controls above</span>
               </div>
               <div class="issue-row">
                 <div class="issue-icon">!</div>
