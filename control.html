@@ -507,7 +507,7 @@
     .impl-statement strong { font-weight: 600; }
     .impl-scope {
       margin-top: 24px;
-      padding: 14px 16px;
+      padding: 12px 16px;
       border: 1px solid var(--border-quiet);
       border-radius: 6px;
       background: var(--bg-default);
@@ -516,8 +516,20 @@
       font-size: 11px; font-weight: 600;
       color: var(--text-tertiary);
       text-transform: uppercase; letter-spacing: 0.5px;
-      margin-bottom: 12px;
+      margin-bottom: 6px;
     }
+    .impl-scope-row {
+      display: grid;
+      grid-template-columns: 96px 1fr;
+      gap: 12px;
+      padding: 7px 0;
+      border-top: 1px solid var(--border-quiet);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+    .impl-scope-row:first-of-type { border-top: none; }
+    .impl-scope-row-name { color: var(--text-default); font-weight: 500; }
+    .impl-scope-row-resources { color: var(--text-quiet); }
     .scope-line {
       display: flex; flex-direction: column; gap: 6px;
       padding: 12px 14px;
@@ -1054,71 +1066,33 @@
 
                 <div class="impl-scope">
                   <div class="impl-scope-head">Resources in scope</div>
-
-                  <div class="rs-group">
-                    <div class="rs-group-header"><span class="rs-group-name">Okta</span></div>
-                    <div class="rs-chips">
-                      <span class="scope-chip">All Employees</span>
-                      <span class="scope-chip">Engineering</span>
-                      <span class="scope-chip">Finance</span>
-                      <span class="scope-chip">Contractors</span>
-                    </div>
+                  <div class="impl-scope-row">
+                    <span class="impl-scope-row-name">Okta</span>
+                    <span class="impl-scope-row-resources">All Employees · Engineering · Finance · Contractors</span>
                   </div>
-
-                  <div class="rs-group">
-                    <div class="rs-group-header"><span class="rs-group-name">AWS</span></div>
-                    <div class="rs-chips">
-                      <span class="scope-chip">acme-prod</span>
-                      <span class="scope-chip">acme-data</span>
-                      <span class="scope-chip">acme-platform</span>
-                    </div>
+                  <div class="impl-scope-row">
+                    <span class="impl-scope-row-name">AWS</span>
+                    <span class="impl-scope-row-resources">acme-prod · acme-data · acme-platform</span>
                   </div>
-
-                  <div class="rs-group">
-                    <div class="rs-group-header"><span class="rs-group-name">Snowflake</span></div>
-                    <div class="rs-chips">
-                      <span class="scope-chip">SYSADMIN</span>
-                      <span class="scope-chip">DATA_ENGINEER</span>
-                      <span class="scope-chip">ANALYST</span>
-                      <span class="scope-chip">READ_ONLY</span>
-                    </div>
+                  <div class="impl-scope-row">
+                    <span class="impl-scope-row-name">Snowflake</span>
+                    <span class="impl-scope-row-resources">SYSADMIN · DATA_ENGINEER · ANALYST · READ_ONLY</span>
                   </div>
-
-                  <div class="rs-group">
-                    <div class="rs-group-header"><span class="rs-group-name">GitHub</span></div>
-                    <div class="rs-chips">
-                      <span class="scope-chip">engineering</span>
-                      <span class="scope-chip">infra</span>
-                      <span class="scope-chip">security</span>
-                      <span class="scope-chip">data-platform</span>
-                    </div>
+                  <div class="impl-scope-row">
+                    <span class="impl-scope-row-name">GitHub</span>
+                    <span class="impl-scope-row-resources">engineering · infra · security · data-platform</span>
                   </div>
-
-                  <div class="rs-group">
-                    <div class="rs-group-header"><span class="rs-group-name">Jira</span></div>
-                    <div class="rs-chips">
-                      <span class="scope-chip">SEC</span>
-                      <span class="scope-chip">ENG</span>
-                      <span class="scope-chip">OPS</span>
-                    </div>
+                  <div class="impl-scope-row">
+                    <span class="impl-scope-row-name">Jira</span>
+                    <span class="impl-scope-row-resources">SEC · ENG · OPS</span>
                   </div>
-
-                  <div class="rs-group">
-                    <div class="rs-group-header"><span class="rs-group-name">Linear</span></div>
-                    <div class="rs-chips">
-                      <span class="scope-chip">Engineering</span>
-                      <span class="scope-chip">Platform</span>
-                      <span class="scope-chip">Design</span>
-                    </div>
+                  <div class="impl-scope-row">
+                    <span class="impl-scope-row-name">Linear</span>
+                    <span class="impl-scope-row-resources">Engineering · Platform · Design</span>
                   </div>
-
-                  <div class="rs-group">
-                    <div class="rs-group-header"><span class="rs-group-name">Salesforce</span></div>
-                    <div class="rs-chips">
-                      <span class="scope-chip">System Administrator</span>
-                      <span class="scope-chip">Sales User</span>
-                      <span class="scope-chip">Standard User</span>
-                    </div>
+                  <div class="impl-scope-row">
+                    <span class="impl-scope-row-name">Salesforce</span>
+                    <span class="impl-scope-row-resources">System Administrator · Sales User · Standard User</span>
                   </div>
                 </div>
 
