@@ -206,14 +206,11 @@
       text-transform: uppercase; letter-spacing: 0.4px;
     }
 
-    /* Coordination card: outstanding tasks + agent actions */
-    .coord-section-label {
-      font-size: 11px; font-weight: 600;
-      color: var(--text-tertiary);
-      text-transform: uppercase; letter-spacing: 0.5px;
-      margin-top: 18px; margin-bottom: 8px;
+    /* Activity card: tasks then agent actions, separated by a thin divider */
+    .activity-divider {
+      height: 1px; background: var(--border-quiet);
+      margin: 14px 0 10px;
     }
-    .coord-section-label:first-child { margin-top: 0; }
     .agent-event {
       display: flex; gap: 10px;
       padding: 9px 0;
@@ -1047,17 +1044,24 @@
 
                 </div>
 
+                <div class="gap-callout">
+                  <div class="gap-icon">!</div>
+                  <div>
+                    <div class="gap-title">Design ↔ evidence gap</div>
+                    <div class="gap-text">Implementation says the policy covers password rotation and complexity. No test validates rotation on Okta, AWS, or Snowflake — and the policy text doesn't define values either. <a>Add a test</a> or <a>remove the claim</a>.</div>
+                  </div>
+                </div>
+
               </div>
             </div>
 
-            <!-- Coordination — outstanding tasks + recent agent actions -->
+            <!-- Activity — tasks in flight + recent agent actions -->
             <div class="card">
               <div class="card-header">
-                <div class="card-title">Coordination</div>
+                <div class="card-title">Activity</div>
               </div>
               <div class="card-body">
 
-                <div class="coord-section-label">Outstanding tasks · 2</div>
                 <div class="work-row">
                   <span class="work-row-id">SEC-1042</span>
                   <span class="work-row-title">Refresh Roles & Responsibilities doc</span>
@@ -1073,7 +1077,7 @@
                   <span class="work-row-status"><span class="badge badge-warn">Open</span></span>
                 </div>
 
-                <div class="coord-section-label">Recent agent actions</div>
+                <div class="activity-divider"></div>
                 <div class="agent-event">
                   <div class="agent-event-icon">
                     <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M8 2L9.3 5.7L13 7L9.3 8.3L8 12L6.7 8.3L3 7L6.7 5.7L8 2Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
@@ -1108,74 +1112,6 @@
                   <div class="agent-event-body">
                     <div class="agent-event-text">Compliance dropped to <strong>Needs evidence</strong> after the ticket-history sample regression.</div>
                     <div class="agent-event-meta">May 20 · 11:45</div>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
-            <!-- Evidence -->
-            <div class="card">
-              <div class="card-header">
-                <div class="card-title">Evidence<span class="card-title-count">· 6</span></div>
-                <a class="card-action">+ Add</a>
-              </div>
-              <div class="card-body">
-
-                <div class="ev-row">
-                  <span class="ev-kind test-kind">Test</span>
-                  <div class="ev-stack">
-                    <div class="ev-title"><a>Access Control Policy approved</a></div>
-                    <div class="ev-meta">Last validated Apr 12 · CISO re-approval · Annual</div>
-                  </div>
-                  <span class="ev-status pass">✓ Pass</span>
-                </div>
-                <div class="ev-row">
-                  <span class="ev-kind test-kind">Test</span>
-                  <div class="ev-stack">
-                    <div class="ev-title"><a>Information Security Roles & Responsibilities</a></div>
-                    <div class="ev-meta"><span class="ev-stale">Last validated 187d ago — stale</span> · Annual cadence missed</div>
-                  </div>
-                  <span class="ev-status fail">✕ Fail</span>
-                </div>
-                <div class="ev-row">
-                  <span class="ev-kind test-kind">Test</span>
-                  <div class="ev-stack">
-                    <div class="ev-title"><a>Access request ticket history</a></div>
-                    <div class="ev-meta">12 sampled · 3 missing approvals · Last run May 29 · Nightly</div>
-                  </div>
-                  <span class="ev-status fail">✕ Fail</span>
-                </div>
-                <div class="ev-row">
-                  <span class="ev-kind doc-kind">Doc</span>
-                  <div class="ev-stack">
-                    <div class="ev-title"><a>Access Control Policy v3.2</a></div>
-                    <div class="ev-meta">Mira Patel · Approved Apr 12</div>
-                  </div>
-                  <span class="ev-status pass">Current</span>
-                </div>
-                <div class="ev-row">
-                  <span class="ev-kind doc-kind">Doc</span>
-                  <div class="ev-stack">
-                    <div class="ev-title"><a>Info Sec Roles & Responsibilities v1.4</a></div>
-                    <div class="ev-meta"><span class="ev-stale">Maria Chen · Last reviewed Nov 30 2025</span></div>
-                  </div>
-                  <span class="ev-status fail">Stale</span>
-                </div>
-                <div class="ev-row">
-                  <span class="ev-kind doc-kind">Doc</span>
-                  <div class="ev-stack">
-                    <div class="ev-title"><a>Q1 2026 Access Review Export</a></div>
-                    <div class="ev-meta">Security · Exported Apr 4 · 312 pairs reviewed</div>
-                  </div>
-                  <span class="ev-status pass">Current</span>
-                </div>
-
-                <div class="gap-callout">
-                  <div class="gap-icon">!</div>
-                  <div>
-                    <div class="gap-title">Design ↔ evidence gap</div>
-                    <div class="gap-text">Implementation says the policy covers password rotation and complexity. No test validates rotation on Okta, AWS, or Snowflake — and the policy text doesn't define values either. <a>Add a test</a> or <a>remove the claim</a>.</div>
                   </div>
                 </div>
 
