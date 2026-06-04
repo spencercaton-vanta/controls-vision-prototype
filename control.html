@@ -336,8 +336,8 @@
       display: inline-flex; align-items: center; justify-content: center;
       flex-shrink: 0; font-weight: 700; font-size: 12px;
     }
-    .attn-icon.warn { background: var(--warn-bg); color: var(--warn-text); }
-    .attn-icon.fail { background: var(--error-bg); color: var(--error-text); }
+    .attn-icon.warn { background: var(--bg-neutral); color: var(--text-quiet); }
+    .attn-icon.fail { background: var(--bg-neutral); color: var(--text-default); }
     .attn-body { flex: 1; min-width: 0; }
     .attn-title { font-size: 13px; font-weight: 600; color: var(--text-default); }
     .attn-sub { font-size: 12px; color: var(--text-quiet); margin-top: 2px; line-height: 1.5; }
@@ -386,11 +386,8 @@
       font-size: 13px;
     }
     .req-row:first-child { padding-top: 4px; border-top: none; }
-    .req-row.below-bar {
-      background: #fffaf3;
-      margin: 0 -12px; padding: 11px 12px;
-      border-radius: 5px;
-      border-top: 1px solid #fcd5b4;
+    .req-row.not-satisfied {
+      /* No background tint — the status badge carries the signal. */
     }
     .req-source {
       display: inline-flex; align-items: center;
@@ -419,7 +416,7 @@
       width: fit-content;
     }
     .req-status.ok   { background: var(--success-bg); color: var(--success-text); }
-    .req-status.warn { background: var(--warn-bg); color: var(--warn-text); cursor: help; }
+    .req-status.warn { background: var(--bg-neutral); color: var(--text-default); cursor: help; }
     .req-status-tip { position: relative; display: inline-flex; }
     .req-status-tip .tip {
       display: none;
@@ -560,7 +557,7 @@
     .progress-chip {
       display: inline-flex; align-items: center; gap: 6px;
       padding: 3px 9px; border-radius: 4px;
-      background: var(--warn-bg); color: var(--warn-text);
+      background: var(--bg-neutral); color: var(--text-quiet);
       font-size: 12px; font-weight: 500;
       line-height: 1.4;
     }
@@ -594,13 +591,14 @@
     .gap-callout {
       display: flex; align-items: flex-start; gap: 10px;
       margin-top: 14px; padding: 12px 14px;
-      background: #fffaf3;
-      border: 1px solid #fcd5b4;
+      background: var(--bg-lowered);
+      border: 1px solid var(--border-quiet);
       border-radius: 6px;
     }
     .gap-icon {
       width: 22px; height: 22px; border-radius: 50%;
-      background: white; color: var(--warn-text);
+      background: white; color: var(--text-quiet);
+      border: 1px solid var(--border-default);
       display: inline-flex; align-items: center; justify-content: center;
       flex-shrink: 0; font-weight: 700; font-size: 12px;
     }
@@ -871,13 +869,13 @@
                     <span class="req-scope-chip">All BUs</span>
                     <span class="req-status ok">✓ Satisfied</span>
                   </div>
-                  <div class="req-row below-bar">
+                  <div class="req-row not-satisfied">
                     <span class="req-source framework">Framework</span>
                     <span class="req-ref">ISO 27001 A.9.4.3</span>
                     <span class="req-title">Password management system</span>
                     <span class="req-scope-chip">All BUs</span>
                     <span class="req-status-tip">
-                      <span class="req-status warn">⚠ Below bar</span>
+                      <span class="req-status warn">Not satisfied</span>
                       <span class="tip">Requires rotation cadence and minimum complexity. Implementation addresses neither. Extend the implementation or remove this mapping.</span>
                     </span>
                   </div>
@@ -924,7 +922,7 @@
                   <div class="attn-row">
                     <div class="attn-icon warn">⚠</div>
                     <div class="attn-body">
-                      <div class="attn-title">ISO 27001 A.9.4.3 mapped but below the bar</div>
+                      <div class="attn-title">ISO 27001 A.9.4.3 mapped but not satisfied</div>
                       <div class="attn-sub">Implementation doesn't address rotation or complexity. The mapping currently reads as compliant — it isn't.</div>
                     </div>
                   </div>
@@ -1129,7 +1127,7 @@
                   <div class="timeline-event"><div class="timeline-dot brand"></div><div><div class="timeline-text">Mapping added: <strong>HIPAA §164.308(a)(4)(ii)(B)</strong>. Agent-suggested, Pam-accepted.</div><div class="timeline-meta">May 28</div></div></div>
                   <div class="timeline-event"><div class="timeline-dot fail"></div><div><div class="timeline-text">Test failed: <strong>Access request ticket history</strong>.</div><div class="timeline-meta">May 20</div></div></div>
                   <div class="timeline-event"><div class="timeline-dot ok"></div><div><div class="timeline-text">Test passed: <strong>Access Control Policy approved</strong>.</div><div class="timeline-meta">Apr 12</div></div></div>
-                  <div class="timeline-event"><div class="timeline-dot warn"></div><div><div class="timeline-text">Mapping added: <strong>ISO 27001 A.9.4.3</strong>, flagged below-bar at creation.</div><div class="timeline-meta">Mar 18</div></div></div>
+                  <div class="timeline-event"><div class="timeline-dot"></div><div><div class="timeline-text">Mapping added: <strong>ISO 27001 A.9.4.3</strong>, flagged not satisfied at creation.</div><div class="timeline-meta">Mar 18</div></div></div>
                   <div class="timeline-event"><div class="timeline-dot fail"></div><div><div class="timeline-text">Test failed: <strong>Roles & Responsibilities</strong>.</div><div class="timeline-meta">Nov 30 2025</div></div></div>
                   <div class="timeline-event"><div class="timeline-dot"></div><div><div class="timeline-text">Owner change: Jordan Lee → <strong>Mira Patel</strong>.</div><div class="timeline-meta">Sep 1 2025</div></div></div>
                   <div class="timeline-event"><div class="timeline-dot brand"></div><div><div class="timeline-text">Control created via merge: <strong>"Access policy" (SOC 2) + "Access management procedures" (ISO)</strong>.</div><div class="timeline-meta">Jun 15 2025 · Pam Diaz</div></div></div>
