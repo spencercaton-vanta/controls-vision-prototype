@@ -436,7 +436,7 @@
     .req-table { display: flex; flex-direction: column; }
     .req-row {
       display: grid;
-      grid-template-columns: 110px 130px 1fr 200px 130px;
+      grid-template-columns: 110px 130px 1fr 130px;
       gap: 12px; align-items: center;
       padding: 11px 0;
       border-top: 1px solid var(--border-quiet);
@@ -459,13 +459,6 @@
     .req-source.risk        { background: var(--warn-bg); color: var(--warn-text); }
     .req-ref { font-weight: 600; color: var(--text-default); font-size: 12px; }
     .req-title { color: var(--text-quiet); font-size: 13px; }
-    .req-scope-chip {
-      padding: 3px 8px; border-radius: 4px;
-      font-size: 12px; font-weight: 500;
-      color: var(--text-quiet);
-      background: var(--bg-neutral);
-      width: fit-content;
-    }
     .req-status {
       display: inline-flex; align-items: center; gap: 5px;
       padding: 3px 8px; border-radius: 4px;
@@ -914,28 +907,24 @@
                     <span class="req-source framework">Framework</span>
                     <span class="req-ref">SOC 2 CC 6.1</span>
                     <span class="req-title">Logical and physical access controls</span>
-                    <span class="req-scope-chip">Production</span>
                     <span class="req-status ok">✓ Satisfied</span>
                   </div>
                   <div class="req-row">
                     <span class="req-source framework">Framework</span>
                     <span class="req-ref">SOC 2 CC 6.3</span>
                     <span class="req-title">Role-based access management</span>
-                    <span class="req-scope-chip">Production</span>
                     <span class="req-status ok">✓ Satisfied</span>
                   </div>
                   <div class="req-row">
                     <span class="req-source framework">Framework</span>
                     <span class="req-ref">ISO 27001 A.9.1.1</span>
                     <span class="req-title">Access control policy</span>
-                    <span class="req-scope-chip">All BUs</span>
                     <span class="req-status ok">✓ Satisfied</span>
                   </div>
                   <div class="req-row not-satisfied">
                     <span class="req-source framework">Framework</span>
                     <span class="req-ref">ISO 27001 A.9.4.3</span>
                     <span class="req-title">Password management system</span>
-                    <span class="req-scope-chip">All BUs</span>
                     <span class="req-status-tip">
                       <span class="req-status warn">Not satisfied</span>
                       <span class="tip">Requires rotation cadence and minimum complexity. Implementation addresses neither. Extend the implementation or remove this mapping.</span>
@@ -945,21 +934,18 @@
                     <span class="req-source regulatory">Regulatory</span>
                     <span class="req-ref">HIPAA §164.308(a)(4)(ii)(B)</span>
                     <span class="req-title">Access authorization</span>
-                    <span class="req-scope-chip">PHI · Production</span>
                     <span class="req-status ok">✓ Satisfied</span>
                   </div>
                   <div class="req-row">
                     <span class="req-source commitment">Commitment</span>
                     <span class="req-ref">Acme MSA §4.2</span>
                     <span class="req-title">Customer data access procedures</span>
-                    <span class="req-scope-chip">Acme tenant</span>
                     <span class="req-status ok">✓ Satisfied</span>
                   </div>
                   <div class="req-row">
                     <span class="req-source risk">Risk treatment</span>
                     <span class="req-ref">RT-014</span>
                     <span class="req-title">Unauthorized internal access</span>
-                    <span class="req-scope-chip">Production</span>
                     <span class="req-status ok">✓ Satisfied</span>
                   </div>
                 </div>
