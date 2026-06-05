@@ -606,6 +606,17 @@
     .impl-block-body { padding: 12px 14px; }
     .impl-block-text { font-size: 13px; color: var(--text-quiet); line-height: 1.6; margin-bottom: 10px; }
     .impl-block-tests { display: flex; flex-wrap: wrap; gap: 6px; }
+    .impl-block-docs { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 8px; }
+    .impl-block-doc-tag {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 3px 8px; border-radius: 4px;
+      font-size: 11px; font-weight: 500;
+      background: var(--brand-light); color: var(--brand);
+      cursor: pointer;
+    }
+    .impl-block-doc-tag.is-procedure {
+      background: var(--info-bg); color: var(--info-text);
+    }
     .impl-test-tag {
       display: inline-flex; align-items: center; gap: 5px;
       padding: 3px 8px; border-radius: 4px;
@@ -875,6 +886,11 @@
                   </div>
                   <div class="impl-block-body">
                     <p class="impl-block-text">Acme's access policy is reviewed annually by Security & People Ops. Roles are defined in Okta groups; segregation of duties is enforced for prod-deploy and SYSADMIN grants. Any access outside default group membership is ticket-driven.</p>
+                    <div class="impl-block-docs">
+                      <span class="impl-block-doc-tag"><svg width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M5 8h6M5 11h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>Access Control Policy</span>
+                      <span class="impl-block-doc-tag"><svg width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M5 8h6M5 11h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>Information Security RACI</span>
+                      <span class="impl-block-doc-tag is-procedure"><svg width="10" height="10" viewBox="0 0 16 16" fill="none"><circle cx="3.5" cy="4" r="1" fill="currentColor"/><circle cx="3.5" cy="8" r="1" fill="currentColor"/><circle cx="3.5" cy="12" r="1" fill="currentColor"/><path d="M6.5 4h7M6.5 8h7M6.5 12h7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>Access Management Procedure</span>
+                    </div>
                     <div class="impl-block-tests">
                       <span class="impl-test-tag"><span class="impl-test-dot pass"></span>Access Control Policy approved</span>
                       <span class="impl-test-tag"><span class="impl-test-dot fail"></span>Information Security Roles & Responsibilities</span>
@@ -891,6 +907,10 @@
                   </div>
                   <div class="impl-block-body">
                     <p class="impl-block-text">Access outside default-on-hire bundles requires a Jira ticket with manager and system-owner approval. Engineering uses a justified-access workflow for production; Sales and Finance rely on standard request templates with monthly auto-expiration for elevated grants.</p>
+                    <div class="impl-block-docs">
+                      <span class="impl-block-doc-tag"><svg width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M5 8h6M5 11h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>Access Control Policy</span>
+                      <span class="impl-block-doc-tag is-procedure"><svg width="10" height="10" viewBox="0 0 16 16" fill="none"><circle cx="3.5" cy="4" r="1" fill="currentColor"/><circle cx="3.5" cy="8" r="1" fill="currentColor"/><circle cx="3.5" cy="12" r="1" fill="currentColor"/><path d="M6.5 4h7M6.5 8h7M6.5 12h7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>Access Request Procedure</span>
+                    </div>
                     <div class="impl-block-tests">
                       <span class="impl-test-tag"><span class="impl-test-dot pass"></span>Access Control Policy approved</span>
                       <span class="impl-test-tag"><span class="impl-test-dot fail"></span>Access request ticket history</span>
@@ -906,6 +926,10 @@
                   </div>
                   <div class="impl-block-body">
                     <p class="impl-block-text">Production network access requires Okta SSO with MFA (hardware key required for engineering and SRE). SSH to bastion uses short-lived certificates issued from Vault; password-based auth is disabled on prod.</p>
+                    <div class="impl-block-docs">
+                      <span class="impl-block-doc-tag"><svg width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M5 8h6M5 11h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>Network Security Policy</span>
+                      <span class="impl-block-doc-tag"><svg width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M5 8h6M5 11h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>Cryptography Policy</span>
+                    </div>
                     <div class="impl-block-tests">
                       <span class="impl-test-tag is-add">
                         <svg width="9" height="9" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
@@ -923,6 +947,10 @@
                   </div>
                   <div class="impl-block-body">
                     <p class="impl-block-text">Quarterly reviews are run by the control owner using Vanta — Okta groups, AWS IAM, Snowflake roles, and Jira project memberships are exported, owners attest in writing, and anomalies open remediation tickets routed to the system owner.</p>
+                    <div class="impl-block-docs">
+                      <span class="impl-block-doc-tag"><svg width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M5 8h6M5 11h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>Access Control Policy</span>
+                      <span class="impl-block-doc-tag is-procedure"><svg width="10" height="10" viewBox="0 0 16 16" fill="none"><circle cx="3.5" cy="4" r="1" fill="currentColor"/><circle cx="3.5" cy="8" r="1" fill="currentColor"/><circle cx="3.5" cy="12" r="1" fill="currentColor"/><path d="M6.5 4h7M6.5 8h7M6.5 12h7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>Quarterly Access Review Procedure</span>
+                    </div>
                     <div class="impl-block-tests">
                       <span class="impl-test-tag"><span class="impl-test-dot pass"></span>Identity provider linked — Okta</span>
                       <span class="impl-test-tag"><span class="impl-test-dot pass"></span>Cloud infrastructure linked — AWS</span>
@@ -942,6 +970,10 @@
                   </div>
                   <div class="impl-block-body">
                     <p class="impl-block-text">Offboarding is triggered by an HRIS event in Rippling. Automation removes Okta, AWS, Snowflake, Jira, Linear, and GitHub within 1 hour; a manual checklist closes the long-tail systems (Salesforce, Stripe, vendor SaaS) within a 24-hour SLA.</p>
+                    <div class="impl-block-docs">
+                      <span class="impl-block-doc-tag"><svg width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M5 8h6M5 11h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>HR Security Policy</span>
+                      <span class="impl-block-doc-tag is-procedure"><svg width="10" height="10" viewBox="0 0 16 16" fill="none"><circle cx="3.5" cy="4" r="1" fill="currentColor"/><circle cx="3.5" cy="8" r="1" fill="currentColor"/><circle cx="3.5" cy="12" r="1" fill="currentColor"/><path d="M6.5 4h7M6.5 8h7M6.5 12h7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>Employee Offboarding Procedure</span>
+                    </div>
                     <div class="impl-block-tests">
                       <span class="impl-test-tag"><span class="impl-test-dot pass"></span>Jira deprovisioned on offboard</span>
                       <span class="impl-test-tag"><span class="impl-test-dot pass"></span>Linear deprovisioned on offboard</span>

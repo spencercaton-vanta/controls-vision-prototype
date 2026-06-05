@@ -647,6 +647,17 @@
     .impl-block-body { padding: 12px 14px; }
     .impl-block-text { font-size: 13px; color: var(--text-quiet); line-height: 1.6; margin-bottom: 10px; }
     .impl-block-tests { display: flex; flex-wrap: wrap; gap: 6px; }
+    .impl-block-docs { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 8px; }
+    .impl-block-doc-tag {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 3px 8px; border-radius: 4px;
+      font-size: 11px; font-weight: 500;
+      background: var(--brand-light); color: var(--brand);
+      cursor: pointer;
+    }
+    .impl-block-doc-tag.is-procedure {
+      background: var(--info-bg); color: var(--info-text);
+    }
     .impl-test-tag {
       display: inline-flex; align-items: center; gap: 5px;
       padding: 3px 8px; border-radius: 4px;
@@ -917,6 +928,11 @@
                 <div class="single-control-section">
                   <span class="single-control-label">Implementation · Data transmission encrypted</span>
                   <p class="single-control-desc">Acme uses TLS 1.2+ for all data transmitted over public networks. AWS ACM manages certificates for ALB and CloudFront endpoints; internal service-to-service traffic uses mTLS via Istio with automatic monthly cert rotation. HSTS is enforced on all customer-facing domains.</p>
+                  <div class="impl-block-docs">
+                    <span class="impl-block-doc-tag"><svg width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M5 8h6M5 11h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>Cryptography Policy</span>
+                    <span class="impl-block-doc-tag"><svg width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M3 2h7l3 3v9H3z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M5 8h6M5 11h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>Data Classification Policy</span>
+                    <span class="impl-block-doc-tag is-procedure"><svg width="10" height="10" viewBox="0 0 16 16" fill="none"><circle cx="3.5" cy="4" r="1" fill="currentColor"/><circle cx="3.5" cy="8" r="1" fill="currentColor"/><circle cx="3.5" cy="12" r="1" fill="currentColor"/><path d="M6.5 4h7M6.5 8h7M6.5 12h7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>Encryption Standards Procedure</span>
+                  </div>
                 </div>
 
                 <div class="single-control-section">
