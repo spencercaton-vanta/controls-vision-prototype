@@ -664,10 +664,10 @@
 
     /* Multi-implementation: one control, several scoped implementations */
     .implementations { display: flex; flex-direction: column; }
-    .implementation-block { padding: 20px 0; border-top: 1px solid var(--border-quiet); }
-    .implementation-block:first-child { border-top: 0; padding-top: 4px; }
-    .implementation-block:last-child { padding-bottom: 4px; }
-    .implementation-header { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; flex-wrap: wrap; }
+    .implementation-block { padding: 14px 0; border-top: 1px solid var(--border-quiet); }
+    .implementation-block:first-child { border-top: 0; padding-top: 0; }
+    .implementation-block:last-child { padding-bottom: 0; }
+    .implementation-header { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; flex-wrap: wrap; }
     .implementation-name { font-size: 14px; font-weight: 600; color: var(--text-default); flex: 1; min-width: 0; }
     .implementation-owner { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-quiet); }
     .implementation-owner .owner-avatar-sm { width: 20px; height: 20px; font-size: 10px; }
@@ -677,6 +677,9 @@
     .implementation-status.pass .implementation-status-dot { background: var(--success-text); }
     .implementation-status.fail { background: #fff2f2; color: var(--error-text); }
     .implementation-status.fail .implementation-status-dot { background: var(--error-text); }
+    .implementation-block .impl-statement { font-size: 13px; padding: 10px 12px; margin-bottom: 8px; }
+    .implementation-block .impl-chain { gap: 8px; margin-top: 4px; }
+    .scope-chip-plain { padding: 3px 9px; border-radius: 4px; background: var(--bg-neutral); color: var(--text-quiet); font-size: 12px; font-weight: 500; }
 
     /* Progress chip on card header */
     .progress-chip {
@@ -1102,13 +1105,15 @@
                           <a class="test-chip"><span class="test-chip-dot fail"></span>IT access ticket history complete</a>
                         </div>
                       </div>
-                    </div>
-                    <div class="impl-scope">
-                      <div class="impl-scope-head">Resources in scope</div>
-                      <div class="impl-scope-row"><span class="impl-scope-row-name">Okta</span><span class="impl-scope-row-resources">All Employees · Engineering · Finance · Contractors</span></div>
-                      <div class="impl-scope-row"><span class="impl-scope-row-name">Google Workspace</span><span class="impl-scope-row-resources">All Employees</span></div>
-                      <div class="impl-scope-row"><span class="impl-scope-row-name">Slack</span><span class="impl-scope-row-resources">acme.slack.com workspace</span></div>
-                      <div class="impl-scope-row"><span class="impl-scope-row-name">Salesforce</span><span class="impl-scope-row-resources">System Administrator · Sales User · Standard User</span></div>
+                      <div class="impl-chain-row">
+                        <span class="impl-chain-label">Scope</span>
+                        <div class="impl-chain-chips">
+                          <span class="scope-chip-plain">Okta</span>
+                          <span class="scope-chip-plain">Google Workspace</span>
+                          <span class="scope-chip-plain">Slack</span>
+                          <span class="scope-chip-plain">Salesforce</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
 
@@ -1144,13 +1149,15 @@
                           <a class="test-chip"><span class="test-chip-dot pass"></span>GitHub team membership audit</a>
                         </div>
                       </div>
-                    </div>
-                    <div class="impl-scope">
-                      <div class="impl-scope-head">Resources in scope</div>
-                      <div class="impl-scope-row"><span class="impl-scope-row-name">AWS</span><span class="impl-scope-row-resources">acme-prod · acme-data · acme-platform</span></div>
-                      <div class="impl-scope-row"><span class="impl-scope-row-name">GitHub</span><span class="impl-scope-row-resources">engineering · infra · security · data-platform</span></div>
-                      <div class="impl-scope-row"><span class="impl-scope-row-name">Teleport</span><span class="impl-scope-row-resources">prod-bastion · prod-k8s</span></div>
-                      <div class="impl-scope-row"><span class="impl-scope-row-name">Datadog</span><span class="impl-scope-row-resources">prod monitoring</span></div>
+                      <div class="impl-chain-row">
+                        <span class="impl-chain-label">Scope</span>
+                        <div class="impl-chain-chips">
+                          <span class="scope-chip-plain">AWS</span>
+                          <span class="scope-chip-plain">GitHub</span>
+                          <span class="scope-chip-plain">Teleport</span>
+                          <span class="scope-chip-plain">Datadog</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
 
@@ -1186,12 +1193,14 @@
                           <a class="test-chip"><span class="test-chip-dot fail"></span>Looker permission set drift check</a>
                         </div>
                       </div>
-                    </div>
-                    <div class="impl-scope">
-                      <div class="impl-scope-head">Resources in scope</div>
-                      <div class="impl-scope-row"><span class="impl-scope-row-name">Snowflake</span><span class="impl-scope-row-resources">SYSADMIN · DATA_ENGINEER · ANALYST · READ_ONLY</span></div>
-                      <div class="impl-scope-row"><span class="impl-scope-row-name">dbt Cloud</span><span class="impl-scope-row-resources">analytics · platform · sandbox</span></div>
-                      <div class="impl-scope-row"><span class="impl-scope-row-name">Looker</span><span class="impl-scope-row-resources">Editor · Viewer · Admin</span></div>
+                      <div class="impl-chain-row">
+                        <span class="impl-chain-label">Scope</span>
+                        <div class="impl-chain-chips">
+                          <span class="scope-chip-plain">Snowflake</span>
+                          <span class="scope-chip-plain">dbt Cloud</span>
+                          <span class="scope-chip-plain">Looker</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
 
