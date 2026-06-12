@@ -391,7 +391,11 @@
     .fw-sat-name { font-size: 12px; color: var(--text-quiet); }
     .fw-sat-preview {
       font-size: 12px; color: var(--text-tertiary);
-      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      line-height: 1.5;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
     .fw-sat-arrow { color: var(--text-tertiary); flex-shrink: 0; }
     .optional-tag {
@@ -1052,7 +1056,7 @@
                     <a class="fw-sat-row" href="index.html">
                       <span class="fw-sat-body">
                         <span class="fw-sat-top"><span class="fw-sat-code">SOC 2 CC 6.1</span><span class="fw-sat-name">Logical access security</span></span>
-                        <span class="fw-sat-preview">"The entity implements logical access security software, infrastructure, and architectures over protected information assets to protect them from security events…"</span>
+                        <span class="fw-sat-preview">"The entity implements logical access security software, infrastructure, and architectures over protected information assets to protect them from security events to meet the entity's objectives."</span>
                       </span>
                       <svg class="fw-sat-arrow" width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </a>
