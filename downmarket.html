@@ -333,12 +333,25 @@
       cursor: help;
     }
     .impl-test-tag.inherited { background: var(--bg-default); }
+    .section-row {
+      display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+    }
     .customize-link {
       font-size: 12px; color: var(--text-tertiary);
       text-decoration: none; cursor: pointer;
-      margin-top: 6px; display: inline-block;
     }
     .customize-link:hover { color: var(--brand); }
+    .empty-prompt-compact {
+      display: inline-flex; align-items: center; gap: 6px;
+      align-self: flex-start;
+      padding: 6px 12px; border-radius: 6px;
+      border: 1px dashed var(--border-default);
+      background: transparent;
+      font-size: 12px; color: var(--text-tertiary);
+      text-decoration: none; cursor: pointer;
+      transition: border-color 0.1s, color 0.1s;
+    }
+    .empty-prompt-compact:hover { border-color: var(--brand); color: var(--brand); }
     .optional-tag {
       margin-left: 8px;
       padding: 2px 7px; border-radius: 4px;
@@ -968,15 +981,15 @@
           <a class="show-more-link" id="req-toggle" style="visibility:hidden;display:none;">Show full requirement</a>
 
           <div class="detail-meta">
-            <span class="meta-id">ID: cm-iam-mfa-1</span>
-            <span class="badge badge-neutral">
-              <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><rect x="2" y="3" width="12" height="10" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M2 7h12" stroke="currentColor" stroke-width="1.4"/></svg>
-              IAM · Authentication
-            </span>
             <span class="badge badge-satisfied">
               <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
               Operating
             </span>
+            <span class="badge badge-neutral">
+              <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><rect x="2" y="3" width="12" height="10" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M2 7h12" stroke="currentColor" stroke-width="1.4"/></svg>
+              IAM · Authentication
+            </span>
+            <span class="meta-id">ID: cm-iam-mfa-1</span>
           </div>
         </div>
 
@@ -1000,25 +1013,24 @@
               <div class="single-control">
 
                 <div class="single-control-section">
-                  <span class="single-control-label">Evidence <span class="evidence-meta">4 of 4 passing</span></span>
-                  <div class="impl-block-tests">
-                    <span class="impl-test-tag inherited"><span class="impl-test-dot pass"></span>MFA enforced — Okta production users<span class="test-inherit-pip" title="Inherited from Vanta default content">✦</span></span>
-                    <span class="impl-test-tag inherited"><span class="impl-test-dot pass"></span>MFA enforced — AWS root + IAM admins<span class="test-inherit-pip" title="Inherited from Vanta default content">✦</span></span>
-                    <span class="impl-test-tag inherited"><span class="impl-test-dot pass"></span>MFA enforced — GitHub Enterprise org<span class="test-inherit-pip" title="Inherited from Vanta default content">✦</span></span>
-                    <span class="impl-test-tag inherited"><span class="impl-test-dot pass"></span>MFA enforced — Google Workspace admins<span class="test-inherit-pip" title="Inherited from Vanta default content">✦</span></span>
+                  <div class="section-row">
+                    <span class="single-control-label">Evidence <span class="evidence-meta">4 of 4 passing</span></span>
+                    <a class="customize-link" href="#">Customize</a>
                   </div>
-                  <a class="customize-link" href="#">Customize tests →</a>
+                  <div class="impl-block-tests">
+                    <span class="impl-test-tag"><span class="impl-test-dot pass"></span>MFA enforced — Okta production users</span>
+                    <span class="impl-test-tag"><span class="impl-test-dot pass"></span>MFA enforced — AWS root + IAM admins</span>
+                    <span class="impl-test-tag"><span class="impl-test-dot pass"></span>MFA enforced — GitHub Enterprise org</span>
+                    <span class="impl-test-tag"><span class="impl-test-dot pass"></span>MFA enforced — Google Workspace admins</span>
+                  </div>
                 </div>
 
                 <div class="single-control-section">
                   <span class="single-control-label">Control description <span class="optional-tag">optional</span></span>
-                  <div class="empty-prompt">
-                    <p class="empty-prompt-text">This control is satisfied by the evidence above. Add a description if you want to capture context for auditors — how your team approaches MFA, exceptions, or scope notes.</p>
-                    <a class="empty-prompt-cta" href="#">
-                      <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-                      Add description
-                    </a>
-                  </div>
+                  <a class="empty-prompt-compact" href="#">
+                    <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                    Add notes for auditors
+                  </a>
                 </div>
 
               </div>
