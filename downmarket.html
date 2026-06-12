@@ -363,6 +363,31 @@
     .split-control-link:hover { color: var(--brand); }
     .split-control-hint { color: var(--text-tertiary); font-weight: 400; }
     .split-control-link:hover .split-control-hint { color: var(--text-quiet); }
+    /* Satisfies — framework requirements list */
+    .fw-sat-list {
+      display: flex; flex-direction: column;
+      border: 1px solid var(--border-quiet);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .fw-sat-row {
+      display: flex; align-items: center; gap: 12px;
+      padding: 9px 14px;
+      background: var(--bg-default);
+      border-top: 1px solid var(--border-quiet);
+      text-decoration: none;
+      transition: background 0.1s;
+    }
+    .fw-sat-row:first-child { border-top: none; }
+    .fw-sat-row:hover { background: var(--bg-lowered); }
+    .fw-sat-code {
+      font-size: 12px; font-weight: 600;
+      color: var(--text-default);
+      min-width: 165px;
+      font-feature-settings: "tnum" 1;
+    }
+    .fw-sat-name { font-size: 13px; color: var(--text-quiet); flex: 1; }
+    .fw-sat-arrow { color: var(--text-tertiary); flex-shrink: 0; }
     .optional-tag {
       margin-left: 8px;
       padding: 2px 7px; border-radius: 4px;
@@ -1016,6 +1041,27 @@
               <div class="single-control">
 
                 <div class="single-control-section">
+                  <span class="single-control-label">Satisfies <span class="evidence-meta" style="color:var(--text-tertiary);">3 framework requirements</span></span>
+                  <div class="fw-sat-list">
+                    <a class="fw-sat-row" href="index.html">
+                      <span class="fw-sat-code">SOC 2 CC 6.1</span>
+                      <span class="fw-sat-name">Logical access security</span>
+                      <svg class="fw-sat-arrow" width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </a>
+                    <a class="fw-sat-row" href="#">
+                      <span class="fw-sat-code">ISO 27001:2022 A.8.5</span>
+                      <span class="fw-sat-name">Secure authentication</span>
+                      <svg class="fw-sat-arrow" width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </a>
+                    <a class="fw-sat-row" href="#">
+                      <span class="fw-sat-code">NIST CSF 2.0 PR.AA-02</span>
+                      <span class="fw-sat-name">Identities and credentials</span>
+                      <svg class="fw-sat-arrow" width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </a>
+                  </div>
+                </div>
+
+                <div class="single-control-section">
                   <div class="section-row">
                     <span class="single-control-label">Evidence <span class="evidence-meta">4 of 4 passing</span></span>
                     <a class="customize-link" href="#">Customize</a>
@@ -1062,16 +1108,6 @@
                 <div style="font-size:11px;color:var(--text-tertiary);">GRC lead</div>
               </div>
             </div>
-          </div>
-
-          <!-- Frameworks satisfied -->
-          <div class="sidebar-section">
-            <div class="sidebar-section-label">Frameworks satisfied <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--text-tertiary);font-size:11px;">· 3</span></div>
-            <ul class="cc-list">
-              <li><a href="index.html" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:1px;"><span class="cc-list-name">SOC 2 CC 6.1</span><span class="cc-list-sub">Logical access security</span></a></li>
-              <li><a href="#" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:1px;"><span class="cc-list-name">ISO 27001:2022 A.8.5</span><span class="cc-list-sub">Secure authentication</span></a></li>
-              <li><a href="#" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:1px;"><span class="cc-list-name">NIST CSF 2.0 PR.AA-02</span><span class="cc-list-sub">Identities and credentials</span></a></li>
-            </ul>
           </div>
 
           <!-- Resources in scope -->
