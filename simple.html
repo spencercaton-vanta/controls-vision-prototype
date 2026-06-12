@@ -72,27 +72,25 @@
     }
     .topnav-right { display: flex; align-items: center; gap: 4px; }
     .demo-switcher {
-      display: inline-flex; align-items: center; gap: 2px;
+      height: 32px;
+      padding: 0 32px 0 12px;
       margin-right: 10px;
-      padding: 3px;
-      background: var(--bg-lowered);
-      border-radius: 7px;
-    }
-    .demo-pill {
-      padding: 4px 10px; border-radius: 5px;
-      font-size: 12px; font-weight: 500;
-      color: var(--text-quiet);
-      text-decoration: none;
-      cursor: pointer;
-      transition: background 0.1s, color 0.1s;
-      white-space: nowrap;
-    }
-    .demo-pill:hover { color: var(--text-default); }
-    .demo-pill.active {
-      background: var(--bg-default);
+      border: 1px solid var(--border-default);
+      border-radius: 6px;
+      background-color: var(--bg-default);
+      font-size: 13px; font-weight: 500;
       color: var(--text-default);
-      box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M3 5L6 8L9 5' stroke='%239b9a99' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      transition: border-color 0.1s;
     }
+    .demo-switcher:hover { border-color: var(--text-tertiary); }
     .nav-icon-btn {
       width: 32px; height: 32px;
       display: flex; align-items: center; justify-content: center;
@@ -765,13 +763,13 @@
       </button>
     </div>
     <div class="topnav-right">
-      <div class="demo-switcher">
-        <a href="index.html" class="demo-pill">Multi-control</a>
-        <a href="simple.html" class="demo-pill active">Single control</a>
-        <a href="iso.html" class="demo-pill">Instances</a>
-        <a href="downmarket.html" class="demo-pill">Downmarket</a>
-        <a href="control.html" class="demo-pill">Control detail</a>
-      </div>
+      <select class="demo-switcher" onchange="window.location.href=this.value">
+        <option value="index.html">Multi-control</option>
+        <option value="simple.html" selected>Single control</option>
+        <option value="iso.html">Instances</option>
+        <option value="downmarket.html">Downmarket</option>
+        <option value="control.html">Control detail</option>
+      </select>
       <button class="nav-icon-btn" title="AI">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2L9.3 5.7L13 7L9.3 8.3L8 12L6.7 8.3L3 7L6.7 5.7L8 2Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M13 1L13.5 2.5L15 3L13.5 3.5L13 5L12.5 3.5L11 3L12.5 2.5L13 1Z" stroke="currentColor" stroke-width="1" stroke-linejoin="round"/></svg>
       </button>
