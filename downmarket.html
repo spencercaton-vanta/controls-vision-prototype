@@ -961,7 +961,10 @@
             </div>
           </div>
 
-          <p class="detail-desc" id="req-desc-short">Multi-factor authentication is enforced on all production system access — admin consoles, source control, identity provider, and productivity suite.</p>
+          <p class="detail-desc" id="req-desc-short">Multi-factor authentication is required on all production system access, including administrative consoles, source code management, identity provider, and productivity suite. MFA must use a cryptographic factor (TOTP, FIDO2, or push) — SMS-only is not permitted for production.</p>
+          <div style="margin-bottom:14px;">
+            <span class="inherit-tag" style="margin-left:0;"><svg width="9" height="9" viewBox="0 0 16 16" fill="none"><path d="M3 8l3 3 7-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Inherited from Vanta default content</span>
+          </div>
           <a class="show-more-link" id="req-toggle" style="visibility:hidden;display:none;">Show full requirement</a>
 
           <div class="detail-meta">
@@ -999,11 +1002,6 @@
             <div class="card-body">
 
               <div class="single-control">
-
-                <div class="single-control-section">
-                  <span class="single-control-label">Objective <span class="inherit-tag"><svg width="9" height="9" viewBox="0 0 16 16" fill="none"><path d="M3 8l3 3 7-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Inherited from Vanta default content</span></span>
-                  <p class="single-control-desc">Multi-factor authentication is required on all production system access, including administrative consoles, source code management, identity provider, and productivity suite. MFA must use a cryptographic factor (TOTP, FIDO2, or push) — SMS-only is not permitted for production.</p>
-                </div>
 
                 <div class="single-control-section">
                   <span class="single-control-label">Evidence <span class="evidence-meta">4 of 4 passing</span></span>
