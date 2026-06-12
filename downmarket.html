@@ -974,11 +974,12 @@
             </div>
           </div>
 
-          <p class="detail-desc" id="req-desc-short">Multi-factor authentication is required on all production system access, including administrative consoles, source code management, identity provider, and productivity suite. MFA must use a cryptographic factor (TOTP, FIDO2, or push) — SMS-only is not permitted for production.</p>
-          <div style="margin-bottom:14px;">
+          <p class="detail-desc" id="req-desc-short">Multi-factor authentication is required on all production system access, including administrative consoles, source code management, identity provider, and productivity suite.</p>
+          <p class="detail-desc" id="req-desc-full" hidden>Multi-factor authentication is required on all production system access, including administrative consoles, source code management, identity provider, and productivity suite. MFA must use a cryptographic factor (TOTP, FIDO2, or push) — SMS-only is not permitted for production.</p>
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;">
+            <a class="show-more-link" id="req-toggle" style="margin-bottom:0;">Show more</a>
             <span class="inherit-tag" style="margin-left:0;"><svg width="9" height="9" viewBox="0 0 16 16" fill="none"><path d="M3 8l3 3 7-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Inherited from Vanta default content</span>
           </div>
-          <a class="show-more-link" id="req-toggle" style="visibility:hidden;display:none;">Show full requirement</a>
 
           <div class="detail-meta">
             <span class="badge badge-satisfied">
@@ -1079,18 +1080,13 @@
             </div>
           </div>
 
-          <!-- Library -->
+          <!-- Audit -->
           <div class="sidebar-section">
-            <div class="sidebar-section-label">Library</div>
-            <div class="source-grid">
-              <span class="source-label">Type</span>
-              <span class="source-value">Common control</span>
-              <span class="source-label">Source</span>
-              <span class="source-value">Vanta default</span>
-              <span class="source-label">Domain</span>
-              <span class="source-value">IAM · Authentication</span>
-              <span class="source-label">Status</span>
-              <span><span class="badge-in-audit">In audit</span></span>
+            <div class="sidebar-section-label">Audit</div>
+            <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-quiet);">
+              <span class="badge-in-audit">In audit</span>
+              <span style="color:var(--text-tertiary);">·</span>
+              <span>SOC 2 Type II</span>
             </div>
           </div>
 
